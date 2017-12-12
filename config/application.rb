@@ -29,3 +29,4 @@ module FollowTheFoodTruck
     # -- all .rb files in that directory are automatically loaded.
   end
 end
+

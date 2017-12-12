@@ -1,0 +1,9 @@
+<h1>Add a new truck</h1>
+
+
+  <%= simple_form_for [@truck] do |f| %>
+    <%= f.input :name %>
+    <%= f.input :type_of_food %>
+  <%= f.submit "add a truck", class: "btn btn-primary" %>
+<% end %>
+

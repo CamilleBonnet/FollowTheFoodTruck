@@ -1,4 +1,4 @@
-class CreateAddresses < ActiveRecord::Migration[5.1]
+class CreateAddresses < ActiveRecord::Migration[5.0]
   def change
     create_table :addresses do |t|
       t.references :truck, foreign_key: true

@@ -6,6 +6,7 @@ class AddressesController < ApplicationController
     @address = Address.new
   end
 
+
   def create
     @address = address.new(address_params)
     @address.truck = @truck

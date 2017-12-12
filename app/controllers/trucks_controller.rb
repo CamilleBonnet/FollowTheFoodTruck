@@ -11,7 +11,6 @@ before_action :set_truck, only: [:show, :edit, :update, :destroy]
   end
 
   def show
-
   end
 
 
@@ -30,7 +29,6 @@ before_action :set_truck, only: [:show, :edit, :update, :destroy]
   end
 
   def update
-
     @truck.update(truck_params)
     redirect_to truck_path(@truck)
   end

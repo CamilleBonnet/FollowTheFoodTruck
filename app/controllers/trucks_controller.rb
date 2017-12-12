@@ -13,7 +13,9 @@ before_action :set_truck, only: [:show, :edit, :update, :destroy]
   end
 
   def create
+    user = current_user
     @truck = Truck.new(truck_params)
+    @truck.user = user
     if @truck.save
       redirect_to truck_path(@truck)
     else
@@ -42,6 +44,6 @@ before_action :set_truck, only: [:show, :edit, :update, :destroy]
   end
 
   def truck_params
-    params.require(:truck).permit(:name, :type_of_food, :pay_online, :payment_info)
+    params.require(:truck).permit(:name, :type_of_food, :pay_online, :payment_info, photos: [])
   end
 end

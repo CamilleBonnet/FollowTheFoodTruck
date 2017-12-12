@@ -1,6 +1,6 @@
 class MealsController < ApplicationController
   before_action :set_meal, only: [:edit, :update, :destroy]
-  before_action :set_truck, only: [:create, :edit, :update]
+  before_action :set_truck, only: [:new, :create, :edit, :update]
 
   def new
     @meal = Meal.new
@@ -9,7 +9,9 @@ class MealsController < ApplicationController
   def create
     @meal = Meal.new(meal_params)
     @meal.truck = @truck
-    @meal.save
+    if @meal.save
+      render :new
+    end
   end
 
   def edit

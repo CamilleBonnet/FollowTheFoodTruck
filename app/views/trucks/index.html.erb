@@ -1,0 +1,19 @@
+<h1>Here are all the trucks</h1>
+
+
+<div class="container">
+  <div class="row">
+    <ul>
+      <% @trucks.each do |truck| %>
+      <li>
+        <p><%= truck.name %></p>
+        <p><%= truck.type_of_food %></p>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+
+
+

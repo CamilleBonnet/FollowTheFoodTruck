@@ -7,7 +7,7 @@ class MealsController < ApplicationController
   end
 
   def create
-    @meal = meal.new(meal_params)
+    @meal = Meal.new(meal_params)
     @meal.truck = @truck
     @meal.save
   end

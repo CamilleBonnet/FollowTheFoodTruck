@@ -29,6 +29,3 @@ module FollowTheFoodTruck
   end
 end
 
-Rake::Task['assets:precompile'].enhance do
-  Rake::Task['webpacker:compile'].invoke
-end

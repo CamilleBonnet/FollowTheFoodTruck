@@ -28,3 +28,7 @@ module FollowTheFoodTruck
     # -- all .rb files in that directory are automatically loaded.
   end
 end
+
+Rake::Task['assets:precompile'].enhance do
+  Rake::Task['webpacker:compile'].invoke
+end

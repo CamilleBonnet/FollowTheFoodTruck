@@ -9,6 +9,7 @@ gem 'rails', '5.1.4'
 gem 'redis'
 gem 'jquery-rails'
 # gem 'rails-ujs'
+gem 'bootstrap-datepicker-rails'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'

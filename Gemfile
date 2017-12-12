@@ -10,6 +10,7 @@ gem 'redis'
 gem 'jquery-rails'
 # gem 'rails-ujs'
 gem 'bootstrap-datepicker-rails'
+gem "simple_calendar", "~> 2.0"
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'

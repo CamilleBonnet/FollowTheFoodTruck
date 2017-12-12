@@ -1,4 +1,4 @@
-class CreateChoices < ActiveRecord::Migration[5.1]
+class CreateChoices < ActiveRecord::Migration[5.0]
   def change
     create_table :choices do |t|
       t.references :basket, foreign_key: true

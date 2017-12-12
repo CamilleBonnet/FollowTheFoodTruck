@@ -1,4 +1,4 @@
-class CreateTruckOrderLists < ActiveRecord::Migration[5.1]
+class CreateTruckOrderLists < ActiveRecord::Migration[5.0]
   def change
     create_table :truck_order_lists do |t|
       t.references :truck, foreign_key: true

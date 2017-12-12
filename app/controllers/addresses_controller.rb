@@ -8,7 +8,7 @@ class AddressesController < ApplicationController
 
   def create
     @address = address.new(address_params)
-    @address.truck = @truck
+    @address.truck_id = @truck
     @address.save
   end
 

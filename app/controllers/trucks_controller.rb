@@ -11,10 +11,7 @@ before_action :set_truck, only: [:show, :edit, :update, :destroy]
   end
 
   def show
-
   end
-
-
 
   def create
     @truck = Truck.new(truck_params)
@@ -23,14 +20,12 @@ before_action :set_truck, only: [:show, :edit, :update, :destroy]
     else
       render :new
     end
-
   end
 
   def edit
   end
 
   def update
-
     @truck.update(truck_params)
     redirect_to truck_path(@truck)
   end

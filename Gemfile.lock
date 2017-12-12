@@ -193,6 +193,7 @@ DEPENDENCIES
   autoprefixer-rails
   bootstrap-sass
   devise
+  execjs
   figaro
   font-awesome-sass
   jbuilder (~> 2.0)

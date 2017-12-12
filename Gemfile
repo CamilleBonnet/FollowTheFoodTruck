@@ -8,6 +8,7 @@ gem 'puma'
 gem 'rails', '5.1.4'
 gem 'redis'
 gem 'jquery-rails'
+gem 'execjs'
 # gem 'rails-ujs'
 
 gem 'autoprefixer-rails'

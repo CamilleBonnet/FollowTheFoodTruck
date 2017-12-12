@@ -1,4 +1,4 @@
-class CreateCalendars < ActiveRecord::Migration[5.1]
+class CreateCalendars < ActiveRecord::Migration[5.0]
   def change
     create_table :calendars do |t|
       t.references :address, foreign_key: true

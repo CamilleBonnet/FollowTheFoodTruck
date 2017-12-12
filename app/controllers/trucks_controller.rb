@@ -1,5 +1,4 @@
 class TrucksController < ApplicationController
-
 before_action :set_truck, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -13,8 +12,6 @@ before_action :set_truck, only: [:show, :edit, :update, :destroy]
   def show
   end
 
-
-
   def create
     @truck = Truck.new(truck_params)
     if @truck.save
@@ -22,7 +19,6 @@ before_action :set_truck, only: [:show, :edit, :update, :destroy]
     else
       render :new
     end
-
   end
 
   def edit

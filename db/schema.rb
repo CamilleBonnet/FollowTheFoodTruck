@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171212114556) do
+ActiveRecord::Schema.define(version: 20171212141918) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,36 @@ ActiveRecord::Schema.define(version: 20171212114556) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["truck_id"], name: "index_addresses_on_truck_id"
+  end
+
+  create_table "baskets", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "truck_order_list_id"
+    t.integer "total_price"
+    t.date "date"
+    t.datetime "time"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["truck_order_list_id"], name: "index_baskets_on_truck_order_list_id"
+    t.index ["user_id"], name: "index_baskets_on_user_id"
+  end
+
+  create_table "choices", force: :cascade do |t|
+    t.bigint "basket_id"
+    t.bigint "meal_id"
+    t.bigint "truck_id"
+    t.bigint "user_id"
+    t.integer "quantity"
+    t.float "price"
+    t.date "date"
+    t.datetime "time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["basket_id"], name: "index_choices_on_basket_id"
+    t.index ["meal_id"], name: "index_choices_on_meal_id"
+    t.index ["truck_id"], name: "index_choices_on_truck_id"
+    t.index ["user_id"], name: "index_choices_on_user_id"
   end
 
   create_table "meals", force: :cascade do |t|
@@ -61,6 +91,16 @@ ActiveRecord::Schema.define(version: 20171212114556) do
     t.index ["reset_password_token"], name: "index_registrations_on_reset_password_token", unique: true
   end
 
+  create_table "truck_order_lists", force: :cascade do |t|
+    t.bigint "truck_id"
+    t.date "date"
+    t.datetime "time"
+    t.integer "total_day_income"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["truck_id"], name: "index_truck_order_lists_on_truck_id"
+  end
+
   create_table "trucks", force: :cascade do |t|
     t.string "name"
     t.string "type_of_food"
@@ -82,6 +122,13 @@ ActiveRecord::Schema.define(version: 20171212114556) do
   end
 
   add_foreign_key "addresses", "trucks"
+  add_foreign_key "baskets", "truck_order_lists"
+  add_foreign_key "baskets", "users"
+  add_foreign_key "choices", "baskets"
+  add_foreign_key "choices", "meals"
+  add_foreign_key "choices", "trucks"
+  add_foreign_key "choices", "users"
   add_foreign_key "meals", "trucks"
+  add_foreign_key "truck_order_lists", "trucks"
   add_foreign_key "users", "registrations"
 end

@@ -1,6 +1,5 @@
 class AddressesController < ApplicationController
-
-before_action :set_address, only: [:edit, :update, :destroy]
+  before_action :set_address, only: [:edit, :update, :destroy]
   before_action :set_truck, only: [:create, :edit, :update, :destroy]
 
   def new

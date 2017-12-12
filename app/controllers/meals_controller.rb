@@ -34,7 +34,7 @@ class MealsController < ApplicationController
   end
 
   def meal_params
-    params.require(:meal).permit(:description, :is_vegan, :is_fat_free,:is_alergen, :is_gluten_free, :spicy_scale, :price, :truck_id, :photo, :photo_cache)
+    params.require(:meal).permit(:description, :is_vegan, :is_fat_free, :is_alergen, :is_gluten_free, :spicy_scale, :price, :truck_id, :photo, :photo_cache)
   end
 
 end

@@ -52,6 +52,8 @@ GEM
     aws_cf_signer (0.1.3)
     bcrypt (3.1.11)
     bindex (0.5.0)
+    bootstrap-datepicker-rails (1.7.1.1)
+      railties (>= 3.0)
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
@@ -186,6 +188,8 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
+    simple_calendar (2.2.7)
+      rails (>= 3.0)
     simple_form (3.5.0)
       actionpack (> 4, < 5.2)
       activemodel (> 4, < 5.2)
@@ -232,6 +236,7 @@ PLATFORMS
 DEPENDENCIES
   attachinary!
   autoprefixer-rails
+  bootstrap-datepicker-rails
   bootstrap-sass
   cloudinary (= 1.1.7)
   coffee-rails
@@ -251,6 +256,7 @@ DEPENDENCIES
   rails-ujs
   redis
   sass-rails
+  simple_calendar (~> 2.0)
   simple_form
   spring
   spring-watcher-listen (~> 2.0.0)

@@ -2,7 +2,6 @@ Rails.application.routes.draw do
 
   root to: 'trucks#index'
 
-
   devise_for :registrations, :controllers => {
     registrations: "registrations"#,
     # omniauth_callbacks: "registrations/omniauth_callbacks"

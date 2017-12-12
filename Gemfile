@@ -8,6 +8,8 @@ gem 'puma'
 gem 'rails', '5.0.6'
 gem 'redis'
 gem 'jquery-rails'
+gem 'bootstrap-datepicker-rails'
+gem "simple_calendar", "~> 2.0"
 gem 'execjs'
 gem 'rails-ujs'
 

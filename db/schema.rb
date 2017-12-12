@@ -58,6 +58,15 @@ ActiveRecord::Schema.define(version: 20171212153251) do
     t.index ["user_id"], name: "index_baskets_on_user_id"
   end
 
+  create_table "calendars", force: :cascade do |t|
+    t.bigint "address_id"
+    t.date "starting_date"
+    t.date "ending_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["address_id"], name: "index_calendars_on_address_id"
+  end
+
   create_table "choices", force: :cascade do |t|
     t.bigint "basket_id"
     t.bigint "meal_id"
@@ -141,6 +150,7 @@ ActiveRecord::Schema.define(version: 20171212153251) do
   add_foreign_key "addresses", "trucks"
   add_foreign_key "baskets", "truck_order_lists"
   add_foreign_key "baskets", "users"
+  add_foreign_key "calendars", "addresses"
   add_foreign_key "choices", "baskets"
   add_foreign_key "choices", "meals"
   add_foreign_key "choices", "trucks"

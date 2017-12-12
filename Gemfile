@@ -9,7 +9,7 @@ gem 'rails', '5.0.6'
 gem 'redis'
 gem 'jquery-rails'
 gem 'execjs'
-# gem 'rails-ujs'
+gem 'rails-ujs'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'

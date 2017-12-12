@@ -10,19 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171212111142) do
-
+ActiveRecord::Schema.define(version: 20171212114556) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "trucks", force: :cascade do |t|
-    t.string "name"
-    t.string "type_of_food"
-    t.boolean "pay_online"
-    t.string "payment_info"
+  create_table "addresses", force: :cascade do |t|
+    t.bigint "truck_id"
+    t.text "street_address"
+    t.text "street_address_2"
+    t.string "city"
+    t.integer "zipcode"
+    t.string "country"
+    t.text "more_info"
+    t.decimal "latitude"
+    t.decimal "longitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["truck_id"], name: "index_addresses_on_truck_id"
+  end
+
+  create_table "meals", force: :cascade do |t|
+    t.bigint "truck_id"
+    t.string "description"
+    t.boolean "is_vegan"
+    t.boolean "is_fat_free"
+    t.boolean "is_alergen"
+    t.boolean "is_gluten_free"
+    t.integer "spicy_scale"
+    t.float "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["truck_id"], name: "index_meals_on_truck_id"
   end
 
   create_table "registrations", force: :cascade do |t|
@@ -42,6 +61,15 @@ ActiveRecord::Schema.define(version: 20171212111142) do
     t.index ["reset_password_token"], name: "index_registrations_on_reset_password_token", unique: true
   end
 
+  create_table "trucks", force: :cascade do |t|
+    t.string "name"
+    t.string "type_of_food"
+    t.boolean "pay_online"
+    t.string "payment_info"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -53,5 +81,7 @@ ActiveRecord::Schema.define(version: 20171212111142) do
     t.index ["registration_id"], name: "index_users_on_registration_id"
   end
 
+  add_foreign_key "addresses", "trucks"
+  add_foreign_key "meals", "trucks"
   add_foreign_key "users", "registrations"
 end

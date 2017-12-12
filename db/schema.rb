@@ -17,7 +17,6 @@ ActiveRecord::Schema.define(version: 20171212111142) do
 
   create_table "trucks", force: :cascade do |t|
     t.string "name"
-    t.string "photos"
     t.string "type_of_food"
     t.boolean "pay_online"
     t.string "payment_info"

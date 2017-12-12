@@ -6,18 +6,24 @@ before_action :set_truck, only: [:show, :edit, :update, :destroy]
     @trucks = Truck.all
   end
 
-  def show
-
-  end
-
   def new
     @truck = Truck.new
   end
 
+  def show
+
+  end
+
+
+
   def create
     @truck = Truck.new(truck_params)
-    @truck.save
-    # redirect_to truck_path(@truck)
+    if @truck.save
+      redirect_to truck_path(@truck)
+    else
+      render :new
+    end
+
   end
 
   def edit

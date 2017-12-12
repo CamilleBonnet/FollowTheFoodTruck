@@ -1,8 +1,12 @@
 class TrucksController < ApplicationController
-before_action :set_truck, only: [:show, :edit, :update, :destroy]
+  before_action :set_truck, only: [:show, :edit, :update, :destroy]
+  before_action :set_all_trucks, only: [:home, :index]
+
+
+  def home
+  end
 
   def index
-    @trucks = Truck.all
   end
 
   def new
@@ -38,6 +42,10 @@ before_action :set_truck, only: [:show, :edit, :update, :destroy]
 
 
   private
+
+  def set_all_trucks
+    @trucks = Truck.all
+  end
 
   def set_truck
     @truck = Truck.find(params[:id])

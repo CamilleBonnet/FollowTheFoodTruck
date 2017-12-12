@@ -1,15 +1,16 @@
 Rails.application.routes.draw do
 
-  root to: 'trucks#index'
-
   devise_for :registrations, :controllers => {
     registrations: "registrations"#,
     # omniauth_callbacks: "registrations/omniauth_callbacks"
   }
   post 'registrations', to: "registrations#create", as: "registration_create"
 
-  resources :trucks
+  root to: 'trucks#home'
 
+  resources :trucks do
+    resources :meals, only: [:new, :create, :update, :destroy]
+  end
   mount Attachinary::Engine => "/attachinary"
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

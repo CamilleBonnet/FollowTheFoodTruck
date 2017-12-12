@@ -1,6 +1,8 @@
 <%= simple_form_for [@truck] do |f| %>
     <%= f.input :name %>
     <%= f.input :type_of_food %>
+    <%= f.input :pay_online %>
+    <%= f.input :payment_info %>
     <%= f.input :photos, as: :attachinary %>
   <%= f.submit "Submit", class: "btn btn-primary" %>
 <% end %>

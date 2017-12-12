@@ -102,12 +102,14 @@ ActiveRecord::Schema.define(version: 20171212141918) do
   end
 
   create_table "trucks", force: :cascade do |t|
+    t.bigint "user_id"
     t.string "name"
     t.string "type_of_food"
     t.boolean "pay_online"
     t.string "payment_info"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_trucks_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

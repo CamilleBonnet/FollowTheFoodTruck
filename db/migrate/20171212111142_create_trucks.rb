@@ -1,4 +1,4 @@
-class CreateTrucks < ActiveRecord::Migration[5.1]
+class CreateTrucks < ActiveRecord::Migration[5.0]
   def change
     create_table :trucks do |t|
       t.references :user

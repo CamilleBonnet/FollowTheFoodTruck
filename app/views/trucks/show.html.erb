@@ -1,4 +1,4 @@
-<h1>Trucks#show</h1>
+<h1>Truck show</h1>
 
 
 
@@ -7,11 +7,8 @@
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
       <h1><%= @truck.name %></h1>
         <p><%= @truck.type_of_food %></p>
-
-
-      <div class="back">
       <%= link_to 'Back', trucks_path, class: "btn btn-warning" %>
-      </div>
+      <%= link_to 'Add a new truck', new_truck_path, class: "btn btn-warning" %>
     </div>
   </div>
 </div>

@@ -5,12 +5,13 @@ gem 'figaro'
 gem 'jbuilder', '~> 2.0'
 gem 'pg'
 gem 'puma'
-gem 'rails', '5.1.4'
+gem 'rails', '5.0.6'
 gem 'redis'
 gem 'jquery-rails'
-# gem 'rails-ujs'
 gem 'bootstrap-datepicker-rails'
 gem "simple_calendar", "~> 2.0"
+gem 'execjs'
+gem 'rails-ujs'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
@@ -33,3 +34,9 @@ group :development, :test do
 end
 
 gem 'devise'
+
+gem 'cloudinary', '1.1.7'
+gem 'attachinary', github: 'assembler/attachinary'
+gem 'jquery-fileupload-rails'
+gem 'coffee-rails'
+

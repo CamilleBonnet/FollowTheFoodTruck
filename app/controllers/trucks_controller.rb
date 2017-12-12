@@ -52,6 +52,6 @@ class TrucksController < ApplicationController
   end
 
   def truck_params
-    params.require(:truck).permit(:name, :type_of_food, :pay_online, :payment_info)
+    params.require(:truck).permit(:name, :type_of_food, :pay_online, :payment_info, photos: [])
   end
 end

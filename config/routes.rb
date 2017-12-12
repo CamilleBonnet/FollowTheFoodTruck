@@ -11,5 +11,7 @@ Rails.application.routes.draw do
   resources :trucks do
     resources :meals, only: [:new, :create, :update, :destroy]
   end
+  mount Attachinary::Engine => "/attachinary"
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

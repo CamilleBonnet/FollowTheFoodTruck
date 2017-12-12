@@ -1,4 +1,4 @@
-class DeviseCreateRegistrations < ActiveRecord::Migration[5.1]
+class DeviseCreateRegistrations < ActiveRecord::Migration[5.0]
   def change
     create_table :registrations do |t|
       ## Database authenticatable

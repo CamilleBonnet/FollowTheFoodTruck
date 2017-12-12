@@ -1,6 +1,10 @@
 <h1>Index (future search results)</h1>
 
 
+<%= render 'shared/banner' %>
+
+
+
 <div class="container">
   <div class="row">
     <ul>
@@ -12,12 +16,13 @@
       <%= link_to "Delete", truck_path(truck),
       method: :delete,
       data: { confirm: "Are you sure?" } %>
-      <%= link_to "Edit", edit_truck_path(truck), class: "card-link" %>
+
       <% end %>
     </ul>
-    <%= link_to 'Add a new truck', new_truck_path, class: "btn btn-warning" %>
   </div>
 </div>
+
+
 
 
 

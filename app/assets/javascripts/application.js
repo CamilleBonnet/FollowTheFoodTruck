@@ -3,4 +3,7 @@
 //= require rails-ujs
 //= require bootstrap-sprockets
 //= require bootstrap-datepicker
+//= require jquery-fileupload/basic
+//= require cloudinary/jquery.cloudinary
+//= require attachinary
 //= require_tree .

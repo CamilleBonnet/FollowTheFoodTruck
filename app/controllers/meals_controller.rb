@@ -5,6 +5,7 @@ class MealsController < ApplicationController
   def create
     @meal = Meal.new(meal_params)
     @meal.truck = @truck
+
     @meal.save
     redirect_to owner_truck_path(@meal)
   end
@@ -33,7 +34,7 @@ class MealsController < ApplicationController
   end
 
   def meal_params
-    params.require(:meal).permit(:description, :is_vegan, :is_fat_free, :is_alergen, :is_gluten_free, :spicy_scale, :price, :truck_id, photos: [])
+    params.require(:meal).permit(:description, :is_vegan, :is_fat_free, :is_alergen, :is_gluten_free, :spicy_scale, :price, :truck_id, :photo)
   end
 
 end

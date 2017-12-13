@@ -1,18 +1,12 @@
 class CalendarsController < ApplicationController
-  before_action :set_calendar, only: [:edit, :update, :destroy]
-  before_action :set_address, only: [:create, :edit, :update, :destroy]
-
-  def show
-  end
-
-  def new
-    @calendar = Calendar.new
-  end
+  before_action :set_calendar, only: [:update, :destroy]
+  before_action :set_address, only: [:create, :update]
 
   def create
-    @calendar= Calendar.new(calendar_params)
+    @calendar = Calendar.new(calendar_params)
     @calendar.address = @address
     @calendar.save
+    redirect_to owner_truck_path(@calendar)
   end
 
   def edit
@@ -20,16 +14,18 @@ class CalendarsController < ApplicationController
 
   def update
     @calendar.update(calendar_params)
+    redirect_to owner_truck_path(@calendar)
   end
 
   def destroy
     @calendar.destroy
+    redirect_to owner_truck_path(@calendar)
   end
 
   private
 
   def set_address
-    @address = Address.find(params[:id])
+    @address = Address.find(params[:address_id])
   end
 
   def calendar_params

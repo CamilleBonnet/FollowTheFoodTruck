@@ -17,9 +17,9 @@
   <div class="row">
     <div class="col-xs-12">
       <h2>List of meals</h2>
-      <% @truck.meals.each do |meal| %>
-        <p><%= meal.description %></p>
-          <%= link_to "Add to Basket", truck_choices_path(@truck, @choice) , method: @method %>
+      <% @tables.each do |table| %>
+        <p><%= table[:meal].description %></p>
+        <!-- simple form: <%= table[:choice] %> -->
       <% end %>
     </div>
   </div>

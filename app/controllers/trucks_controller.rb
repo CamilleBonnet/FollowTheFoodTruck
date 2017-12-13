@@ -15,13 +15,14 @@ class TrucksController < ApplicationController
 
   def show
     # @basket = Basket.new
-    @tol = TruckOrderList.new(truck: @truck)
-    # raise unless @tol.save
-    @basket = Basket.new(user: current_user, truck_order_list: @tol)
-    # raise unless @basket.save
+    # @tol = TruckOrderList.new(truck: @truck)
+    # @basket = Basket.new(user: current_user, truck_order_list: @tol)
     @choice = Choice.new(truck: @truck, basket: @basket, user: current_user)
-    # raise unless @choice.save
-    @method = :post
+    @table = []
+    @truck.meals.each_with_index do |meal, index|
+      table[index] = {meal: meal,
+                    choice: Choice.where(user_id: current_user.id, meal_id: meal.id).last || Choice.new(meal_id: meal.id)}
+    end
 
   end
 

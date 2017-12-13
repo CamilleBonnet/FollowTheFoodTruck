@@ -23,7 +23,11 @@
       <%= simple_form_for [@truck, @meal] do |f| %>
         <%= f.input :description %>
         <%= f.input :is_vegan %>
+        <%= f.input :is_gluten_free %>
+        <%= f.input :is_alergen %>
+        <%= f.input :is_fat_free %>
         <%= f.input :spicy_scale %>
+        <%= f.input :price %>
         <%= f.input :photo, as: :attachinary %>
         <%= f.submit "Submit", class: "btn btn-primary" %>
       <% end %>
@@ -33,12 +37,16 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-      <h1><% @truck.meals.each do |meal| %>
+      <% @truck.meals.each do |meal| %>
         <%= meal.description %>
-        <%= meal.spicy_scale %>
+        <%= meal.is_vegan ? 'Yes' : 'No' %>
+        <%= meal.is_alergen ? 'Yes' : 'No' %>
+        <%= meal.is_gluten_free ? 'Yes' : 'No' %>
+        <%= meal.is_fat_free ? 'Yes' : 'No' %>
+        <%= meal.spicy_scale ? 'Yes' : 'No' %>
+        <p><%= meal.price %> €</p>
         <%= cl_image_tag meal.photo.path if meal.photo? %>
       <% end %>
-      </h1>
     </div>
   </div>
 </div>
@@ -52,7 +60,7 @@
         <%= f.input :street_address_2 %>
         <%= f.input :city %>
         <%= f.input :zipcode %>
-
+        <%= f.input :country, as: :country, only: ["FR", "ES", "RO", "DZ"] %>
         <%= f.input :more_info %>
         <%= f.submit "Submit", class: "btn btn-primary" %>
       <% end %>
@@ -62,18 +70,13 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-      <h1><% @truck.addresses.each do |address| %>
+      <% @truck.addresses.each do |address| %>
         <%= address.street_address %>
-        <br>
         <%= address.street_address_2 %>
-        <br>
         <%= address.city %>
         <%= address.zipcode %>
-
         <%= address.more_info %>
-        <br>
       <% end %>
-      </h1>
     </div>
   </div>
 </div>

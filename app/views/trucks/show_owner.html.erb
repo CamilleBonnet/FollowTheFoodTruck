@@ -98,8 +98,9 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-      <%= month_calendar(attribute: :starting_date, end_attribute: :ending_date) do |date| %>
-        <%= date %>
+      <%#= month_calendar events: @calendars do |date, calendar| %>
+        <%#= date %>
+        <%#= calendar.starting_date unless calendar.nil? %>
       <% end %>
     </div>
   </div>

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'choices/index'
+
   mount Attachinary::Engine => "/attachinary"
 
   devise_for :registrations, :controllers => {

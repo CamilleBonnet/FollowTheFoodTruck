@@ -15,6 +15,14 @@ class TrucksController < ApplicationController
 
   def show
     # @basket = Basket.new
+    @tol = TruckOrderList.new(truck: @truck)
+    # raise unless @tol.save
+    @basket = Basket.new(user: current_user, truck_order_list: @tol)
+    # raise unless @basket.save
+    @choice = Choice.new(truck: @truck, basket: @basket, user: current_user)
+    # raise unless @choice.save
+    @method = :post
+
   end
 
   def show_owner

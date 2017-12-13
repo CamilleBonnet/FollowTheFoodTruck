@@ -1,0 +1,76 @@
+<h1>Truck</h1>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <h1><%= @truck.name %></h1>
+        <p><%= @truck.type_of_food %></p>
+        <% @truck.photos.each do |photo| %>
+          <%= cl_image_tag photo.path, width: 300, height: 200, crop: :fill %>
+        <% end %>
+        <%= link_to "Edit", edit_truck_path(@truck), class: "btn btn-warning" %>
+      <%= link_to 'Back', trucks_path, class: "btn btn-warning" %>
+      <%= link_to 'Add a new truck', new_truck_path, class: "btn btn-warning" %>
+    </div>
+  </div>
+</div>
+
+
+<h1>Meals</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <%= simple_form_for [@truck, @meal] do |f| %>
+        <%= f.input :description %>
+        <%= f.input :is_vegan %>
+        <%= f.input :spicy_scale %>
+        <%= f.input :photos, as: :attachinary %>
+        <%= f.submit "Submit", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <h1><% @truck.meals.each do |meal| %>
+        <%= meal.description %>
+        <%= meal.spicy_scale %>
+      <% end %>
+      </h1>
+    </div>
+  </div>
+</div>
+
+<h1>Addresses</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <%= simple_form_for [@truck, @address] do |f| %>
+        <%= f.input :street_address %>
+        <%= f.input :street_address_2 %>
+        <%= f.input :city %>
+        <%= f.input :zipcode %>
+
+        <%= f.input :more_info %>
+        <%= f.submit "Submit", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <h1><% @truck.addresses.each do |address| %>
+        <%= address.street_address %>
+        <%= address.street_address_2 %>
+        <%= address.city %>
+        <%= address.zipcode %>
+
+        <%= address.more_info %>
+      <% end %>
+      </h1>
+    </div>
+  </div>
+</div>
+

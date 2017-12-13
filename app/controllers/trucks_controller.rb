@@ -19,13 +19,15 @@ class TrucksController < ApplicationController
 
   def show_owner
     # to add a new object
+    @truck = Truck.find(current_user.id)
     @meal = Meal.new
     @address = Address.new
     @calendar = Calendar.new
 
     # to display all the object already existing
     @meals = Meal.all
-    # idem address
+    @addresses = Address.all
+    @calendars = Calendar.all
   end
 
   def create

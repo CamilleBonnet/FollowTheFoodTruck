@@ -1,15 +1,12 @@
 class MealsController < ApplicationController
-  before_action :set_meal, only: [:edit, :update, :destroy]
-  before_action :set_truck, only: [:new, :create, :edit, :update]
-
-  def new
-    @meal = Meal.new
-  end
+  before_action :set_meal, only: [:update, :destroy]
+  before_action :set_truck, only: [:create, :update]
 
   def create
     @meal = Meal.new(meal_params)
     @meal.truck = @truck
     @meal.save
+    redirect_to owner_truck_path(@meal)
   end
 
   def edit
@@ -17,10 +14,12 @@ class MealsController < ApplicationController
 
   def update
     @meal.update(meal_params)
+    redirect_to owner_truck_path(@meal)
   end
 
   def destroy
     @meal.destroy
+    redirect_to owner_truck_path(@meal)
   end
 
   private
@@ -34,7 +33,7 @@ class MealsController < ApplicationController
   end
 
   def meal_params
-    params.require(:meal).permit(:description, :is_vegan, :is_fat_free, :is_alergen, :is_gluten_free, :spicy_scale, :price, :truck_id)
+    params.require(:meal).permit(:description, :is_vegan, :is_fat_free, :is_alergen, :is_gluten_free, :spicy_scale, :price, :truck_id, photos: [])
   end
 
 end

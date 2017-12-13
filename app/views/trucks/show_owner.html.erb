@@ -80,9 +80,9 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-      <%= simple_form_for [@truck.addresses, @calendar] do |f| %>
-        <%= f.input :starting_date %>
-        <%= f.input :ending_date %>
+      <%= simple_form_for [@truck, @calendar] do |f| %>
+        <%= f.input :starting_date, as: :date %>
+        <%= f.input :ending_date, as: :date %>
         <%= f.submit "Submit", class: "btn btn-primary" %>
       <% end %>
     </div>
@@ -91,9 +91,6 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-      <h1><%= month_calendar(attribute: :starting_date, end_attribute: :ending_date) do |date| %>
-            <%= date %>
-        <% end %>
     </div>
   </div>
 </div>

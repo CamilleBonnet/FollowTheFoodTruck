@@ -1,0 +1,37 @@
+
+<div class="message">
+  <%= image_tag 'food-truck-1.jpg', class: "avatar-large" %>
+  <div class="message-name">
+    <h3><%= @truck.name %></h3>
+    <p><%= @truck.type_of_food %></p>
+  </div>
+  <div class="message-body">
+    <p><strong>Address</strong></p>
+    <p>
+      Carrer de Gassot
+    </p>
+
+  </div>
+  <div class="message-status">
+    <p class="status pending">10 min</p>
+    <p class="price">€€</p>
+    <i class="fa fa-star"></i>
+  </div>
+</div>
+
+
+
+
+
+
+<!--       <div class="truck-card">
+        <div class="truck-image-card">
+        <%# @truck.photos.each do |photo| %>
+          <%#= cl_image_tag photo.path, width: 130, height: 130, crop: :fill %>
+        <%# end %>
+        </div>
+          <div class="truck-description-card">
+         <h1><%#= @truck.name %></h1>
+          <p><%#= @truck.type_of_food %></p>
+        </div>
+        </div> -->

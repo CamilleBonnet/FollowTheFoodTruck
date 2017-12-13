@@ -19,15 +19,19 @@
       <h2>List of meals</h2>
       <% @tables.each do |table| %>
         <p><%= table[:meal].description %></p>
-        <!-- simple form: <%= table[:choice] %> -->
+        <%# raise %>
+
+        <%= render 'meals/form', truck: @truck, choice: table[:choice] %>
+        <!-- simple form: <%# table[:choice] %> -->
       <% end %>
     </div>
   </div>
 
   <div class="row">
     <div class="col-xs-12">
-
-      <%# link_to "order",  %>
+      <div class="btn-show text-center">
+        <%= link_to "Order", truck_basket_path(@truck, @basket), class:"btn btn-primary" %>
+      </div>
     </div>
   </div>
 </div>

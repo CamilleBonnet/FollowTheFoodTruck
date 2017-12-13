@@ -16,12 +16,12 @@ class TrucksController < ApplicationController
   def show
     # @basket = Basket.new
     # @tol = TruckOrderList.new(truck: @truck)
-    # @basket = Basket.new(user: current_user, truck_order_list: @tol)
-    @choice = Choice.new(truck: @truck, basket: @basket, user: current_user)
-    @table = []
+    @basket = Basket.where(user: current_user, status: "pending").last || Basket.create(user: current_user, status: "pending")
+    # @choice = Choice.new(truck: @truck, basket: @basket, user: current_user)
+    @tables = []
     @truck.meals.each_with_index do |meal, index|
-      table[index] = {meal: meal,
-                    choice: Choice.where(user_id: current_user.id, meal_id: meal.id).last || Choice.new(meal_id: meal.id)}
+      @tables[index] = {meal: meal,
+                    choice: Choice.where(user_id: current_user.id, meal_id: meal.id).last || Choice.new(meal_id: meal.id, truck: @truck, basket: @basket, user: current_user)}
     end
 
   end

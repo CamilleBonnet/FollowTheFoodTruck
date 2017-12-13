@@ -9,9 +9,7 @@ class MealsController < ApplicationController
   def create
     @meal = Meal.new(meal_params)
     @meal.truck = @truck
-    if @meal.save
-      render :new
-    end
+    @meal.save
   end
 
   def edit

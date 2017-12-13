@@ -1,6 +1,6 @@
 class CalendarsController < ApplicationController
   before_action :set_calendar, only: [:update, :destroy]
-  before_action :set_address, only: [:create, :update]
+  before_action :set_address, only: [:update]
 
   def create
     @calendar = Calendar.new(calendar_params)

@@ -83,6 +83,7 @@
       <%= simple_form_for [@truck, @calendar] do |f| %>
         <%= f.input :starting_date, as: :date %>
         <%= f.input :ending_date, as: :date %>
+        <%= f.input :address_id, collection: @truck.addresses.map { |address| address.street_address } %>
         <%= f.submit "Submit", class: "btn btn-primary" %>
       <% end %>
     </div>
@@ -91,6 +92,10 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+          <% @calendars.each do |calendar| %>
+            <%= calendar.starting_date %>
+            <%= calendar.ending_date %>
+        <% end %>
     </div>
   </div>
 </div>

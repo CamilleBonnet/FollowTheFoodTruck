@@ -64,11 +64,14 @@
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
       <h1><% @truck.addresses.each do |address| %>
         <%= address.street_address %>
+        <br>
         <%= address.street_address_2 %>
+        <br>
         <%= address.city %>
         <%= address.zipcode %>
 
         <%= address.more_info %>
+        <br>
       <% end %>
       </h1>
     </div>
@@ -83,7 +86,7 @@
       <%= simple_form_for [@truck, @calendar] do |f| %>
         <%= f.input :starting_date, as: :date %>
         <%= f.input :ending_date, as: :date %>
-        <%= f.input :address_id, collection: @truck.addresses.map { |address| address.street_address } %>
+        <%= f.input :address_id, collection: @truck.addresses.map { |address| address.street_address + "," + address.street_address_2 } %>
         <%= f.submit "Submit", class: "btn btn-primary" %>
       <% end %>
     </div>
@@ -92,10 +95,9 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-          <% @calendars.each do |calendar| %>
-            <%= calendar.starting_date %>
-            <%= calendar.ending_date %>
-        <% end %>
+      <%= month_calendar(attribute: :starting_date, end_attribute: :ending_date) do |date| %>
+        <%= date %>
+      <% end %>
     </div>
   </div>
 </div>

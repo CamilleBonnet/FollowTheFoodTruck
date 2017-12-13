@@ -14,6 +14,18 @@ class TrucksController < ApplicationController
   end
 
   def show
+    # @basket = Basket.new
+  end
+
+  def show_owner
+    # to add a new object
+    @meal = Meal.new
+    @address = Address.new
+    @calendar = Calendar.new
+
+    # to display all the object already existing
+    @meals = Meal.all
+    # idem address
   end
 
   def create

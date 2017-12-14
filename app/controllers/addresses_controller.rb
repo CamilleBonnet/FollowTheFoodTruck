@@ -7,7 +7,7 @@ class AddressesController < ApplicationController
     @address.truck = @truck
     if @address.save
       flash[:notice] = "Address #{@address.street_address} has been saved"
-      redirect_to owner_truck_path(@address)
+      redirect_to owner_truck_path
     else
       flash[:alert] = "Address could not be saved"
       redirect_to owner_truck_path

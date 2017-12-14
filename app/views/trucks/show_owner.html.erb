@@ -21,8 +21,9 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <ul>
       <% @truck.meals.each do |meal| %>
-        <%= meal.description %>
+        <li> <%= meal.description %>
         <%= meal.is_vegan ? 'Yes' : 'No' %>
         <%= meal.is_alergen ? 'Yes' : 'No' %>
         <%= meal.is_gluten_free ? 'Yes' : 'No' %>
@@ -32,8 +33,10 @@
         <%= cl_image_tag meal.photo.path if meal.photo? %>
         <%= link_to "edit meal", edit_truck_meal_path(@truck, meal), class: "btn btn-primary" %>
         <%= link_to "Delete", meal_path(meal), method: :delete, class: "btn btn-danger" %>
-
+        <br>
+      </li>
       <% end %>
+      </ul>
     </div>
   </div>
 </div>
@@ -49,15 +52,19 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <ul>
       <% @truck.addresses.each do |address| %>
-        <%= address.street_address %>
+        <li><%= address.street_address %>
         <%= address.street_address_2 %>
         <%= address.city %>
         <%= address.zipcode %>
         <%= address.more_info %>
+        <br>
         <%= link_to "edit address", edit_truck_address_path(@truck, address), class: "btn btn-primary" %>
         <%= link_to "Delete", address_path(address), method: :delete, class: "btn btn-danger" %>
+        </li>
       <% end %>
+      </ul>
     </div>
   </div>
 </div>

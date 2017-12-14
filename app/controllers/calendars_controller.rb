@@ -7,7 +7,7 @@ class CalendarsController < ApplicationController
     @calendar.address = @address
     if @calendar.save
       flash[:notice] = "Calendar has been saved"
-      redirect_to owner_truck_path(@calendar)
+      redirect_to owner_truck_path
     else
       flash[:alert] = "Calendar could not be saved"
       redirect_to owner_truck_path

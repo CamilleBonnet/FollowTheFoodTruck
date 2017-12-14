@@ -1,13 +1,15 @@
 <h1>Truck show</h1>
 
+
+
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-      <h1><%= @truck.name %></h1>
-      <p><%= @truck.type_of_food %></p>
+
       <% @truck.photos.each do |photo| %>
-        <%= cl_image_tag photo.path, width: 300, height: 200, crop: :fill %>
+        <%= cl_image_tag photo.path, width: 700, height: 300, crop: :fill %>
       <% end %>
+
     </div>
   </div>
   <div class="row">

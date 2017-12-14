@@ -1,19 +1,27 @@
+
 <h1 class="text-center">Index (future search results)</h1>
 <div class="container">
   <div class="row">
-    <ul>
       <% @trucks.each do |truck| %>
-      <li>
-        <p><%= link_to truck.name, truck_path(truck) %></p>
-        <p><%= truck.type_of_food %></p>
-      </li>
+        <div class="col-xs-12 col-sm-6 col-md-4">
+          <div class="truck-card">
+            <div class="truck-img-wrapper" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%=cl_image_path truck.photos.first.path, height: 300, width: 400, crop: :fill unless truck.photos.first.nil? %>')">
+            </div>
+            <div class="truck-description">
+              <div class="truck-name">
+                <%= link_to truck.name, truck_path(truck) %>
+              </div>
+              <div class="type-food">
+                <%= truck.type_of_food %>
+              </div>
+              <div class="payment-info">
+                <p>€</p>
+              </div>
+            </div>
+          </div>
+        </div>
       <% end %>
-    </ul>
   </div>
 </div>
-
-
-
-
 
 

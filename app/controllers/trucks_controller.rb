@@ -21,9 +21,8 @@ class TrucksController < ApplicationController
     @tables = []
     @truck.meals.each_with_index do |meal, index|
       @tables[index] = {meal: meal,
-                    choice: Choice.where(user_id: current_user.id, meal_id: meal.id).last || Choice.new(meal_id: meal.id, truck: @truck, basket: @basket, user: current_user)}
+                        choice: Choice.where(user_id: current_user.id, meal_id: meal.id, basket_id: @basket.id).last || Choice.new(meal_id: meal.id, truck: @truck, basket: @basket, user: current_user, quantity: 0)}
     end
-
   end
 
   def show_owner

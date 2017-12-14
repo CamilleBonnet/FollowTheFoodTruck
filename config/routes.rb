@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     resources :choices, only: [:create, :update]
     resources :baskets, only: [:show, :update] do
       member do
-          get '/PaymentSuccess', to: "baskets#payment_success", as: "payment_success"
+          get '/PaymentStatus', to: "baskets#payment_status", as: "payment_status"
         end
       end
 
@@ -39,7 +39,7 @@ Rails.application.routes.draw do
   # get '/mytrucks', to: "trucks#index_owner", as: "all_owner_trucks"
   #not mandatory if hyp is that 1 user = 1 truck
   get '/mytruck', to: "trucks#show_owner", as: "owner_truck"
-  get '/mytruck/:id/edit', to: "truck#edit", as: "edit_truck"
+  get '/mytruck/:id/edit', to: "trucks#edit", as: "edit_truck"
   # delete '/mytrucks/:id', to: "truck#destroy", as: "delete_truck"
 
 

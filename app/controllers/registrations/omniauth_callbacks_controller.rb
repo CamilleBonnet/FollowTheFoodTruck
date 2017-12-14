@@ -11,3 +11,4 @@ class Registrations::OmniauthCallbacksController < Devise::OmniauthCallbacksCont
     end
   end
 end
+

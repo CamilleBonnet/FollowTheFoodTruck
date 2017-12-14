@@ -1,14 +1,11 @@
 <h1 class="text-center">Index (future search results)</h1>
 <div class="container">
   <div class="row">
-    <ul>
       <% @trucks.each do |truck| %>
-      <li>
-        <p><%= link_to truck.name, truck_path(truck) %></p>
-        <p><%= truck.type_of_food %></p>
-      </li>
+        <div class="col-xs-12 col-sm-6 col-md-4">
+          <%= render 'shared/truck_card', truck: truck %>
+        </div>
       <% end %>
-    </ul>
   </div>
 </div>
 

@@ -23,7 +23,9 @@
   <div class="row">
     <div class="col-xs-12">
       <div class="btn-show text-center">
-        <%= link_to "Order", truck_basket_path(@truck, @basket), class:"btn btn-primary" %>
+        <% unless @basket.nil? %>
+          <%= link_to "Order", truck_basket_path(@truck, @basket), class:"btn btn-primary" %>
+        <% end %>
       </div>
     </div>
   </div>

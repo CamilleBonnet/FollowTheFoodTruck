@@ -1,6 +1,6 @@
 <%= simple_form_for ([truck, choice]) do |f| %>
     <%= f.input :meal_id, as: :hidden %>
-    <%= f.input :basket_id, as: :hidden %>
+    <%# f.input :basket_id, as: :hidden %>
     <%= f.input :quantity, required: true %>
     <%= f.button :submit, "update choice",  class:"btn btn-danger" %>
 <% end %>

@@ -15,27 +15,14 @@ class TrucksController < ApplicationController
 
   def show
     # @basket = Basket.new
-    # @tol = TruckOrderList.new(truck: @truck)
-    @basket = Basket.where(user: current_user, status: "pending").last || Basket.create(user: current_user, status: "pending")
+    # @tol = TruckOrderList.where(date: Date.today) || TruckOrderList.create(truck: @truck, date: Date.today)
     # @choice = Choice.new(truck: @truck, basket: @basket, user: current_user)
+    @basket = Basket.where(user: current_user, truck: @truck, status: "pending").last
     @tables = []
     @truck.meals.each_with_index do |meal, index|
       @tables[index] = {meal: meal,
-                        choice: Choice.where(user_id: current_user.id, meal_id: meal.id, basket_id: @basket.id).last || Choice.new(meal_id: meal.id, truck: @truck, basket: @basket, user: current_user, quantity: 0)}
+                        choice: Choice.where(user_id: current_user.id, basket: @basket, meal_id: meal.id).last || Choice.new(meal_id: meal.id, user: current_user, quantity: 0)}
     end
-  end
-
-  def show_owner
-    # to add a new object
-    @truck = Truck.find_by(user: current_user)
-    @meal = Meal.new
-    @address = Address.new
-    @calendar = Calendar.new
-
-    # to display all the object already existing
-    @meals = Meal.all
-    @addresses = Address.all
-    @calendars = Calendar.all
   end
 
   def create
@@ -62,6 +49,23 @@ class TrucksController < ApplicationController
     redirect_to trucks_path
   end
 
+  def show_owner
+    # to add a new object
+    @truck = Truck.find_by(user: current_user)
+    @meal = Meal.new
+    @address = Address.new
+    @calendar = Calendar.new
+
+    # to display all the object already existing
+    @meals = Meal.all
+    @addresses = Address.all
+    @calendars = Calendar.all
+  end
+
+  def truck_order
+    @truck = Truck.find_by(user: current_user)
+    @baskets = Basket.where(status: ["pending", "confirmed"], truck: @truck)
+  end
 
   private
 

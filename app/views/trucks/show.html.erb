@@ -1,18 +1,39 @@
 <h1>Truck show</h1>
 
-
-
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
       <h1><%= @truck.name %></h1>
-        <p><%= @truck.type_of_food %></p>
-        <% @truck.photos.each do |photo| %>
-          <%= cl_image_tag photo.path, width: 300, height: 200, crop: :fill %>
-        <% end %>
-        <%= link_to "Edit", edit_truck_path(@truck), class: "btn btn-warning" %>
+      <p><%= @truck.type_of_food %></p>
+      <% @truck.photos.each do |photo| %>
+        <%= cl_image_tag photo.path, width: 300, height: 200, crop: :fill %>
+      <% end %>
+      <br>
+      <%= link_to "Edit", edit_truck_path(@truck), class: "btn btn-warning" %>
       <%= link_to 'Back', trucks_path, class: "btn btn-warning" %>
       <%= link_to 'Add a new truck', new_truck_path, class: "btn btn-warning" %>
+      <%= link_to "Delete", truck_path(@truck), class: "btn btn-warning", method: :delete,
+      data: { confirm: "Are you sure?" } %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <h2>List of meals</h2>
+      <% @tables.each do |table| %>
+        <p><%= table[:meal].description %></p>
+        <%# raise %>
+
+        <%= render 'meals/form', truck: @truck, choice: table[:choice] %>
+        <!-- simple form: <%# table[:choice] %> -->
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="btn-show text-center">
+        <%= link_to "Order", truck_basket_path(@truck, @basket), class:"btn btn-primary" %>
+      </div>
     </div>
   </div>
 </div>

@@ -14,7 +14,14 @@ Rails.application.routes.draw do
     resources :addresses, only: [:create, :update]
     resources :calendars, only: [:create, :update]
     # resources :truck_order_lists, only: [:create, :update]
-    resources :choices, only: [:create, :update]#except: [:index, :show]
+    resources :choices, only: [:create, :update]
+    resources :baskets, only: [:show, :update] do
+      member do
+          get '/PaymentSuccess', to: "baskets#payment_success", as: "payment_success"
+        end
+      end
+
+    # resources :truck_order_lists, only: [:create, :update]
   end
 
   # routes needed for truck owner
@@ -24,6 +31,8 @@ Rails.application.routes.draw do
 
   # routes needed for customer
   resources :choices, only: [:destroy]
+  # resources :baskets, only: [:destroy]
+  # resources :truck_order_lists, only: [:destroy]
 
 
   # owner can view/edit his trucks

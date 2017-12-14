@@ -30,9 +30,9 @@ ActiveRecord::Schema.define(version: 20171212153251) do
     t.index ["truck_id"], name: "index_addresses_on_truck_id", using: :btree
   end
 
-  create_table "attachinary_files", force: :cascade do |t|
+  create_table "attachinary_files", id: :bigserial, force: :cascade do |t|
     t.string   "attachinariable_type"
-    t.integer  "attachinariable_id"
+    t.bigint   "attachinariable_id"
     t.string   "scope"
     t.string   "public_id"
     t.string   "version"
@@ -157,5 +157,6 @@ ActiveRecord::Schema.define(version: 20171212153251) do
   add_foreign_key "choices", "users"
   add_foreign_key "meals", "trucks"
   add_foreign_key "truck_order_lists", "trucks"
+  add_foreign_key "trucks", "users"
   add_foreign_key "users", "registrations"
 end

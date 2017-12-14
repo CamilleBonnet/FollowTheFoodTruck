@@ -1,5 +1,6 @@
 class Calendar < ApplicationRecord
   belongs_to :address
+  validates :address_id, presence: true
 
   def start_time
     self.starting_date

@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <h1>Recap of your oder</h1>
+      <% @basket.choices.each do |choice| %>
+        <ul>
+          <li><%= choice.quantity %> of <%= choice.meal.description %> = <%= choice.price %>€</li>
+        </ul>
+      <% end %>
+      <div class="payment-info">
+        PAYMENT INFO
+      </div>
+      <div class="payment-confirmation">
+        <%= link_to "Payment", payment_success_truck_basket_path(@truck, @basket), class:"btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+</div>

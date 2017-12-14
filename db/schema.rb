@@ -58,8 +58,8 @@ ActiveRecord::Schema.define(version: 20171212153251) do
     t.index ["user_id"], name: "index_baskets_on_user_id", using: :btree
   end
 
-  create_table "calendars", id: :bigserial, force: :cascade do |t|
-    t.bigint   "address_id"
+  create_table "calendars", force: :cascade do |t|
+    t.integer  "address_id"
     t.date     "starting_date"
     t.date     "ending_date"
     t.datetime "created_at",    null: false

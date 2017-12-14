@@ -8,4 +8,5 @@ class Choice < ApplicationRecord
   validates :meal_id, presence: true
   validates :truck_id, presence: true
   validates :user_id, presence: true
+  validates :quantity, presence: true
 end

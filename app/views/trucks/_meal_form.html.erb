@@ -1,0 +1,11 @@
+<%= simple_form_for ([@truck, @meal]) do |f| %>
+  <%= f.input :description %>
+  <%= f.input :is_vegan %>
+  <%= f.input :is_gluten_free %>
+  <%= f.input :is_alergen %>
+  <%= f.input :is_fat_free %>
+  <%= f.input :spicy_scale %>
+  <%= f.input :price %>
+  <%= f.input :photo, as: :attachinary %>
+  <%= f.submit "Submit", class: "btn btn-primary" %>
+<% end %>

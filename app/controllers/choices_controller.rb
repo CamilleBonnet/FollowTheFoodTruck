@@ -11,22 +11,27 @@ class ChoicesController < ApplicationController
     @choice = Choice.new(choice_param)
     @choice.truck = @truck
     @choice.user = current_user
-    @choice.price = @choice.quantity * @choice.meal.price
     if @choice.save
+      @choice.price = @choice.quantity * @choice.meal.price
+      @choice.save
       redirect_to truck_path(@truck)
     else
-      render truck_path(@truck)
+      flash[:alert] = "test"
+      redirect_to truck_path(@truck)
     end
 
 
   end
 
   def update
-    @choice.update(choice_param)
-    raise
-    @choice.price = @choice.quantity * @choice.meal.price
-    @choice.save
-    redirect_to truck_path(@truck)
+    if @choice.update(choice_param)
+      @choice.price = @choice.quantity * @choice.meal.price
+      @choice.save
+      redirect_to truck_path(@truck)
+    else
+      flash[:alert] = "test"
+      redirect_to truck_path(@truck)
+    end
   end
 
   private

@@ -1,26 +1,41 @@
 class MealsController < ApplicationController
-  before_action :set_meal, only: [:update, :destroy]
-  before_action :set_truck, only: [:create, :update]
+  before_action :set_meal, only: [:edit, :update, :destroy]
+  before_action :set_truck, only: [:create, :edit, :update]
 
   def create
     @meal = Meal.new(meal_params)
     @meal.truck = @truck
-
-    @meal.save
-    redirect_to owner_truck_path(@meal)
+    if @meal.save
+      flash[:notice] = "Meal #{@meal.description} has been created"
+      redirect_to owner_truck_path
+    else
+      flash[:alert] = "Meal could not be created"
+      redirect_to owner_truck_path
+    end
   end
 
   def edit
   end
 
   def update
-    @meal.update(meal_params)
-    redirect_to owner_truck_path(@meal)
+
+    if @meal.update(meal_params)
+      flash[:notice] = "Meal #{@meal.description} has been updated"
+      redirect_to owner_truck_path
+    else
+      flash[:alert] = "Meal could not be updated"
+      redirect_to owner_truck_path
+    end
   end
 
   def destroy
-    @meal.destroy
-    redirect_to owner_truck_path(@meal)
+    if @meal.destroy
+      flash[:notice] = "Meal has been destroyed"
+      redirect_to owner_truck_path
+    else
+      flash[:alert] = "Meal could not be destroyed"
+      redirect_to owner_truck_path
+    end
   end
 
   private

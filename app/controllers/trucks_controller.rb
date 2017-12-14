@@ -21,14 +21,13 @@ class TrucksController < ApplicationController
     @tables = []
     @truck.meals.each_with_index do |meal, index|
       @tables[index] = {meal: meal,
-                    choice: Choice.where(user_id: current_user.id, meal_id: meal.id).last || Choice.new(meal_id: meal.id, truck: @truck, basket: @basket, user: current_user)}
+                        choice: Choice.where(user_id: current_user.id, meal_id: meal.id, basket_id: @basket.id).last || Choice.new(meal_id: meal.id, truck: @truck, basket: @basket, user: current_user, quantity: 0)}
     end
-
   end
 
   def show_owner
     # to add a new object
-    @truck = Truck.find(current_user.id)
+    @truck = Truck.find_by(user: current_user)
     @meal = Meal.new
     @address = Address.new
     @calendar = Calendar.new
@@ -44,7 +43,7 @@ class TrucksController < ApplicationController
     @truck = Truck.new(truck_params)
     @truck.user = user
     if @truck.save
-      redirect_to truck_path(@truck)
+      redirect_to owner_truck_path
     else
       render :new
     end
@@ -55,7 +54,7 @@ class TrucksController < ApplicationController
 
   def update
     @truck.update(truck_params)
-    redirect_to truck_path(@truck)
+    redirect_to owner_truck_path
   end
 
   def destroy

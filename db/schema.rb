@@ -30,9 +30,9 @@ ActiveRecord::Schema.define(version: 20171212153251) do
     t.index ["truck_id"], name: "index_addresses_on_truck_id", using: :btree
   end
 
-  create_table "attachinary_files", id: :bigserial, force: :cascade do |t|
+  create_table "attachinary_files", force: :cascade do |t|
     t.string   "attachinariable_type"
-    t.bigint   "attachinariable_id"
+    t.integer  "attachinariable_id"
     t.string   "scope"
     t.string   "public_id"
     t.string   "version"
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20171212153251) do
   create_table "baskets", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "truck_order_list_id"
-    t.integer  "total_price"
+    t.float    "total_price"
     t.date     "date"
     t.datetime "time"
     t.string   "status"

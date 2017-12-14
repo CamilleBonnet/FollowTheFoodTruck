@@ -4,19 +4,37 @@
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
       <h1><%= @truck.name %></h1>
-        <p><%= @truck.type_of_food %></p>
-        <% @truck.photos.each do |photo| %>
-          <%= cl_image_tag photo.path, width: 300, height: 200, crop: :fill %>
-        <% end %>
-        <%= link_to "Edit", edit_truck_path(@truck), class: "btn btn-warning" %>
-      <%= link_to 'Back', trucks_path, class: "btn btn-warning" %>
-      <%= link_to 'Add a new truck', new_truck_path, class: "btn btn-warning" %>
+      <p><%= @truck.type_of_food %></p>
+      <% @truck.photos.each do |photo| %>
+        <%= cl_image_tag photo.path, width: 300, height: 200, crop: :fill %>
+      <% end %>
+      <br>
+      <%= link_to "Edit", edit_truck_path(@truck), class: "btn btn-warning" %>
+      <%= link_to "Back", trucks_path, class: "btn btn-warning" %>
+      <%= link_to "Delete", truck_path(@truck),
+      method: :delete, class: "btn btn-danger" %>
     </div>
   </div>
 </div>
 
 
 <h1>Meals</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <% @truck.meals.each do |meal| %>
+        <%= meal.description %>
+        <%= meal.is_vegan ? 'Yes' : 'No' %>
+        <%= meal.is_alergen ? 'Yes' : 'No' %>
+        <%= meal.is_gluten_free ? 'Yes' : 'No' %>
+        <%= meal.is_fat_free ? 'Yes' : 'No' %>
+        <%= meal.spicy_scale ? 'Yes' : 'No' %>
+        <p><%= meal.price %> €</p>
+        <%= cl_image_tag meal.photo.path if meal.photo? %>
+      <% end %>
+    </div>
+  </div>
+</div>
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
@@ -30,22 +48,6 @@
         <%= f.input :price %>
         <%= f.input :photo, as: :attachinary %>
         <%= f.submit "Submit", class: "btn btn-primary" %>
-      <% end %>
-    </div>
-  </div>
-</div>
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-      <% @truck.meals.each do |meal| %>
-        <%= meal.description %>
-        <%= meal.is_vegan ? 'Yes' : 'No' %>
-        <%= meal.is_alergen ? 'Yes' : 'No' %>
-        <%= meal.is_gluten_free ? 'Yes' : 'No' %>
-        <%= meal.is_fat_free ? 'Yes' : 'No' %>
-        <%= meal.spicy_scale ? 'Yes' : 'No' %>
-        <p><%= meal.price %> €</p>
-        <%= cl_image_tag meal.photo.path if meal.photo? %>
       <% end %>
     </div>
   </div>

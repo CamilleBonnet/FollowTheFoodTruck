@@ -1,0 +1,6 @@
+  <%= simple_form_for @user do |f| %>
+  <%= f.input :first_name, placeholder: 'Your first name', required: true %>
+  <%= f.input :last_name , placeholder: 'Your last name', required: true%>
+  <%= f.input :photo, as: :attachinary %>
+  <%= f.submit class: "btn btn-danger" %>
+  <% end %>

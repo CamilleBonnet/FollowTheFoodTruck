@@ -1,4 +1,4 @@
-<h1>Homepage</h1>
+<h1 class="text-center">Homepage</h1>
 <%= render 'shared/banner' %>
 <div class="container">
   <div class="row">
@@ -7,7 +7,7 @@
       <li>
         <p><%= link_to truck.name, truck_path(truck) %></p>
         <% truck.photos.each do |photo| %>
-          <%= cl_image_tag photo.path, width: 300, height: 200, crop: :fill %>
+        <%= cl_image_tag photo.path, width: 300, height: 200, crop: :fill %>
         <% end %>
         <p><%= truck.type_of_food %></p>
       </li>

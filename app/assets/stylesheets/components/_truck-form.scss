@@ -1,5 +1,5 @@
 .truck-form {
-  background: lightgrey;
+  background: #fff;
   padding: 10px 20px;
   margin-top: 50px;
   border-radius: 3px;
@@ -13,6 +13,13 @@
   .btn {
     width: 100%;
     margin-bottom: 15px;
+    border-radius: 30px;
     background: $btn-color-main;
+    color: #fff;
+  }
+  .default_class {
+    border-radius: 30px;
   }
 }
+
+

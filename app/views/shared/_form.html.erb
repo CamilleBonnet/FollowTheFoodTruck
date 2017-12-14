@@ -1,5 +1,4 @@
-
-  <%= simple_form_for [@truck] do |f| %>
+  <%= simple_form_for [@truck], defaults: { input_html: { class: 'default_class' } } do |f| %>
     <%= f.input :name %>
     <%= f.input :type_of_food %>
     <%= f.input :pay_online %>

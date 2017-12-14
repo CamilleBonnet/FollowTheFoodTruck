@@ -5,9 +5,13 @@ class MealsController < ApplicationController
   def create
     @meal = Meal.new(meal_params)
     @meal.truck = @truck
-
-    @meal.save
-    redirect_to owner_truck_path(@meal)
+    if @meal.save
+      flash[:notice] = "Meal #{@meal.description} has been created"
+      redirect_to owner_truck_path(@meal)
+    else
+      flash[:alert] = "Meal could not be created"
+      redirect_to owner_truck_path
+    end
   end
 
   def edit
@@ -15,12 +19,23 @@ class MealsController < ApplicationController
 
   def update
     @meal.update(meal_params)
-    redirect_to owner_truck_path
+    if @meal.update
+      flash[:notice] = "Meal #{@meal.description} has been updated"
+      redirect_to owner_truck_path
+    else
+      flash[:alert] = "Meal could not be updated"
+      redirect_to owner_truck_path
+    end
   end
 
   def destroy
-    @meal.destroy
-    redirect_to owner_truck_path
+    if @meal.destroy
+      flash[:notice] = "Meal has been destroyed"
+      redirect_to owner_truck_path
+    else
+      flash[:alert] = "Meal could not be destroyed"
+      redirect_to owner_truck_path
+    end
   end
 
   private

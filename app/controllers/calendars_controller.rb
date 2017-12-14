@@ -5,21 +5,36 @@ class CalendarsController < ApplicationController
   def create
     @calendar = Calendar.new(calendar_params)
     @calendar.address = @address
-    @calendar.save
-    redirect_to owner_truck_path(@calendar)
+    if @calendar.save
+      flash[:notice] = "Calendar has been saved"
+      redirect_to owner_truck_path(@calendar)
+    else
+      flash[:alert] = "Calendar could not be saved"
+      redirect_to owner_truck_path
+    end
   end
 
   def edit
   end
 
   def update
-    @calendar.update(calendar_params)
-    redirect_to owner_truck_path
+    if @calendar.update(calendar_params)
+      flash[:notice] = "Calendar has been updated"
+      redirect_to owner_truck_path
+    else
+      flash[:alert] = "Calendar could not be updated"
+      redirect_to owner_truck_path
+    end
   end
 
   def destroy
-    @calendar.destroy
-    redirect_to owner_truck_path
+    if @calendar.destroy
+      flash[:notice] = "Calendar has been destroyed"
+      redirect_to owner_truck_path
+    else
+      flash[:alert] = "Calendar could not be destroyed"
+      redirect_to owner_truck_path
+    end
   end
 
   private

@@ -11,7 +11,7 @@
         <br>
       <%= link_to 'Back', trucks_path, class: "btn btn-warning" %>
       <%= link_to 'Edit', edit_truck_path(@truck), class: "btn btn-warning" %>
-      <%= link_to "Truck's Order", edit_truck_path(@truck), class: "btn btn-warning" %>
+      <%= link_to "Truck's Order", order_owner_truck_path, class: "btn btn-warning" %>
       <%= link_to "Delete", truck_path(@truck),
       method: :delete, class: "btn btn-danger" %>
     </div>

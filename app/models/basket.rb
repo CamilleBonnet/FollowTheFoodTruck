@@ -1,6 +1,7 @@
 class Basket < ApplicationRecord
   belongs_to :user
   belongs_to :truck_order_list
+  belongs_to :truck
   has_many :choices, dependent: :destroy
 
   validates :user_id, presence: true

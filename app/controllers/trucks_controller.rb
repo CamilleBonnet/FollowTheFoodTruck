@@ -21,7 +21,7 @@ class TrucksController < ApplicationController
     @tables = []
     @truck.meals.each_with_index do |meal, index|
       @tables[index] = {meal: meal,
-                        choice: Choice.where(user_id: current_user.id, meal_id: meal.id).last || Choice.new(meal_id: meal.id, user: current_user, quantity: 0)}
+                        choice: Choice.where(user_id: current_user.id, basket: @basket, meal_id: meal.id).last || Choice.new(meal_id: meal.id, user: current_user, quantity: 0)}
     end
   end
 
@@ -64,6 +64,7 @@ class TrucksController < ApplicationController
 
   def truck_order
     @truck = Truck.find_by(user: current_user)
+    @baskets = Basket.where(status: ["pending", "confirmed"], truck: @truck)
   end
 
   private

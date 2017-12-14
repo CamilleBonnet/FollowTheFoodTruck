@@ -7,7 +7,6 @@ class Registration < ApplicationRecord
 
   has_one :user
 
-
   def self.find_for_facebook_oauth(auth)
     user_params = auth.slice(:provider, :uid)
     user_params.merge! auth.info.slice(:email, :first_name, :last_name)
@@ -26,7 +25,7 @@ class Registration < ApplicationRecord
       registration = Registration.new(email: user_params["email"])
       registration.password = Devise.friendly_token[0,20]  # Fake password for validation
       registration.save
-      User.create(registration_id: registration.id) # if there was no registration, lets create it and link it to a user!
+      User.create!(registration_id: registration.id) # if there was no registration, lets create it and link it to a user!
     end
 
     return registration

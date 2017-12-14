@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     resources :choices, only: [:create, :update]
     resources :baskets, only: [:show, :update] do
       member do
-          get '/PaymentSuccess', to: "baskets#payment_success", as: "payment_success"
+          get '/PaymentStatus', to: "baskets#payment_status", as: "payment_status"
         end
       end
 
@@ -41,6 +41,13 @@ Rails.application.routes.draw do
   get '/mytruck', to: "trucks#show_owner", as: "owner_truck"
   get '/mytruck/:id/edit', to: "trucks#edit", as: "edit_truck"
   # delete '/mytrucks/:id', to: "truck#destroy", as: "delete_truck"
+
+  # routes for the user model
+  get 'users/:id', to: "users#show", as: "user"
+  get 'users/myprofile', to: "users#show", as: "myprofile"
+  get 'users/profile/edit', to: "users#edit", as: "edit_user_profile"
+  patch 'users/:id', to: "users#update", as: "user_profile"
+  delete 'users', to: "users#destroy"
 
 
 

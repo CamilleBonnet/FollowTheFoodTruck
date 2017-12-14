@@ -8,11 +8,11 @@
         <% @truck.photos.each do |photo| %>
           <%= cl_image_tag photo.path, width: 300, height: 200, crop: :fill %>
         <% end %>
+        <br>
       <%= link_to 'Back', trucks_path, class: "btn btn-warning" %>
       <%= link_to 'Edit', edit_truck_path(@truck), class: "btn btn-warning" %>
       <%= link_to "Delete", truck_path(@truck),
-      method: :delete,
-      data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+      method: :delete, class: "btn btn-danger" %>
     </div>
   </div>
 </div>
@@ -32,6 +32,7 @@
         <%= cl_image_tag meal.photo.path if meal.photo? %>
         <%= link_to "edit meal", edit_truck_meal_path(@truck, meal), class: "btn btn-primary" %>
         <%= link_to "Delete", meal_path(meal), method: :delete, class: "btn btn-danger" %>
+
       <% end %>
     </div>
   </div>

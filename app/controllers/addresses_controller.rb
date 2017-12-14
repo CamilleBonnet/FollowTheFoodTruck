@@ -1,16 +1,12 @@
 class AddressesController < ApplicationController
-  before_action :set_address, only: [:edit, :update, :destroy]
-  before_action :set_truck, only: [:create, :edit, :update, :destroy]
-
-  def new
-    @address = Address.new
-  end
-
+  before_action :set_address, only: [:update, :destroy]
+  before_action :set_truck, only: [:create, :update]
 
   def create
-    @address = address.new(address_params)
+    @address = Address.new(address_params)
     @address.truck = @truck
     @address.save
+    redirect_to owner_truck_path(@address)
   end
 
   def edit
@@ -18,10 +14,12 @@ class AddressesController < ApplicationController
 
   def update
     @address.update(address_params)
+    redirect_to owner_truck_path(@address)
   end
 
   def destroy
     @address.destroy
+    redirect_to owner_truck_path(@address)
   end
 
   private
@@ -31,7 +29,7 @@ class AddressesController < ApplicationController
   end
 
   def set_truck
-    @truck = Truck.find(params[:id])
+    @truck = Truck.find(params[:truck_id])
   end
 
   def address_params

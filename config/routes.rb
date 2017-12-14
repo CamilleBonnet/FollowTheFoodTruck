@@ -11,8 +11,8 @@ Rails.application.routes.draw do
 
   resources :trucks, except: [:edit] do
     resources :meals, only: [:create, :update]
-    # resources :addresses, only: [:create, :update]
-    # resources :calendars, only: [:create, :update]
+    resources :addresses, only: [:create, :update]
+    resources :calendars, only: [:create, :update]
     # resources :truck_order_lists, only: [:create, :update]
     resources :choices, only: [:create, :update]
     resources :baskets, only: [:show, :update] do
@@ -26,6 +26,8 @@ Rails.application.routes.draw do
 
   # routes needed for truck owner
   resources :meals, only: [:destroy]
+  resources :addresses, only: [:destroy]
+  resources :calendars, only: [:destroy]
 
   # routes needed for customer
   resources :choices, only: [:destroy]

@@ -1,0 +1,32 @@
+<!-- <div class="message">
+  <img class="avatar-large" src="https://kitt.lewagon.com/placeholder/users/gabriel-dehan">
+  <div class="message-name">
+
+  </div>
+  <div class="message-body">
+    <p><strong>I am not sure yet!</strong></p>
+    <p>
+      I am not sure yet! I might be in Shanghai at this moment... Can I tell you later?
+    </p>
+  </div>
+  <div class="message-status">
+    <p class="status pending">Pending</p>
+    <p class="price">€345</p>
+  </div>
+</div> -->
+<p>ID of the command: <%= basket.id %></p>
+<p> Command from <%= basket.user.first_name %></p>
+<p>Status of the command: <%= basket.status %></p>
+<p>Total of the command: <%= basket.choices.sum(&:price) %>€</p>
+
+<ul>
+  <% basket.choices.each do |choice| %>
+  <%# raise %>
+  <li>
+    <p><%= choice.meal.description %></p>
+    <p><%= choice.meal.price %>€ each</p>
+    <p>=> <%= choice.quantity %> meals</p>
+    <p>==> <%= choice.price %>€</p>
+  </li>
+  <% end %>
+</ul>

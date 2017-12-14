@@ -1,88 +1,88 @@
-<h1>Truck</h1>
-
+<h1 class="text-center">Truck</h1>
 <div class="container">
   <div class="row">
-    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-      <h1><%= @truck.name %></h1>
-        <p><%= @truck.type_of_food %></p>
+    <div class="col-xs-12 col-sm-6 col-sm-offset-1">
+      <h3><%= @truck.name %> - <%= @truck.type_of_food %></h3>
         <% @truck.photos.each do |photo| %>
-          <%= cl_image_tag photo.path, width: 300, height: 200, crop: :fill %>
+            <%= cl_image_tag photo.path, class: "banner" %>
         <% end %>
-        <%= link_to "Edit", edit_truck_path(@truck), class: "btn btn-warning" %>
-      <%= link_to 'Back', trucks_path, class: "btn btn-warning" %>
-      <%= link_to 'Add a new truck', new_truck_path, class: "btn btn-warning" %>
+        <br>
+      <%= link_to 'Back', trucks_path, class: "btn btn-primary" %>
+      <%= link_to "Truck's Orders", edit_truck_path(@truck), class: "btn btn-success" %>
+      <br>
+      <%= link_to 'Edit', edit_truck_path(@truck), class: "btn btn-warning" %>
+      <%= link_to "Truck's Order", order_owner_truck_path, class: "btn btn-warning" %>
+      <%= link_to "Delete", truck_path(@truck),
+      method: :delete, class: "btn btn-danger" %>
     </div>
   </div>
 </div>
 
-
-<h1>Meals</h1>
+<h1 class="text-center">Meals</h1>
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-      <%= simple_form_for [@truck, @meal] do |f| %>
-        <%= f.input :description %>
-        <%= f.input :is_vegan %>
-        <%= f.input :is_gluten_free %>
-        <%= f.input :is_alergen %>
-        <%= f.input :is_fat_free %>
-        <%= f.input :spicy_scale %>
-        <%= f.input :price %>
-        <%= f.input :photo, as: :attachinary %>
-        <%= f.submit "Submit", class: "btn btn-primary" %>
-      <% end %>
-    </div>
-  </div>
-</div>
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <ul>
       <% @truck.meals.each do |meal| %>
-        <%= meal.description %>
-        <%= meal.is_vegan ? 'Yes' : 'No' %>
-        <%= meal.is_alergen ? 'Yes' : 'No' %>
-        <%= meal.is_gluten_free ? 'Yes' : 'No' %>
-        <%= meal.is_fat_free ? 'Yes' : 'No' %>
-        <%= meal.spicy_scale ? 'Yes' : 'No' %>
-        <p><%= meal.price %> €</p>
-        <%= cl_image_tag meal.photo.path if meal.photo? %>
+        <%= cl_image_tag meal.photo.path, width: 150, height: 150, crop: :fill if meal.photo? %>
+        <li> <%= meal.description %>
+        Vegan? <%= meal.is_vegan ? 'Yes' : 'No' %>
+        Alergen? <%= meal.is_alergen ? 'Yes' : 'No' %>
+        Gluten free? <%= meal.is_gluten_free ? 'Yes' : 'No' %>
+        Fat free? <%= meal.is_fat_free ? 'Yes' : 'No' %>
+        Spicy? <%= meal.spicy_scale %>
+        <p>Price? <%= meal.price %> €</p>
+        <%= link_to "edit meal", edit_truck_meal_path(@truck, meal), class: "btn btn-primary" %>
+        <%= link_to "Delete", meal_path(meal), method: :delete, class: "btn btn-danger" %>
+      </li>
       <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <h3>Add a meal</h3>
+      <div class="truck-form">
+        <%= render "meal_form" %>
+      </div>
     </div>
   </div>
 </div>
 
-<h1>Addresses</h1>
+<h1 class="text-center">Addresses</h1>
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-      <%= simple_form_for [@truck, @address] do |f| %>
-        <%= f.input :street_address %>
-        <%= f.input :street_address_2 %>
-        <%= f.input :city %>
-        <%= f.input :zipcode %>
-        <%= f.input :country, as: :country, only: ["FR", "ES", "RO", "DZ"] %>
-        <%= f.input :more_info %>
-        <%= f.submit "Submit", class: "btn btn-primary" %>
-      <% end %>
-    </div>
-  </div>
-</div>
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <ul>
       <% @truck.addresses.each do |address| %>
-        <%= address.street_address %>
+        <li><%= address.street_address %>
         <%= address.street_address_2 %>
         <%= address.city %>
         <%= address.zipcode %>
         <%= address.more_info %>
+        <br>
+        <%= link_to "edit address", edit_truck_address_path(@truck, address), class: "btn btn-primary" %>
+        <%= link_to "Delete", address_path(address), method: :delete, class: "btn btn-danger" %>
+        </li>
       <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <h3>Add an address</h3>
+      <div class="truck-form">
+        <%= render "address_form" %>
+      </div>
     </div>
   </div>
 </div>
 
-
-<h1>Calendar</h1>
+<h1 class="text-center">Calendar</h1>
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
@@ -90,35 +90,26 @@
       <% @calendars.each do |calendar| %>
         <li>
         <%= calendar.address.street_address unless calendar.address.nil? %>
-        <br>
-        <%= calendar.starting_date %>
-       <br>
-        <%= calendar.ending_date %>
+        <%= link_to "edit calendar", edit_truck_calendar_path(@truck, calendar), class: "btn btn-primary" %>
+        <%= link_to "Delete", calendar_path(calendar), method: :delete, class: "btn btn-danger" %>
         </li>
       <% end %>
       </ul>
-      <%= simple_form_for [@truck, @calendar] do |f| %>
-        <%= f.input :starting_date, as: :date %>
-        <%= f.input :ending_date, as: :date %>
-        <%= f.association :address, label_method: :street_address, value_method: :id %>
-        <%= f.submit "Submit", class: "btn btn-primary" %>
-      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-6">
+      <%= render "calendar_display" %>
     </div>
   </div>
 </div>
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-      <%= month_calendar events: @calendars do |date, calendars| %>
-        <%= date %>
-        <% calendars.each do |calendar| %>
-          <%#= calendar.start_time unless calendar.nil? %>
-          <%#= calendar.end_time unless calendar.nil? %>
-          <%= calendar.address.street_address unless calendar.address.nil? %>
-        <% end %>
-      <% end %>
+      <h3>Add a calendar</h3>
+      <div class="truck-form">
+        <%= render "calendar_form" %>
+      </div>
     </div>
   </div>
 </div>
-
-

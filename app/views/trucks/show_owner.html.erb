@@ -16,7 +16,31 @@
   </div>
 </div>
 
-<%= render "meal_form" %>
+<h1>Meals</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <% @truck.meals.each do |meal| %>
+        <%= meal.description %>
+        <%= meal.is_vegan ? 'Yes' : 'No' %>
+        <%= meal.is_alergen ? 'Yes' : 'No' %>
+        <%= meal.is_gluten_free ? 'Yes' : 'No' %>
+        <%= meal.is_fat_free ? 'Yes' : 'No' %>
+        <%= meal.spicy_scale %>
+        <p><%= meal.price %> €</p>
+        <%= cl_image_tag meal.photo.path if meal.photo? %>
+        <%= link_to "edit meal", edit_truck_meal_path(@truck, meal), class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <%= render "meal_form" %>
+    </div>
+  </div>
+</div>
 
 <%= render "address_form" %>
 

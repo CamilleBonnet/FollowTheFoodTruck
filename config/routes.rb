@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   root to: 'trucks#home'
 
   resources :trucks, except: [:edit] do
-    resources :meals, only: [:create, :update]
+    resources :meals, only: [:create, :update, :edit]
     resources :addresses, only: [:create, :update]
     resources :calendars, only: [:create, :update]
     # resources :truck_order_lists, only: [:create, :update]

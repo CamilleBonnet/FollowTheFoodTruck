@@ -1,10 +1,8 @@
 <h1>Homepage</h1>
-
-
-
 <%= render 'shared/banner' %>
 <div class="container">
   <div class="row">
+        <%= link_to 'Add a truck', new_truck_path, class: "btn btn-success" %>
     <ul>
       <% @trucks.each do |truck| %>
       <li>
@@ -15,12 +13,10 @@
         <p><%= truck.type_of_food %></p>
       </li>
         <%= link_to "Delete", truck_path(truck),
-      method: :delete,
-      data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
-        <%= link_to "Edit", owner_truck_path(truck), class: "btn btn-warning" %>
-        <%= link_to 'Add a meal', owner_truck_path(truck), class: "btn btn-success" %>
-        <%= link_to 'Add a location', owner_truck_path(truck), class: "btn btn-primary" %>
-        <%= link_to 'Add a calendar', owner_truck_path(truck), class: "btn btn-info" %>
+      method: :delete, class: "btn btn-danger" %>
+        <%= link_to "See my truck", owner_truck_path, class: "btn btn-warning" %>
+        <%# link_to 'Add a location', owner_truck_path, class: "btn btn-primary" %>
+        <%# link_to 'Add a calendar', owner_truck_path, class: "btn btn-info" %>
       <% end %>
     </ul>
   </div>

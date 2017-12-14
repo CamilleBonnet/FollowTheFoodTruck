@@ -1,34 +1,11 @@
-<h1>Meals</h1>
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-      <%= simple_form_for [@truck, @meal] do |f| %>
-        <%= f.input :description %>
-        <%= f.input :is_vegan %>
-        <%= f.input :is_gluten_free %>
-        <%= f.input :is_alergen %>
-        <%= f.input :is_fat_free %>
-        <%= f.input :spicy_scale %>
-        <%= f.input :price %>
-        <%= f.input :photo, as: :attachinary %>
-        <%= f.submit "Submit", class: "btn btn-primary" %>
-      <% end %>
-    </div>
-  </div>
-</div>
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-      <% @truck.meals.each do |meal| %>
-        <%= meal.description %>
-        <%= meal.is_vegan ? 'Yes' : 'No' %>
-        <%= meal.is_alergen ? 'Yes' : 'No' %>
-        <%= meal.is_gluten_free ? 'Yes' : 'No' %>
-        <%= meal.is_fat_free ? 'Yes' : 'No' %>
-        <%= meal.spicy_scale %>
-        <p><%= meal.price %> €</p>
-        <%= cl_image_tag meal.photo.path if meal.photo? %>
-      <% end %>
-    </div>
-  </div>
-</div>
+<%= simple_form_for ([@truck, @meal]) do |f| %>
+  <%= f.input :description %>
+  <%= f.input :is_vegan %>
+  <%= f.input :is_gluten_free %>
+  <%= f.input :is_alergen %>
+  <%= f.input :is_fat_free %>
+  <%= f.input :spicy_scale %>
+  <%= f.input :price %>
+  <%= f.input :photo, as: :attachinary %>
+  <%= f.submit "Submit", class: "btn btn-primary" %>
+<% end %>

@@ -28,7 +28,7 @@ class TrucksController < ApplicationController
 
   def show_owner
     # to add a new object
-    @truck = Truck.find(current_user.id)
+    @truck = Truck.find_by(user: current_user)
     @meal = Meal.new
     @address = Address.new
     @calendar = Calendar.new

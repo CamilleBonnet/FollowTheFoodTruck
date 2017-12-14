@@ -1,25 +1,6 @@
-
-<h1>Calendar</h1>
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-      <ul>
-      <% @calendars.each do |calendar| %>
-        <li>
-        <%= calendar.address.street_address unless calendar.address.nil? %>
-        <br>
-        <%= calendar.starting_date %>
-       <br>
-        <%= calendar.ending_date %>
-        </li>
-      <% end %>
-      </ul>
-      <%= simple_form_for [@truck, @calendar] do |f| %>
-        <%= f.input :starting_date, as: :date %>
-        <%= f.input :ending_date, as: :date %>
-        <%= f.association :address, label_method: :street_address, value_method: :id %>
-        <%= f.submit "Submit", class: "btn btn-primary" %>
-      <% end %>
-    </div>
-  </div>
-</div>
+<%= simple_form_for [@truck, @calendar] do |f| %>
+  <%= f.input :starting_date, as: :date %>
+  <%= f.input :ending_date, as: :date %>
+  <%= f.association :address, label_method: :street_address, value_method: :id %>
+  <%= f.submit "Submit", class: "btn btn-primary" %>
+<% end %>

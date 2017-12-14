@@ -1,6 +1,6 @@
 class AddressesController < ApplicationController
-  before_action :set_address, only: [:update, :destroy]
-  before_action :set_truck, only: [:create, :update]
+  before_action :set_address, only: [:edit, :update, :destroy]
+  before_action :set_truck, only: [:create, :edit, :update]
 
   def create
     @address = Address.new(address_params)

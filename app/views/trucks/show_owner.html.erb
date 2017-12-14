@@ -9,6 +9,7 @@
           <%= cl_image_tag photo.path, width: 300, height: 200, crop: :fill %>
         <% end %>
       <%= link_to 'Back', trucks_path, class: "btn btn-warning" %>
+      <%= link_to 'Edit', edit_truck_path(@truck), class: "btn btn-warning" %>
       <%= link_to "Delete", truck_path(@truck),
       method: :delete,
       data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
@@ -42,10 +43,63 @@
   </div>
 </div>
 
-<%= render "address_form" %>
+<h1>Addresses</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <% @truck.addresses.each do |address| %>
+        <%= address.street_address %>
+        <%= address.street_address_2 %>
+        <%= address.city %>
+        <%= address.zipcode %>
+        <%= address.more_info %>
+        <%= link_to "edit address", edit_truck_address_path(@truck, address), class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <%= render "address_form" %>
+    </div>
+  </div>
+</div>
 
-<%= render "calendar_form" %>
+<h1>Calendar</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <ul>
+      <% @calendars.each do |calendar| %>
+        <li>
+        <%= calendar.address.street_address unless calendar.address.nil? %>
+        <br>
+        <%= calendar.starting_date %>
+       <br>
+        <%= calendar.ending_date %>
+        </li>
+      <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
 
-<%= render "calendar_display" %>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <%= render "calendar_form" %>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <%= render "calendar_display" %>
+    </div>
+  </div>
+</div>
+
 
 

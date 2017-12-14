@@ -7,7 +7,7 @@ class MealsController < ApplicationController
     @meal.truck = @truck
     if @meal.save
       flash[:notice] = "Meal #{@meal.description} has been created"
-      redirect_to owner_truck_path(@meal)
+      redirect_to owner_truck_path
     else
       flash[:alert] = "Meal could not be created"
       redirect_to owner_truck_path
@@ -18,8 +18,8 @@ class MealsController < ApplicationController
   end
 
   def update
-    @meal.update(meal_params)
-    if @meal.update
+
+    if @meal.update(meal_params)
       flash[:notice] = "Meal #{@meal.description} has been updated"
       redirect_to owner_truck_path
     else

@@ -2,7 +2,6 @@
 <%= render 'shared/banner' %>
 <div class="container">
   <div class="row">
-        <%= link_to 'Add a truck', new_truck_path, class: "btn btn-success" %>
     <ul>
       <% @trucks.each do |truck| %>
       <li>
@@ -12,9 +11,6 @@
         <% end %>
         <p><%= truck.type_of_food %></p>
       </li>
-        <%= link_to "Delete", truck_path(truck),
-      method: :delete, class: "btn btn-danger" %>
-        <%= link_to "See my truck", owner_truck_path, class: "btn btn-warning" %>
       <% end %>
     </ul>
   </div>

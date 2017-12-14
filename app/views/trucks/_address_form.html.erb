@@ -1,0 +1,10 @@
+<%= simple_form_for [@truck, @address] do |f| %>
+  <%= f.input :street_address %>
+  <%= f.input :street_address_2 %>
+  <%= f.input :city %>
+  <%= f.input :zipcode %>
+  <%= f.input :country, as: :country, only: ["FR", "ES", "RO", "DZ"] %>
+  <%= f.input :more_info %>
+  <%= f.submit "Submit", class: "btn btn-primary" %>
+<% end %>
+

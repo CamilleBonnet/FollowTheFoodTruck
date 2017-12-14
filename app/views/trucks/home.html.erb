@@ -1,20 +1,20 @@
 <h1>Homepage</h1>
-
-
-
 <%= render 'shared/banner' %>
 <div class="container">
   <div class="row">
+        <%= link_to 'Add a truck', new_truck_path, class: "btn btn-success" %>
     <ul>
       <% @trucks.each do |truck| %>
       <li>
         <p><%= link_to truck.name, truck_path(truck) %></p>
+        <% truck.photos.each do |photo| %>
+          <%= cl_image_tag photo.path, width: 300, height: 200, crop: :fill %>
+        <% end %>
         <p><%= truck.type_of_food %></p>
       </li>
-      <%= link_to "Delete", truck_path(truck),
-      method: :delete,
-      data: { confirm: "Are you sure?" } %>
-      <%= link_to "Edit", edit_truck_path(truck), class: "card-link" %>
+        <%= link_to "Delete", truck_path(truck),
+      method: :delete, class: "btn btn-danger" %>
+        <%= link_to "See my truck", owner_truck_path, class: "btn btn-warning" %>
       <% end %>
     </ul>
   </div>

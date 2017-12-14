@@ -1,25 +1,40 @@
 class AddressesController < ApplicationController
-  before_action :set_address, only: [:update, :destroy]
-  before_action :set_truck, only: [:create, :update]
+  before_action :set_address, only: [:edit, :update, :destroy]
+  before_action :set_truck, only: [:create, :edit, :update]
 
   def create
     @address = Address.new(address_params)
     @address.truck = @truck
-    @address.save
-    redirect_to owner_truck_path(@address)
+    if @address.save
+      flash[:notice] = "Address #{@address.street_address} has been saved"
+      redirect_to owner_truck_path(@address)
+    else
+      flash[:alert] = "Address could not be saved"
+      redirect_to owner_truck_path
+    end
   end
 
   def edit
   end
 
   def update
-    @address.update(address_params)
-    redirect_to owner_truck_path(@address)
+    if @address.update(address_params)
+      flash[:notice] = "Address #{@address.street_address} has been updated"
+      redirect_to owner_truck_path
+    else
+      flash[:alert] = "Address could not be updated"
+      redirect_to owner_truck_path
+    end
   end
 
   def destroy
-    @address.destroy
-    redirect_to owner_truck_path(@address)
+    if @address.destroy
+      flash[:notice] = "Address has been destroyed"
+      redirect_to owner_truck_path
+    else
+      flash[:alert] = "Address could not be destroyed"
+      redirect_to owner_truck_path
+    end
   end
 
   private

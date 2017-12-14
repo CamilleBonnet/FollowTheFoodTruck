@@ -1,11 +1,11 @@
 <h1 class="text-center">Truck</h1>
 <div class="container">
   <div class="row">
-    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-1">
       <h3><%= @truck.name %></h3>
         <p><%= @truck.type_of_food %></p>
         <% @truck.photos.each do |photo| %>
-          <%= cl_image_tag photo.path, width: 300, height: 200, crop: :fill %>
+            <%= cl_image_tag photo.path, class: "banner" %>
         <% end %>
         <br>
       <%= link_to 'Back', trucks_path, class: "btn btn-primary" %>

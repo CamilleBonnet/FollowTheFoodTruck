@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :set_current_user, only: [:orders_show, :edit]
+
   def show
     if params[:id] == 'myprofile'
       @user = current_user
@@ -8,8 +10,10 @@ class UsersController < ApplicationController
     @user_truck = Truck.where(user_id: current_user.id)
   end
 
+  def orders_show
+  end
+
   def edit
-    @user = current_user
   end
 
   def update
@@ -19,6 +23,10 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def set_current_user
+    @user = current_user
+  end
 
   def user_params
     params.require(:user).permit(:first_name, :last_name, :photo)

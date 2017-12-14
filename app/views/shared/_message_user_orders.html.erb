@@ -1,0 +1,16 @@
+<p>ID of the command: <%= basket.id %></p>
+<p> Command to <%= basket.truck.name %></p>
+<p>Status of the command: <%= basket.status %></p>
+<p>Total of the command: <%= basket.choices.sum(&:price) %>€</p>
+
+<ul>
+  <% basket.choices.each do |choice| %>
+  <%# raise %>
+  <li>
+    <p><%= choice.meal.description %></p>
+    <p><%= choice.meal.price %>€ each</p>
+    <p>=> <%= choice.quantity %> meals</p>
+    <p>==> <%= choice.price %>€</p>
+  </li>
+  <% end %>
+</ul>

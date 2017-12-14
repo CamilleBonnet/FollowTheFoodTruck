@@ -65,9 +65,14 @@
     <div class="dropdown">
       <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
       <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-        <li><a href="#">Some mobile link</a></li>
-        <li><a href="#">Other one</a></li>
-        <li><a href="#">Other one</a></li>
+        <li><%= link_to "All the trucks", trucks_path, class: "navbar-wagon-item navbar-wagon-link" %></li>
+        <li><%= link_to "My truck", owner_truck_path, class: "navbar-wagon-item navbar-wagon-link" if Truck.find_by(user: current_user) %></li>
+        <li><% if Truck.find_by(user: current_user) %>
+        <%= link_to "User orders", "#", class: "navbar-wagon-item navbar-wagon-link" %>
+      <% else %>
+        <%= link_to "My orders", "#", class: "navbar-wagon-item navbar-wagon-link" %>
+        </li>
+      <% end %>
       </ul>
     </div>
   </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171212153251) do
+ActiveRecord::Schema.define(version: 20171214110335) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20171212153251) do
   create_table "baskets", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "truck_order_list_id"
-    t.float    "total_price"
+    t.integer  "total_price"
     t.date     "date"
     t.datetime "time"
     t.string   "status"
@@ -142,8 +142,13 @@ ActiveRecord::Schema.define(version: 20171212153251) do
     t.integer  "age"
     t.string   "role"
     t.integer  "registration_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "facebook_picture_url"
+    t.string   "token"
+    t.datetime "token_expiry"
     t.index ["registration_id"], name: "index_users_on_registration_id", using: :btree
   end
 

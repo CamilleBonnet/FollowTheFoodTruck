@@ -1,4 +1,4 @@
-<h1>Index (future search results)</h1>
+<h1 class="text-center">Index (future search results)</h1>
 <div class="container">
   <div class="row">
     <ul>
@@ -7,10 +7,6 @@
         <p><%= link_to truck.name, truck_path(truck) %></p>
         <p><%= truck.type_of_food %></p>
       </li>
-      <%= link_to "Delete", truck_path(truck),
-      method: :delete,
-      data: { confirm: "Are you sure?" } %>
-
       <% end %>
     </ul>
   </div>

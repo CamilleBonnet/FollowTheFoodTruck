@@ -1,16 +1,10 @@
-<h1 class="text-center">Homepage</h1>
 <%= render 'shared/banner' %>
 <div class="container">
   <div class="row">
-    <ul>
       <% @trucks.each do |truck| %>
-      <li>
-        <p><%= link_to truck.name, truck_path(truck) %></p>
-        <% truck.photos.each do |photo| %>
-        <%= cl_image_tag photo.path, width: 300, height: 200, crop: :fill %>
-        <% end %>
-        <p><%= truck.type_of_food %></p>
-      </li>
+      <div class="col-xs-12 col-sm-6 col-md-4">
+        <%= render 'shared/truck_card', truck: truck %>
+      </div>
       <% end %>
     </ul>
   </div>

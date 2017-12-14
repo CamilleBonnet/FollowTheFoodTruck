@@ -1,0 +1,124 @@
+<h1>Truck</h1>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <h1><%= @truck.name %></h1>
+        <p><%= @truck.type_of_food %></p>
+        <% @truck.photos.each do |photo| %>
+          <%= cl_image_tag photo.path, width: 300, height: 200, crop: :fill %>
+        <% end %>
+        <%= link_to "Edit", edit_truck_path(@truck), class: "btn btn-warning" %>
+      <%= link_to 'Back', trucks_path, class: "btn btn-warning" %>
+      <%= link_to 'Add a new truck', new_truck_path, class: "btn btn-warning" %>
+    </div>
+  </div>
+</div>
+
+
+<h1>Meals</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <%= simple_form_for [@truck, @meal] do |f| %>
+        <%= f.input :description %>
+        <%= f.input :is_vegan %>
+        <%= f.input :is_gluten_free %>
+        <%= f.input :is_alergen %>
+        <%= f.input :is_fat_free %>
+        <%= f.input :spicy_scale %>
+        <%= f.input :price %>
+        <%= f.input :photo, as: :attachinary %>
+        <%= f.submit "Submit", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <% @truck.meals.each do |meal| %>
+        <%= meal.description %>
+        <%= meal.is_vegan ? 'Yes' : 'No' %>
+        <%= meal.is_alergen ? 'Yes' : 'No' %>
+        <%= meal.is_gluten_free ? 'Yes' : 'No' %>
+        <%= meal.is_fat_free ? 'Yes' : 'No' %>
+        <%= meal.spicy_scale ? 'Yes' : 'No' %>
+        <p><%= meal.price %> €</p>
+        <%= cl_image_tag meal.photo.path if meal.photo? %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<h1>Addresses</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <%= simple_form_for [@truck, @address] do |f| %>
+        <%= f.input :street_address %>
+        <%= f.input :street_address_2 %>
+        <%= f.input :city %>
+        <%= f.input :zipcode %>
+        <%= f.input :country, as: :country, only: ["FR", "ES", "RO", "DZ"] %>
+        <%= f.input :more_info %>
+        <%= f.submit "Submit", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <% @truck.addresses.each do |address| %>
+        <%= address.street_address %>
+        <%= address.street_address_2 %>
+        <%= address.city %>
+        <%= address.zipcode %>
+        <%= address.more_info %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+<h1>Calendar</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <ul>
+      <% @calendars.each do |calendar| %>
+        <li>
+        <%= calendar.address.street_address unless calendar.address.nil? %>
+        <br>
+        <%= calendar.starting_date %>
+       <br>
+        <%= calendar.ending_date %>
+        </li>
+      <% end %>
+      </ul>
+      <%= simple_form_for [@truck, @calendar] do |f| %>
+        <%= f.input :starting_date, as: :date %>
+        <%= f.input :ending_date, as: :date %>
+        <%= f.association :address, label_method: :street_address, value_method: :id %>
+        <%= f.submit "Submit", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <%= month_calendar events: @calendars do |date, calendars| %>
+        <%= date %>
+        <% calendars.each do |calendar| %>
+          <%#= calendar.start_time unless calendar.nil? %>
+          <%#= calendar.end_time unless calendar.nil? %>
+          <%= calendar.address.street_address unless calendar.address.nil? %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+

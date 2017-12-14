@@ -1,0 +1,40 @@
+<div class="container ">
+  <div class="col-xs-12 col-md-6 col-md-offset-4">
+    <div class="row">
+      <div class="container username" >
+          <h2>Hey, I'm <%= @user.first_name %> <%= @user.last_name %></h2>
+          <%# if @user.photo? %>
+          <%#= cl_image_tag @user.photo.path, class: "avatar dropdown-toggle", class: "avatar dropdown-toggle" , id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+          <%# else %>
+          <%= image_tag "http://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", class: "avatar dropdown-toggle" , id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+          <%# end %>
+      </div>
+    </div>
+      <div class="row">
+        <% if current_user == @user %>
+          <div>
+            login email: <%= Registration.find(current_user.registration_id).email %>
+          </div>
+          <div class="edit_profile_container">
+            <%= link_to 'Edit my profile', edit_user_profile_path(@user), {class: "btn btn-warning"}%>
+          </div>
+        <% end %>
+      </div>
+  </div>
+
+  <div class="col-xs-12 col-md-12 col-md-offset-3">
+    <div class="row">
+      <% if current_user == @user %>
+        <% unless @user_truck.empty? %>
+          <% @user_truck.each do |truck| %>
+            <div class="row">
+              <div class="booking-btn">
+                <%= truck.name %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

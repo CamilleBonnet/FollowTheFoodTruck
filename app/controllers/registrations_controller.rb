@@ -9,6 +9,6 @@ class RegistrationsController < Devise::RegistrationsController
   protected
 
   def after_sign_up_path_for(resource)
-    root_path
+    edit_user_profile_path
   end
 end

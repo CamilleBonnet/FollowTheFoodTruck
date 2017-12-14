@@ -42,6 +42,13 @@ Rails.application.routes.draw do
   get '/mytruck/:id/edit', to: "trucks#edit", as: "edit_truck"
   # delete '/mytrucks/:id', to: "truck#destroy", as: "delete_truck"
 
+  # routes for the user model
+  get 'users/:id', to: "users#show", as: "user"
+  get 'users/myprofile', to: "users#show", as: "myprofile"
+  get 'users/profile/edit', to: "users#edit", as: "edit_user_profile"
+  patch 'users/:id', to: "users#update", as: "user_profile"
+  delete 'users', to: "users#destroy"
+
 
 
   # future orders routes ?

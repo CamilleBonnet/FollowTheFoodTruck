@@ -3,6 +3,8 @@ class User < ApplicationRecord
   has_many :choices
   has_many :baskets
 
-  validates :first_name, presence: true
-  validates :last_name, presence: true
+  has_attachment :photo
+
+  # validates :first_name, presence: true
+  # validates :last_name, presence: true
 end

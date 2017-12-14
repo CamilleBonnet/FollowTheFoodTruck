@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20171214163110) do
   create_table "baskets", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "truck_order_list_id"
-    t.integer  "total_price"
+    t.float    "total_price"
     t.date     "date"
     t.datetime "time"
     t.string   "status"

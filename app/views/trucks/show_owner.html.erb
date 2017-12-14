@@ -2,14 +2,13 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-1">
-      <h3><%= @truck.name %></h3>
-        <p><%= @truck.type_of_food %></p>
+      <h3><%= @truck.name %> - <%= @truck.type_of_food %></h3>
         <% @truck.photos.each do |photo| %>
             <%= cl_image_tag photo.path, class: "banner" %>
         <% end %>
         <br>
       <%= link_to 'Back', trucks_path, class: "btn btn-primary" %>
-      <%= link_to "Truck's Order", edit_truck_path(@truck), class: "btn btn-success" %>
+      <%= link_to "Truck's Orders", edit_truck_path(@truck), class: "btn btn-success" %>
       <br>
       <%= link_to 'Edit', edit_truck_path(@truck), class: "btn btn-warning" %>
       <%= link_to "Delete", truck_path(@truck),
@@ -26,11 +25,11 @@
       <% @truck.meals.each do |meal| %>
         <%= cl_image_tag meal.photo.path, width: 150, height: 150, crop: :fill if meal.photo? %>
         <li> <%= meal.description %>
-        <p>Vegan? <%= meal.is_vegan ? 'Yes' : 'No' %></p>
-        <p>Alergen? <%= meal.is_alergen ? 'Yes' : 'No' %></p>
-        <p>Gluten free? <%= meal.is_gluten_free ? 'Yes' : 'No' %></p>
-        <p>Fat free? <%= meal.is_fat_free ? 'Yes' : 'No' %></p>
-        <p>Spicy? <%= meal.spicy_scale %></p>
+        Vegan? <%= meal.is_vegan ? 'Yes' : 'No' %>
+        Alergen? <%= meal.is_alergen ? 'Yes' : 'No' %>
+        Gluten free? <%= meal.is_gluten_free ? 'Yes' : 'No' %>
+        Fat free? <%= meal.is_fat_free ? 'Yes' : 'No' %>
+        Spicy? <%= meal.spicy_scale %>
         <p>Price? <%= meal.price %> €</p>
         <%= link_to "edit meal", edit_truck_meal_path(@truck, meal), class: "btn btn-primary" %>
         <%= link_to "Delete", meal_path(meal), method: :delete, class: "btn btn-danger" %>

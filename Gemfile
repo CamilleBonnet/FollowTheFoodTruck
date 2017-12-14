@@ -21,6 +21,7 @@ gem 'simple_form'
 gem 'country_select'
 gem 'uglifier'
 gem 'webpacker'
+gem 'omniauth-facebook'
 
 group :development do
   gem 'web-console', '>= 3.3.0'

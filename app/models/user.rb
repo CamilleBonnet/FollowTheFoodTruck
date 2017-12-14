@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   belongs_to :registration
+
   has_many :choices, dependent: :destroy
   has_many :baskets, dependent: :destroy
   has_many :trucks, dependent: :destroy

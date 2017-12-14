@@ -15,12 +15,12 @@ class MealsController < ApplicationController
 
   def update
     @meal.update(meal_params)
-    redirect_to owner_truck_path(@meal)
+    redirect_to owner_truck_path
   end
 
   def destroy
     @meal.destroy
-    redirect_to owner_truck_path(@meal)
+    redirect_to owner_truck_path
   end
 
   private

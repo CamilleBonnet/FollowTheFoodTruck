@@ -14,12 +14,12 @@ class AddressesController < ApplicationController
 
   def update
     @address.update(address_params)
-    redirect_to owner_truck_path(@address)
+    redirect_to owner_truck_path
   end
 
   def destroy
     @address.destroy
-    redirect_to owner_truck_path(@address)
+    redirect_to owner_truck_path
   end
 
   private

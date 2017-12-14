@@ -31,6 +31,7 @@
         <p><%= meal.price %> €</p>
         <%= cl_image_tag meal.photo.path if meal.photo? %>
         <%= link_to "edit meal", edit_truck_meal_path(@truck, meal), class: "btn btn-primary" %>
+        <%= link_to "Delete", meal_path(meal), method: :delete, class: "btn btn-danger" %>
       <% end %>
     </div>
   </div>
@@ -54,6 +55,7 @@
         <%= address.zipcode %>
         <%= address.more_info %>
         <%= link_to "edit address", edit_truck_address_path(@truck, address), class: "btn btn-primary" %>
+        <%= link_to "Delete", address_path(address), method: :delete, class: "btn btn-danger" %>
       <% end %>
     </div>
   </div>
@@ -79,6 +81,8 @@
        <br>
         <%= calendar.ending_date %>
         </li>
+        <%= link_to "edit calendar", edit_truck_calendar_path(@truck, calendar), class: "btn btn-primary" %>
+        <%= link_to "Delete", calendar_path(calendar), method: :delete, class: "btn btn-danger" %>
       <% end %>
       </ul>
     </div>
@@ -95,7 +99,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+    <div class="col-xs-12 col-sm-6">
       <%= render "calendar_display" %>
     </div>
   </div>

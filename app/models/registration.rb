@@ -7,6 +7,7 @@ class Registration < ApplicationRecord
 
   has_one :user
 
+
   def self.find_for_facebook_oauth(auth)
     user_params = auth.slice(:provider, :uid)
     user_params.merge! auth.info.slice(:email, :first_name, :last_name)
@@ -16,7 +17,7 @@ class Registration < ApplicationRecord
     user_params = user_params.to_h
 
     user = User.find_by(provider: auth.provider, uid: auth.uid) # find the provider on the user!
-    registration  = user.registration || Registration.find_by(email: auth.info.email) # User did a regular sign up in the past.
+    registration  = Registration.find_by(email: auth.info.email) # User did a regular sign up in the past.
     if registration # now if there is a registration, update !
       registration.update(email: user_params["email"])
       user_params.delete("email")

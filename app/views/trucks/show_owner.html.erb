@@ -86,10 +86,21 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <ul>
+      <% @calendars.each do |calendar| %>
+        <li>
+        <%= calendar.address.street_address unless calendar.address.nil? %>
+        <br>
+        <%= calendar.starting_date %>
+       <br>
+        <%= calendar.ending_date %>
+        </li>
+      <% end %>
+      </ul>
       <%= simple_form_for [@truck, @calendar] do |f| %>
         <%= f.input :starting_date, as: :date %>
         <%= f.input :ending_date, as: :date %>
-        <%= f.input :address_id, collection: @truck.addresses.map { |address| address.street_address + "," + address.street_address_2 } %>
+        <%= f.association :address, label_method: :street_address, value_method: :id %>
         <%= f.submit "Submit", class: "btn btn-primary" %>
       <% end %>
     </div>
@@ -98,9 +109,13 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-      <%#= month_calendar events: @calendars do |date, calendar| %>
-        <%#= date %>
-        <%#= calendar.starting_date unless calendar.nil? %>
+      <%= month_calendar events: @calendars do |date, calendars| %>
+        <%= date %>
+        <% calendars.each do |calendar| %>
+          <%#= calendar.start_time unless calendar.nil? %>
+          <%#= calendar.end_time unless calendar.nil? %>
+          <%= calendar.address.street_address unless calendar.address.nil? %>
+        <% end %>
       <% end %>
     </div>
   </div>

@@ -1,9 +1,10 @@
 class CalendarsController < ApplicationController
   before_action :set_calendar, only: [:update, :destroy]
-  before_action :set_address, only: [:update]
+  before_action :set_address, only: [:create, :update]
 
   def create
     @calendar = Calendar.new(calendar_params)
+    # @address = Address.find_by(:)
     @calendar.address = @address
     @calendar.save
     redirect_to owner_truck_path(@calendar)
@@ -25,7 +26,7 @@ class CalendarsController < ApplicationController
   private
 
   def set_address
-    @address = Address.find(params[:address_id])
+    @address = Address.find(params[:calendar][:address_id])
   end
 
   def calendar_params

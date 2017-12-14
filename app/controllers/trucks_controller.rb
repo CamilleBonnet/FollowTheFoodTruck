@@ -27,7 +27,7 @@ class TrucksController < ApplicationController
 
   def show_owner
     # to add a new object
-    @truck = Truck.find(current_user.id)
+    @truck = Truck.find_by(user: current_user)
     @meal = Meal.new
     @address = Address.new
     @calendar = Calendar.new
@@ -43,7 +43,7 @@ class TrucksController < ApplicationController
     @truck = Truck.new(truck_params)
     @truck.user = user
     if @truck.save
-      redirect_to truck_path(@truck)
+      redirect_to owner_truck_path
     else
       render :new
     end
@@ -54,7 +54,7 @@ class TrucksController < ApplicationController
 
   def update
     @truck.update(truck_params)
-    redirect_to truck_path(@truck)
+    redirect_to owner_truck_path
   end
 
   def destroy

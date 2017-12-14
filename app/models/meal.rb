@@ -1,5 +1,5 @@
 class Meal < ApplicationRecord
-  belongs_to :truck #, presence: true
+  belongs_to :truck, dependent: :destroy #, presence: true
   has_many :choices
 
   validates :price, presence: true

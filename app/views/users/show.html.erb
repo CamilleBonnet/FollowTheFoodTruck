@@ -28,12 +28,10 @@
       <% if current_user == @user %>
         <% unless @user_truck.empty? %>
           <% @user_truck.each do |truck| %>
-            <div class="row">
-              <div class="booking-btn">
-                <%= truck.name %>
-              </div>
-            </div>
+            <%= link_to truck.name, owner_truck_path %>
           <% end %>
+        <% else %>
+          <%= link_to 'Add a new truck', new_truck_path, class: "btn btn-warning" %>
         <% end %>
       <% end %>
     </div>

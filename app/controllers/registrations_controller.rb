@@ -1,7 +1,7 @@
 class RegistrationsController < Devise::RegistrationsController
   def create
     super do
-      User.create(registration_id: resource.id)
+      User.create(registration_id: resource.id, first_name: "First Name", last_name: "Last Name")
     end
   end
 

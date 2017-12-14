@@ -39,7 +39,7 @@ Rails.application.routes.draw do
   # get '/mytrucks', to: "trucks#index_owner", as: "all_owner_trucks"
   #not mandatory if hyp is that 1 user = 1 truck
   get '/mytruck', to: "trucks#show_owner", as: "owner_truck"
-  get '/mytruck/order', to: "trucks#show_owner", as: "order_owner_truck"
+  get '/mytruck/order', to: "trucks#truck_order", as: "order_owner_truck"
   get '/mytruck/:id/edit', to: "trucks#edit", as: "edit_truck"
   # delete '/mytrucks/:id', to: "truck#destroy", as: "delete_truck"
 

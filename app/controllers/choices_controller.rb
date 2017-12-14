@@ -1,15 +1,13 @@
 class ChoicesController < ApplicationController
-  before_action :set_truck
+  before_action :set_truck_and_basket
   before_action :set_choice, only: [:update]
 
   def index
   end
 
   def create
-    # @tol = TruckOrderList.new(truck: @truck)
-    # @basket = Basket.new(user: current_user, truck_order_list: @tol)
     @choice = Choice.new(choice_param)
-    @choice.truck = @truck
+    @choice.basket = @basket
     @choice.user = current_user
     if @choice.save
       @choice.price = @choice.quantity * @choice.meal.price
@@ -25,6 +23,7 @@ class ChoicesController < ApplicationController
 
   def update
     if @choice.update(choice_param)
+      @choice.basket = @basket
       @choice.price = @choice.quantity * @choice.meal.price
       @choice.save
       redirect_to truck_path(@truck)
@@ -32,12 +31,14 @@ class ChoicesController < ApplicationController
       flash[:alert] = "test"
       redirect_to truck_path(@truck)
     end
+    # raise
   end
 
   private
 
-  def set_truck
+  def set_truck_and_basket
     @truck = Truck.find(params[:truck_id])
+    @basket = Basket.where(user: current_user, truck: @truck, status: "pending").last || Basket.create(user: current_user, status: "pending", truck: @truck)
   end
 
   def set_choice

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171212153251) do
+ActiveRecord::Schema.define(version: 20171214163110) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,8 @@ ActiveRecord::Schema.define(version: 20171212153251) do
     t.string   "status"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+    t.integer  "truck_id"
+    t.index ["truck_id"], name: "index_baskets_on_truck_id", using: :btree
     t.index ["truck_order_list_id"], name: "index_baskets_on_truck_order_list_id", using: :btree
     t.index ["user_id"], name: "index_baskets_on_user_id", using: :btree
   end
@@ -70,7 +72,6 @@ ActiveRecord::Schema.define(version: 20171212153251) do
   create_table "choices", force: :cascade do |t|
     t.integer  "basket_id"
     t.integer  "meal_id"
-    t.integer  "truck_id"
     t.integer  "user_id"
     t.integer  "quantity"
     t.float    "price"
@@ -80,7 +81,6 @@ ActiveRecord::Schema.define(version: 20171212153251) do
     t.datetime "updated_at", null: false
     t.index ["basket_id"], name: "index_choices_on_basket_id", using: :btree
     t.index ["meal_id"], name: "index_choices_on_meal_id", using: :btree
-    t.index ["truck_id"], name: "index_choices_on_truck_id", using: :btree
     t.index ["user_id"], name: "index_choices_on_user_id", using: :btree
   end
 
@@ -142,18 +142,23 @@ ActiveRecord::Schema.define(version: 20171212153251) do
     t.integer  "age"
     t.string   "role"
     t.integer  "registration_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "facebook_picture_url"
+    t.string   "token"
+    t.datetime "token_expiry"
     t.index ["registration_id"], name: "index_users_on_registration_id", using: :btree
   end
 
   add_foreign_key "addresses", "trucks"
   add_foreign_key "baskets", "truck_order_lists"
+  add_foreign_key "baskets", "trucks"
   add_foreign_key "baskets", "users"
   add_foreign_key "calendars", "addresses"
   add_foreign_key "choices", "baskets"
   add_foreign_key "choices", "meals"
-  add_foreign_key "choices", "trucks"
   add_foreign_key "choices", "users"
   add_foreign_key "meals", "trucks"
   add_foreign_key "truck_order_lists", "trucks"

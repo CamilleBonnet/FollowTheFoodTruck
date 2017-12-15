@@ -7,8 +7,7 @@
             <% if @user.photo? %>
             <%= cl_image_tag @user.photo.path, class: "avatar dropdown-toggle", class: "avatar dropdown-toggle" , id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
             <% else %>
-            <%# image_tag @user.facebook_picture_url || "http://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", class: "avatar dropdown-toggle" , id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
-            <%= image_tag "http://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", class: "avatar dropdown-toggle" , id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+              <%= image_tag @user.facebook_picture_url || "http://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", class: "avatar dropdown-toggle" , id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
             <% end %>
             <h4 class="title">Hey, I'm <%= @user.first_name %> <%= @user.last_name %></h4>
             <% if current_user == @user %>

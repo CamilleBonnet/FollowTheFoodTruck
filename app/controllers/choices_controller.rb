@@ -17,14 +17,13 @@ class ChoicesController < ApplicationController
       flash[:alert] = "test"
       redirect_to truck_path(@truck)
     end
-
-
   end
 
   def update
     if @choice.update(choice_param)
       @choice.basket = @basket
       @choice.price = @choice.quantity * @choice.meal.price
+      @basket.update(total_price: @basket.choices.sum(&:price))
       @choice.save
       redirect_to truck_path(@truck)
     else

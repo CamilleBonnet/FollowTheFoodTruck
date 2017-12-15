@@ -16,8 +16,9 @@
                 <i class="fa fa-envelope-o text-muted"></i> <%= Registration.find(current_user.registration_id).email %>
               </p>
               <div class="edit_profile_container">
-                <%= link_to 'Edit my profile', edit_user_profile_path(@user), {class: "btn btn-warning btn-xs"}%>
-                <%= link_to 'Edit my login / password', edit_registration_registration_path, {class: "btn btn-warning btn-xs"}%>
+                <%= link_to 'Edit my profile', edit_user_profile_path(@user), {class: "btn ftft-color ftft-btn"}%>
+                <br>
+                <%= link_to 'Edit my login / password', edit_registration_registration_path, {class: "btn btn-warning ftft-btn"}%>
               </div>
               <% unless @user_truck.empty? %>
               <hr/>
@@ -29,7 +30,7 @@
                     <tr>
                       <td class="text-center"><%= truck.name %></td>
                       <td class="td-actions text-right">
-                        <%= link_to "Edit", owner_truck_path, class: "btn btn-warning btn-xs" %>
+                        <%= link_to "Edit", owner_truck_path, class: "btn btn-warning ftft-btn btn-xs" %>
                       </td>
                     </tr>
                     <% end %>
@@ -37,7 +38,7 @@
                 </table>
               </div>
               <% else %>
-              <%= link_to 'Add a new truck', new_truck_path, class: "btn btn-warning btn-xs" %>
+              <%= link_to 'Add a new truck', new_truck_path, class: "btn btn-warning ftft-btn btn-xs" %>
               <% end %>
             <% end %>
           </div>

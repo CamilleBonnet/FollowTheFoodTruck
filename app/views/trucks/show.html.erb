@@ -3,28 +3,38 @@
 </div>
 <div class="container">
   <div class="row">
-    <!-- <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-      <h1><%#= @truck.name %></h1>
-      <p><%= @truck.type_of_food %></p>
-      <%# @truck.photos.each do |photo| %>
-        <%#= cl_image_tag photo.path, width: 100, height: 200, crop: :fill %>
-      <%# end %>
-    </div> -->
-  </div>
-  <div class="row">
     <div class="col-xs-12">
-      <% @tables.each do |table| %>
-        <%= render 'shared/show_page_table', table: table %>
-      <% end %>
+      <div class="col-xs-12">
+        <h2 class="text-center">Meals list</h2>
+      </div>
+      <div class="col-md-10 col-md-offset-1">
+        <div class="table-responsive">
+          <table class="table table-meals">
+            <thead>
+              <tr>
+                <th class="text-center"></th>
+                <th class="th-description">Description</th>
+                <th class="text-right">Price</th>
+                <th class="text-right">Add a meal</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+            <% @tables.each do |table| %>
+            <%= render 'shared/show_page_table', meal: table[:meal], choice: table[:choice] %>
+            <% end %>
+          </table>
+        </div>
+      </div>
     </div>
-  </div>
 
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="btn-show text-center">
-        <% unless @basket.nil? %>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="btn-show text-center">
+          <% unless @basket.nil? %>
           <%= link_to "Order", truck_basket_path(@truck, @basket), class:"btn btn-primary" %>
-        <% end %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

@@ -1,6 +1,6 @@
 class Meal < ApplicationRecord
   belongs_to :truck #, presence: true
-  has_many :choices
+  has_many :choices, depedent: :destroy
 
   validates :description, presence: true
   validates :price, presence: true

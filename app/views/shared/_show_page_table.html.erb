@@ -1,0 +1,50 @@
+<div class="row">
+  <div class="col-xs-12">
+    <h2 class="text-center">Meals list</h2>
+  </div>
+  <div class="col-md-10 col-md-offset-1">
+  <div class="table-responsive">
+    <table class="table table-meals">
+      <thead>
+        <tr>
+            <th class="text-center"></th>
+            <th class="th-description">Description</th>
+            <th class="text-right">Price</th>
+            <th class="text-right">Add a meal</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @truck.meals.each do |meal| %>
+        <tr>
+            <td>
+                <div class="img-container">
+                  <% if meal.photo? %>
+                    <%= cl_image_tag meal.photo.path, class:"avatar" %>
+                  <% else %>
+                    <%= image_tag 'streetsurfer-foodtruck.jpg', class:"avatar" %>
+                  <% end %>
+                </div>
+            </td>
+            <td class="td-name">
+               <h4><%= meal.description %></h4>
+            </td>
+
+            <td class="td-number">
+                <small><%= meal.price %></small>€
+            </td>
+
+            <td>
+              <div class="img-container">
+                <%= render 'meals/form', truck: @truck, choice: table[:choice] %>
+                </div>
+            </td>
+        </tr>
+        <% end %>
+     </tbody>
+</table>
+  </div>
+</div>
+
+</div>
+

@@ -1,7 +1,7 @@
 .message {
   display: flex;
-  align-items: center;
-  padding: 20px;
+  // align-items: center;
+  // padding: 20px;
   border-bottom: 1px solid rgba(220,224,244,0.4);
 }
 .message:last-child {
@@ -11,7 +11,7 @@
   flex-grow: 1;
 }
 .message-name {
-  padding-left: 10px;
+  // padding-left: 10px;
   min-width: 100px;
 }
 .message-name h3 {
@@ -43,6 +43,7 @@
 .message-status {
   font-size: 14px;
   font-weight: bold;
+  width:75px;
 }
 .status.accepted {
   color: #04A366;
@@ -52,4 +53,20 @@
 }
 .status.pending {
   color: lightgrey;
+}
+
+.img-name{
+  text-align: center;
+  width: 75px;
+}
+
+.img-name h3{
+  margin:0;
+  width: 75px;
+}
+
+.message-order{
+  margin-top: 25px;
+  background: white;
+  border-radius: 5px;
 }

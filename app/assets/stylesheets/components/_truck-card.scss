@@ -1,31 +1,38 @@
 .truck-card {
-  background-color: #EAF6F6;
-  margin: 5px 0px;
-  .truck-img-wrapper {
-    height: 170px;
-    .truck-img {
-      height: 170px;
-      width: 100%;
+  background-color: #fff;
+  border-radius: 6px;
+  margin: 20px 0px 5px 0px;
+  a {
+    text-decoration: none;
+  }
+  .image {
+    width: 100%;
+    overflow: hidden;
+    height: 260px;
+    border-radius: 6px 6px 0 0;
+    position: relative;
+  }
+  .content {
+    padding: 15px 15px 10px 15px;
+    .title {
+      margin: 0 0 10px 0;
+      font-weight: 700;
+    }
+    .footer {
+      min-height: 30px;
+      padding: 0;
+      background-color: transparent;
+      line-height: 30px;
+      .info {
+        margin-right: 5px;
+        color: #9A9A9A;
+      }
+      div {
+        display: inline-block;
+      }
     }
   }
-  .truck-description {
-    position: relative;
-    height: 90px;
-    .truck-name {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      font-size: 25px;
-    }
-    .type-food {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-    }
-    .payment-info {
-      position: absolute;
-      bottom: 10px;
-      left: 10px;
-    }
+  .card-link {
+    color: #9A9A9A;
   }
 }

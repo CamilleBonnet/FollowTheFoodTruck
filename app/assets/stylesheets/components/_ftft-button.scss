@@ -1,0 +1,16 @@
+  .ftft-btn {
+    margin-bottom: 15px;
+    border-radius: 20px;
+  }
+
+.ftft-color{
+  background-color: $btn-color-main;
+  text-decoration: none;
+  color: white;
+}
+
+.ftft-color:hover {
+  background-color: $btn-color-main-darker;
+  text-decoration: none;
+  color: white;
+}

@@ -1,0 +1,35 @@
+.meal-card-wrapper {
+  display: flex;
+  flex-direction: row;
+  background: #fff;
+  .meal-img-container {
+    width: 150px;
+    text-align: center;
+    padding-top: 40px;
+    .avatar {
+      width: 80px;
+      height: 80px;
+    }
+  }
+  .meal-description {
+    flex-grow: 1;
+    text-align: center;
+  }
+  .price-chooser-wrapper {
+    padding-top: 20px;
+    width: 150px;
+    text-align: center;
+  }
+}
+
+.btn-show {
+  padding-top: 20px;
+}
+.card-truck {
+  display: flex;
+  flex-direction: column;
+
+  .truck-name {
+    font-size: 20px;
+  }
+}

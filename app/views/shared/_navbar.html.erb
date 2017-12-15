@@ -3,9 +3,8 @@
   <%= link_to root_path, class: "navbar-wagon-brand" do %>
   <%= image_tag "ftt.png", height: 50 %>
   <% end %>
-  <div class="navbar-wagon-right hidden-xs hidden-sm">
 
-  <div class="search-form-wrapper">
+  <div class="search-form-wrapper hidden-xs">
     <form action="<%= trucks_path %>" method="get" class="form-inline" for="flat_address">
       <%= text_field_tag :city_user, params[:city_user], id:"flat_address", :autofocus => true, required: false, class:"text-left search-navbar" %>
       <%= submit_tag "Search", :name => nil, class: "btn ftft-btn btn-primary", style:"margin-bottom : 5px;" %>
@@ -14,6 +13,7 @@
 
   <!-- Right Navigation -->
 
+  <div class="navbar-wagon-right hidden-xs hidden-sm">
     <% if user_signed_in? %>
 
     <!-- Links when logged in -->

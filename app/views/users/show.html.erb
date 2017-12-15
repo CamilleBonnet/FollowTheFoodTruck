@@ -1,38 +1,46 @@
-<div class="container ">
+<div class="container">
   <div class="col-xs-12 col-md-6 col-md-offset-3">
     <div class="row">
-          <h2>Hey, I'm <%= @user.first_name %> <%= @user.last_name %></h2>
-          <% if @user.photo? %>
-          <%= cl_image_tag @user.photo.path, class: "avatar dropdown-toggle", class: "avatar dropdown-toggle" , id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
-          <% else %>
-          <%# image_tag @user.facebook_picture_url || "http://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", class: "avatar dropdown-toggle" , id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
-          <%= image_tag "http://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", class: "avatar dropdown-toggle" , id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
-          <% end %>
-    </div>
-    <div class="row">
-      <% if current_user == @user %>
-        <div>
-          login email: <%= Registration.find(current_user.registration_id).email %>
+      <div class="profile-card">
+        <div class="content">
+          <div class="user">
+            <% if @user.photo? %>
+            <%= cl_image_tag @user.photo.path, class: "avatar dropdown-toggle", class: "avatar dropdown-toggle" , id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+            <% else %>
+            <%# image_tag @user.facebook_picture_url || "http://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", class: "avatar dropdown-toggle" , id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+            <%= image_tag "http://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", class: "avatar dropdown-toggle" , id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+            <% end %>
+            <h4 class="title">Hey, I'm <%= @user.first_name %> <%= @user.last_name %></h4>
+            <% if current_user == @user %>
+              <p class="description text-center">
+                <i class="fa fa-envelope-o text-muted"></i> <%= Registration.find(current_user.registration_id).email %>
+              </p>
+              <div class="edit_profile_container">
+                <%= link_to 'Edit my profile', edit_user_profile_path(@user), {class: "btn btn-warning btn-xs"}%>
+              </div>
+              <% unless @user_truck.empty? %>
+              <hr/>
+              <h4 class="title">My trucks:</h4>
+              <div class="table-responsive">
+                <table class="table">
+                  <tbody>
+                    <% @user_truck.each do |truck| %>
+                    <tr>
+                      <td class="text-center"><%= truck.name %></td>
+                      <td class="td-actions text-right">
+                        <%= link_to "Edit", owner_truck_path, class: "btn btn-warning btn-xs" %>
+                      </td>
+                    </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+              <% else %>
+              <%= link_to 'Add a new truck', new_truck_path, class: "btn btn-warning btn-xs" %>
+              <% end %>
+            <% end %>
+          </div>
         </div>
-        <div class="edit_profile_container">
-          <%= link_to 'Edit my profile', edit_user_profile_path(@user), {class: "btn btn-warning"}%>
-        </div>
-      <% end %>
+      </div>
     </div>
   </div>
-
-  <div class="col-xs-12 col-md-12 col-md-offset-3">
-    <div class="row">
-      <% if current_user == @user %>
-        <% unless @user_truck.empty? %>
-        My truck:
-          <% @user_truck.each do |truck| %>
-            <%= link_to truck.name + " (edit)", owner_truck_path %>
-          <% end %>
-        <% else %>
-          <%= link_to 'Add a new truck', new_truck_path, class: "btn btn-warning" %>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
-</div>

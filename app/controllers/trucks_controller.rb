@@ -57,9 +57,12 @@ class TrucksController < ApplicationController
     @calendar = Calendar.new
 
     # to display all the object already existing
-    @meals = Meal.all
-    @addresses = Address.all
-    @calendars = Calendar.all
+    @calendars = []
+    @truck.addresses.each do |address|
+      address.calendars.each do |calendar|
+        @calendars << calendar
+      end
+    end
   end
 
   def truck_order

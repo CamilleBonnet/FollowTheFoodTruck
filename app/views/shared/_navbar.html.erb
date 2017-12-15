@@ -4,16 +4,16 @@
   <%= image_tag "ftt.png", height: 50 %>
   <% end %>
 
-  <div class="search-form-wrapper">
+  <div class="search-form-wrapper hidden-xs">
     <form action="<%= trucks_path %>" method="get" class="form-inline" for="flat_address">
       <%= text_field_tag :city_user, params[:city_user], id:"flat_address", :autofocus => true, required: false, class:"text-left search-navbar" %>
-      <%= submit_tag "Search", :name => nil, class: "btn ftft-btn btn-primary" %>
+      <%= submit_tag "Search", :name => nil, class: "btn ftft-btn btn-primary", style:"margin-bottom : 5px;" %>
     </form>
   </div>
 
   <!-- Right Navigation -->
-  <div class="navbar-wagon-right hidden-xs hidden-sm">
 
+  <div class="navbar-wagon-right hidden-xs hidden-sm">
     <% if user_signed_in? %>
 
     <!-- Links when logged in -->
@@ -21,8 +21,10 @@
     <% if Truck.find_by(user: current_user) %>
       <%= link_to "My truck", owner_truck_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to "Meal to prepare", order_owner_truck_path, class: "navbar-wagon-item navbar-wagon-link" %>
+    <% else %>
+      <%= link_to "Become a Truck Owner", new_truck_path, class: "navbar-wagon-item navbar-wagon-link" %>
     <% end %>
-      <%= link_to "My orders", myorders_path, class: "navbar-wagon-item navbar-wagon-link" %>
+    <%= link_to "My orders", myorders_path, class: "navbar-wagon-item navbar-wagon-link" %>
 
     <!-- Avatar with dropdown menu -->
     <div class="navbar-wagon-item">
@@ -59,18 +61,26 @@
   </div>
 
   <!-- Dropdown list appearing on mobile only -->
+
+
   <div class="navbar-wagon-item hidden-md hidden-lg">
     <div class="dropdown">
       <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
       <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-        <li><%= link_to "All the trucks", trucks_path, class: "navbar-wagon-item navbar-wagon-link" %></li>
-        <li><%= link_to "My truck", owner_truck_path, class: "navbar-wagon-item navbar-wagon-link" if Truck.find_by(user: current_user) %></li>
+        <li>
+          <%= link_to "All the trucks", trucks_path, class: "navbar-wagon-item navbar-wagon-link" %>
+        </li>
+        <% if user_signed_in? %>
         <li><% if Truck.find_by(user: current_user) %>
-          <%= link_to "Customer orders", "#", class: "navbar-wagon-item navbar-wagon-link" %>
+          <%= link_to "My truck", owner_truck_path, class: "navbar-wagon-item navbar-wagon-link" %>
+          <%= link_to "Meal to prepare", order_owner_truck_path, class: "navbar-wagon-item navbar-wagon-link" %>
           <% else %>
-          <%= link_to "My orders", "#", class: "navbar-wagon-item navbar-wagon-link" %>
+          <%= link_to "Become a Truck Owner", new_truck_path, class: "navbar-wagon-item navbar-wagon-link" %>
         </li>
         <% end %>
+        <li>
+          <%= link_to "My orders", myorders_path, class: "navbar-wagon-item navbar-wagon-link" %>
+        </li>
         <li>
           <%= link_to myprofile_path do %>
           <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
@@ -85,6 +95,7 @@
           <%= link_to destroy_registration_session_path, method: :delete do %>
           <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
           <% end %>
+        <% end %>
         </ul>
       </div>
     </div>

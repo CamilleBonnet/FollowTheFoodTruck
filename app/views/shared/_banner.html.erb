@@ -5,6 +5,14 @@
   <div class="banner-content">
     <h1>Follow the food truck</h1>
     <p>Eat outside</p>
-     <%= link_to "Start now", trucks_path, class:"btn btn-primary btn-lg" %>
+    <%= link_to "Start now", trucks_path, class:"btn btn-primary btn-lg hidden-xs" %>
+    <div class="search-form-wrapper hidden-sm hidden-md hidden-lg">
+      <form action="<%= trucks_path %>" method="get" class="form-inline" for="flat_address">
+        <%= text_field_tag :city_user, params[:city_user], id:"flat_address", :autofocus => true, required: false, class:"text-left search-navbar" %>
+        <br>
+        <br>
+        <%= submit_tag "Search", :name => nil, class: "btn ftft-btn btn-primary", style:"margin-bottom : 5px;" %>
+      </form>
+    </div>
   </div>
 </div>

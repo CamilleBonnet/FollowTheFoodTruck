@@ -17,6 +17,7 @@
               </p>
               <div class="edit_profile_container">
                 <%= link_to 'Edit my profile', edit_user_profile_path(@user), {class: "btn btn-warning btn-xs"}%>
+                <%= link_to 'Edit my login / password', edit_registration_registration_path, {class: "btn btn-warning btn-xs"}%>
               </div>
               <% unless @user_truck.empty? %>
               <hr/>

@@ -7,7 +7,7 @@
   <div class="search-form-wrapper">
     <form action="<%= trucks_path %>" method="get" class="form-inline" for="flat_address">
       <%= text_field_tag :city_user, params[:city_user], id:"flat_address", :autofocus => true, required: false, class:"text-left search-navbar" %>
-      <%= submit_tag "Search", :name => nil, class: "btn ftft-btn btn-primary" %>
+      <%= submit_tag "Search", :name => nil, class: "btn ftft-btn btn-primary", style:"margin-bottom : 5px;" %>
     </form>
   </div>
 
@@ -64,6 +64,7 @@
       <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
       <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
         <li><%= link_to "All the trucks", trucks_path, class: "navbar-wagon-item navbar-wagon-link" %></li>
+        <% if user_signed_in? %>
         <li><%= link_to "My truck", owner_truck_path, class: "navbar-wagon-item navbar-wagon-link" if Truck.find_by(user: current_user) %></li>
         <li><% if Truck.find_by(user: current_user) %>
           <%= link_to "Customer orders", "#", class: "navbar-wagon-item navbar-wagon-link" %>
@@ -85,6 +86,7 @@
           <%= link_to destroy_registration_session_path, method: :delete do %>
           <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
           <% end %>
+        <% end %>
         </ul>
       </div>
     </div>

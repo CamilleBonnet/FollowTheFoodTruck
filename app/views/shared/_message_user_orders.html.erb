@@ -1,16 +1,28 @@
-<p>ID of the command: <%= basket.id %></p>
-<p> Command to <%= basket.truck.name %></p>
-<p>Status of the command: <%= basket.status %></p>
-<p>Total of the command: <%= basket.choices.sum(&:price) %>€</p>
+<div class="message">
+  <div class="img-name">
+    <% if basket.truck.photos.first %>
+    <%= cl_image_tag  basket.truck.photos.first.path, class: "avatar" %>
+    <% else %><%= image_tag "streetsurfer-foodtruck.jpg", class: "avatar " %>
+    <% end %>
+    <div class="message-name">
+      <h3><%= basket.truck.name %></h3>
+    </div>
+  </div>
+  <div class="message-body">
+    <p><strong>Your orders:</strong></p>
+    <% basket.choices.each do |choice| %>
+    <div><%= choice.quantity.to_s+": "+choice.meal.description %></div>
+    <% end %>
+    <p>
 
-<ul>
-  <% basket.choices.each do |choice| %>
-  <%# raise %>
-  <li>
-    <p><%= choice.meal.description %></p>
-    <p><%= choice.meal.price %>€ each</p>
-    <p>=> <%= choice.quantity %> meals</p>
-    <p>==> <%= choice.price %>€</p>
-  </li>
-  <% end %>
-</ul>
+    </p>
+  </div>
+  <div class="message-status">
+    <% if basket.status == "pending" %>
+    <p class="status pending"><%= basket.status.capitalize %></p>
+    <% elsif basket.status == "confirmed" %>
+    <p class="status accepted"><%= basket.status.capitalize %></p>
+    <% end %>
+    <p class="price"><%= basket.total_price %>€</p>
+  </div>
+</div>

@@ -1,5 +1,6 @@
   <div class="truck-card">
     <div class="image" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%=cl_image_path truck.photos.first.path, height: 300, width: 400, crop: :fill unless truck.photos.first.nil? %>')">
+      <%= link_to "", truck_path(truck), class: "card-link" %>
     </div>
     <div class="content">
       <%= link_to truck.name, truck_path(truck), class: "title" %>
@@ -18,6 +19,5 @@
           </a>
         </div>
       </div>
-      <%= link_to "", truck_path(truck), class: "card-link" %>
     </div>
   </div>

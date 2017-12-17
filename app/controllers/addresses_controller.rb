@@ -1,6 +1,6 @@
 class AddressesController < ApplicationController
-  before_action :set_address, only: [:edit, :update, :destroy]
-  before_action :set_truck, only: [:create, :edit, :update]
+  before_action :set_address, only: [:edit, :update, :destroy, :set_active_address]
+  before_action :set_truck, only: [:create, :edit, :update, :set_active_address]
 
   def create
     @address = Address.new(address_params)
@@ -38,8 +38,14 @@ class AddressesController < ApplicationController
   end
 
   def set_active_address
-    flash[:notice] = "Address has been set as active"
-    redirect_to owner_truck_path
+    @truck.address = @address
+    if @truck.save
+      flash[:notice] = "Address has been set as active for your truck"
+      redirect_to owner_truck_path
+    else
+      flash[:alert] = "Address could not be set as active for your truck"
+      redirect_to owner_truck_path
+    end
   end
 
   private

@@ -1,5 +1,7 @@
 class Truck < ApplicationRecord
   belongs_to :user
+  belongs_to :address
+
   has_many :meals, dependent: :destroy
   has_many :addresses, dependent: :destroy
   has_many :truck_order_lists, dependent: :destroy

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171217162127) do
+ActiveRecord::Schema.define(version: 20171217162826) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -136,6 +136,8 @@ ActiveRecord::Schema.define(version: 20171217162127) do
     t.string   "payment_info"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.integer  "address_id"
+    t.index ["address_id"], name: "index_trucks_on_address_id", using: :btree
     t.index ["user_id"], name: "index_trucks_on_user_id", using: :btree
   end
 
@@ -166,6 +168,7 @@ ActiveRecord::Schema.define(version: 20171217162127) do
   add_foreign_key "choices", "users"
   add_foreign_key "meals", "trucks"
   add_foreign_key "truck_order_lists", "trucks"
+  add_foreign_key "trucks", "addresses"
   add_foreign_key "trucks", "users"
   add_foreign_key "users", "registrations"
 end

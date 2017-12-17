@@ -1,6 +1,11 @@
 <h3 class="text-center"><%= @truck.name %></h3>
 <h4 class="text-center"><%= @truck.type_of_food %></h4>
-<h4 class="text-center">TEST<%# @truck.active_address %></h4>
+<h4 class="text-center">You are here at the moment :
+            <p><%= @truck.address.street_address %></p>
+            <p><%= @truck.address.street_address_2 %></p>
+            <p><%= @truck.address.city %></p>
+            <p><%= @truck.address.zipcode %></p>
+            <p><%= @truck.address.more_info %></p></h4>
 
 <div class="container">
   <div class="row">

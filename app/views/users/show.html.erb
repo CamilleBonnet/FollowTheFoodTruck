@@ -17,11 +17,11 @@
               <div class="edit_profile_container">
                 <%= link_to 'Edit my profile', edit_user_profile_path(@user), {class: "btn ftft-color ftft-btn"}%>
                 <br>
-                <%= link_to 'Edit my login / password', edit_registration_registration_path, {class: "btn btn-warning ftft-btn"}%>
+                <%= link_to 'Edit my login / password', edit_registration_registration_path, {class: "btn ftft-color ftft-btn"}%>
               </div>
               <% unless @user_truck.empty? %>
               <hr/>
-              <h4 class="title">My trucks:</h4>
+              <h4 class="title">My truck:</h4>
               <div class="table-responsive">
                 <table class="table">
                   <tbody>
@@ -29,7 +29,7 @@
                     <tr>
                       <td class="text-center"><%= truck.name %></td>
                       <td class="td-actions text-right">
-                        <%= link_to "Edit", owner_truck_path, class: "btn btn-warning ftft-btn btn-xs" %>
+                        <%= link_to "Edit", owner_truck_path, class: "btn ftft-color ftft-btn btn-xs" %>
                       </td>
                     </tr>
                     <% end %>

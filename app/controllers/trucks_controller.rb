@@ -54,15 +54,15 @@ class TrucksController < ApplicationController
     @truck = Truck.find_by(user: current_user)
     @meal = Meal.new
     @address = Address.new
-    @calendar = Calendar.new
+    @calendar = Calendar.new(truck: @truck)
 
-    # to display all the object already existing
-    @calendars = []
-    @truck.addresses.each do |address|
-      address.calendars.each do |calendar|
-        @calendars << calendar
-      end
-    end
+    @calendars = @truck.calendars
+    # @calendars = []
+    # @truck.addresses.each do |address|
+      # address.calendars.each do |calendar|
+        # @calendars << calendar
+      # end
+    # end
   end
 
   def truck_order

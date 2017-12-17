@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171214163110) do
+ActiveRecord::Schema.define(version: 20171217162127) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20171214163110) do
     t.decimal  "longitude"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
+    t.boolean  "active_address"
     t.index ["truck_id"], name: "index_addresses_on_truck_id", using: :btree
   end
 
@@ -66,7 +67,9 @@ ActiveRecord::Schema.define(version: 20171214163110) do
     t.date     "ending_date"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.integer  "truck_id"
     t.index ["address_id"], name: "index_calendars_on_address_id", using: :btree
+    t.index ["truck_id"], name: "index_calendars_on_truck_id", using: :btree
   end
 
   create_table "choices", force: :cascade do |t|
@@ -157,6 +160,7 @@ ActiveRecord::Schema.define(version: 20171214163110) do
   add_foreign_key "baskets", "trucks"
   add_foreign_key "baskets", "users"
   add_foreign_key "calendars", "addresses"
+  add_foreign_key "calendars", "trucks"
   add_foreign_key "choices", "baskets"
   add_foreign_key "choices", "meals"
   add_foreign_key "choices", "users"

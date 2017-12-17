@@ -37,6 +37,11 @@ class AddressesController < ApplicationController
     end
   end
 
+  def set_active_address
+    flash[:notice] = "Address has been set as active"
+    redirect_to owner_truck_path
+  end
+
   private
 
   def set_address

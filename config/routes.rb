@@ -11,7 +11,11 @@ Rails.application.routes.draw do
 
   resources :trucks, except: [:edit] do
     resources :meals, only: [:create, :edit, :update]
-    resources :addresses, only: [:create, :edit, :update]
+    resources :addresses, only: [:create, :edit, :update] do
+      member do
+        get '/SetAddressActive', to: "addresses#set_active_address", as: "set_active_address"
+      end
+    end
     resources :calendars, only: [:create, :edit]
     # resources :truck_order_lists, only: [:create, :update]
     resources :choices, only: [:create, :update]

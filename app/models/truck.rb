@@ -4,6 +4,7 @@ class Truck < ApplicationRecord
   has_many :addresses, dependent: :destroy
   has_many :truck_order_lists, dependent: :destroy
   has_many :baskets, dependent: :destroy
+  has_many :calendars, dependent: :destroy
 
   validates :user_id, presence: true, uniqueness: true
 

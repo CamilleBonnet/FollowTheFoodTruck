@@ -38,8 +38,10 @@ class AddressesController < ApplicationController
   end
 
   def set_active_address
+    @truck.addresses.update(active_address: false)
+    @address.active_address = true
     @truck.address = @address
-    if @truck.save
+    if @truck.save && @address.save
       flash[:notice] = "Address has been set as active for your truck"
       redirect_to owner_truck_path
     else

@@ -12,7 +12,7 @@
           <%= link_to "Truck's Orders", order_owner_truck_path, class: "btn ftft-btn btn-success" %>
           <%= link_to 'Edit', edit_truck_path(@truck), class: "btn ftft-btn btn-warning" %>
           <%= link_to "Delete", truck_path(@truck),
-          method: :delete, class: "btn ftft-btn btn-danger" %>
+          method: :delete, data: { confirm: "Are you sure?" },class: "btn ftft-btn btn-danger" %>
         </div>
       </div>
     </div>
@@ -39,7 +39,7 @@
         <div class="footer">
         <br>
           <%= link_to "Edit", edit_truck_meal_path(@truck, meal), class: "btn ftft-btn btn-primary" %>
-          <%= link_to "Delete", meal_path(meal), method: :delete, class: "btn ftft-btn btn-danger" %>
+          <%= link_to "Delete", meal_path(meal), method: :delete,data: { confirm: "Are you sure?" }, class: "btn ftft-btn btn-danger" %>
         </div>
       </li>
       <% end %>
@@ -71,7 +71,7 @@
         </div>
         <div class="footer">
           <%= link_to "Edit", edit_truck_address_path(@truck, address), class: "btn ftft-btn btn-primary" %>
-          <%= link_to "Delete", address_path(address), method: :delete, class: "btn ftft-btn btn-danger" %>
+          <%= link_to "Delete", address_path(address), method: :delete,data: { confirm: "Are you sure?" }, class: "btn ftft-btn btn-danger" %>
         </div>
         <% end %>
       </div>
@@ -97,7 +97,7 @@
            <h4> <%= calendar.address.street_address unless calendar.address.nil? %></h4>
           <div class="footer">
             <%= link_to "Edit", edit_truck_calendar_path(@truck, calendar), class: "btn ftft-btn btn-primary" %>
-            <%= link_to "Delete", calendar_path(calendar), method: :delete, class: "btn ftft-btn btn-danger" %>
+            <%= link_to "Delete", calendar_path(calendar), method: :delete,data: { confirm: "Are you sure?" }, class: "btn ftft-btn btn-danger" %>
           </div>
         </div>
       </div>

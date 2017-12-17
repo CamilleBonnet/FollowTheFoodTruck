@@ -5,19 +5,19 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
-      <div class="card-truck">
-        <div class="truck-name"></div>
-          <h2><%= @truck.name %></h2>
-        </div>
-        <div class="food-type">
-          <%= @truck.type_of_food %>
-        </div>
+      <!-- add this inside the banner -->
+      <div class="text-center">
+        <h2><%= @truck.name %></h2>
+        <p><%= @truck.type_of_food %></p>
+        <p>We specialise in authentic american burgers cooked and served from a Classic VW Kombi!</p>
       </div>
-      <h3 class="text-center">Meals list</h3>
       <div class="col-xs-12 col-md-8 col-md-offset-2">
-        <% @tables.each do |table| %>
-          <%= render 'shared/show_page_table', meal: table[:meal], choice: table[:choice] %>
-        <% end %>
+        <h2 class="section-title">Select your meals</h2>
+        <div class="meal-list">
+          <% @tables.each do |table| %>
+            <%= render 'shared/show_page_table', meal: table[:meal], choice: table[:choice] %>
+          <% end %>
+        </div>
       </div>
     </div>
 

@@ -9,6 +9,13 @@ Rails.application.routes.draw do
 
   root to: 'trucks#home'
 
+  # routes for API
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+        post  '/update_choice', to: "choices#update", as: "update_choice"
+    end
+  end
+
   resources :trucks, except: [:edit] do
     resources :meals, only: [:create, :edit, :update]
     resources :addresses, only: [:create, :edit, :update] do
@@ -56,14 +63,4 @@ Rails.application.routes.draw do
   get 'users/profile/edit', to: "users#edit", as: "edit_user_profile"
   patch 'users/:id', to: "users#update", as: "user_profile"
   delete 'users', to: "users#destroy"
-
-  # routes for API
-  namespace :api, defaults: { format: :json } do
-    namespace :v1 do
-      resources :choices, only: [ :update ]
-    end
-  end
-
-
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

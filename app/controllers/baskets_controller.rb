@@ -39,6 +39,10 @@ class BasketsController < ApplicationController
     redirect_to myorders_path
   end
 
+
+
+
+
   private
 
   def set_basket

@@ -4,6 +4,7 @@
   margin-top: 50px;
   border-radius: 3px;
   box-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  border: medium solid lightgray;
 
   h2 {
     font-size: 24px;
@@ -21,12 +22,7 @@
   .btn-danger {
     background: $btn-color-main;
   }
-  .email {
-    border-radius: 20px;
-  }
-  .password {
-    border-radius: 20px;
-  }
+
   .footer {
     text-align: center;
     margin-top: 20px;

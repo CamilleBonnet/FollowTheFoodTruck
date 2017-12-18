@@ -2,7 +2,7 @@
 <h4 class="text-center"><%= @truck.type_of_food %></h4>
 <% unless @truck.address.nil? %>
 <h4 class="text-center">You are here at the moment :
-            <%= render 'shared/description_address', address: @truck.address %>
+    <%= render 'shared/description_address', address: @truck.address %>
 </h4>
 <% end %>
 <div class="container">
@@ -100,3 +100,6 @@
     </div>
   </div>
 </div>
+
+
+

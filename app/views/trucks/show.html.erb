@@ -2,6 +2,8 @@
   <%= render 'shared/banner_truck', truck: @truck %>
 </div>
 
+
+<div id="map-show" style="width: 100vw; height: 50vh;"></div>
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
@@ -29,7 +31,22 @@
         </div>
       </div>
     </div>
-
   </div>
 </div>
 
+
+<% content_for(:after_js) do %>
+<script>
+  var handler = Gmaps.build('Google');
+  handler.buildMap({ internal: { id: 'map-show' } }, function() {
+    markers = handler.addMarkers(<%= raw @marker.to_json %>);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+    if (markers.length == 0) {
+      handler.getMap().setZoom(2);
+    } else if (markers.length == 1) {
+      handler.getMap().setZoom(14);
+    }
+  });
+</script>
+<% end %>

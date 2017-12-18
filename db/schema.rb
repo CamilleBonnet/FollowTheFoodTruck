@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171217162826) do
+ActiveRecord::Schema.define(version: 20171218113425) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,8 +23,8 @@ ActiveRecord::Schema.define(version: 20171217162826) do
     t.integer  "zipcode"
     t.string   "country"
     t.text     "more_info"
-    t.decimal  "latitude"
-    t.decimal  "longitude"
+    t.float    "latitude"
+    t.float    "longitude"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.boolean  "active_address"
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20171217162826) do
   create_table "baskets", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "truck_order_list_id"
-    t.float    "total_price"
+    t.integer  "total_price"
     t.date     "date"
     t.datetime "time"
     t.string   "status"

@@ -1,7 +1,7 @@
-  .ftft-btn {
-    margin-bottom: 15px;
-    border-radius: 20px;
-  }
+.ftft-btn {
+  margin-bottom: 15px;
+  border-radius: 20px;
+}
 
 .ftft-color{
   background-color: $btn-color-main;
@@ -13,4 +13,29 @@
   background-color: $btn-color-main-darker;
   text-decoration: none;
   color: white;
+}
+
+.ftft-plus{
+  color: $green;
+}
+
+.ftft-plus:hover{
+  color: $green-darker;
+}
+
+.ftft-minus{
+  color: $btn-color-main;
+}
+
+.ftft-minus:hover{
+  color: $btn-color-main-darker;
+}
+
+.ftft-choice{
+
+}
+
+.ftft-choice:hover{
+  text-decoration: none;
+  opacity: 0.7;
 }

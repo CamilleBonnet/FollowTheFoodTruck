@@ -1,5 +1,5 @@
 <div class="map_box">
-  <h3><%= truck.name %></h3>
-  <p><%= truck.address %></p>
-  <%= link_to "Details", truck_path(truck), target: :blank, class: "btn btn-warning" %>
+  <h3><%= address.truck.name %></h3>
+  <p><%= address.street_address %></p>
+  <%= link_to "Details", truck_path(address.truck), target: :blank, class: "btn btn-warning" %>
 </div>

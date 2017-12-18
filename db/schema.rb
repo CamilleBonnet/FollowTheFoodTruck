@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171218113425) do
+ActiveRecord::Schema.define(version: 20171218173240) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,13 +49,13 @@ ActiveRecord::Schema.define(version: 20171218113425) do
   create_table "baskets", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "truck_order_list_id"
-    t.float    "total_price"
     t.date     "date"
     t.datetime "time"
     t.string   "status"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.integer  "truck_id"
+    t.integer  "total_price_cents",   default: 0, null: false
     t.index ["truck_id"], name: "index_baskets_on_truck_id", using: :btree
     t.index ["truck_order_list_id"], name: "index_baskets_on_truck_order_list_id", using: :btree
     t.index ["user_id"], name: "index_baskets_on_user_id", using: :btree
@@ -77,11 +77,11 @@ ActiveRecord::Schema.define(version: 20171218113425) do
     t.integer  "meal_id"
     t.integer  "user_id"
     t.integer  "quantity"
-    t.float    "price"
     t.date     "date"
     t.datetime "time"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "price_cents", default: 0, null: false
     t.index ["basket_id"], name: "index_choices_on_basket_id", using: :btree
     t.index ["meal_id"], name: "index_choices_on_meal_id", using: :btree
     t.index ["user_id"], name: "index_choices_on_user_id", using: :btree
@@ -95,9 +95,9 @@ ActiveRecord::Schema.define(version: 20171218113425) do
     t.boolean  "is_alergen"
     t.boolean  "is_gluten_free"
     t.integer  "spicy_scale"
-    t.float    "price"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "price_cents",    default: 0, null: false
     t.index ["truck_id"], name: "index_meals_on_truck_id", using: :btree
   end
 
@@ -136,8 +136,6 @@ ActiveRecord::Schema.define(version: 20171218113425) do
     t.string   "payment_info"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.integer  "address_id"
-    t.index ["address_id"], name: "index_trucks_on_address_id", using: :btree
     t.index ["user_id"], name: "index_trucks_on_user_id", using: :btree
   end
 
@@ -168,7 +166,6 @@ ActiveRecord::Schema.define(version: 20171218113425) do
   add_foreign_key "choices", "users"
   add_foreign_key "meals", "trucks"
   add_foreign_key "truck_order_lists", "trucks"
-  add_foreign_key "trucks", "addresses"
   add_foreign_key "trucks", "users"
   add_foreign_key "users", "registrations"
 end

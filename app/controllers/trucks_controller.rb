@@ -1,5 +1,5 @@
 class TrucksController < ApplicationController
-  before_action :set_truck, only: [:show, :edit, :update, :destroy]
+  before_action :set_truck, only: [:show, :edit, :update, :destroy, :address]
   before_action :set_all_trucks, only: [:home, :index]
 
 

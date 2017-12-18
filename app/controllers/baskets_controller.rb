@@ -29,6 +29,7 @@ class BasketsController < ApplicationController
   def payment_status
     # here sripe
     @basket.update(status: "Payed by Customer")
+
   end
 
   def destroy

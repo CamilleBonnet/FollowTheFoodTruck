@@ -7,4 +7,6 @@ class Basket < ApplicationRecord
   validates :user_id, presence: true
   validates :status, presence: true
   # validates :truck_order_list_id, presence: true
+
+  monetize :total_price_cents
 end

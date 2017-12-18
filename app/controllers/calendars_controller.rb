@@ -48,7 +48,7 @@ class CalendarsController < ApplicationController
   end
 
   def calendar_params
-    params.require(:calendar).permit(:starting_date, :ending_date, :address_id)
+    params.require(:calendar).permit(:starting_date, :ending_date, :address_id, :truck_id)
   end
 
 end

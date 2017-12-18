@@ -1,5 +1,12 @@
 <h3 class="text-center"><%= @truck.name %></h3>
 <h4 class="text-center"><%= @truck.type_of_food %></h4>
+<h4 class="text-center">You are here at the moment :
+            <p><%= @truck.address.street_address %></p>
+            <p><%= @truck.address.street_address_2 %></p>
+            <p><%= @truck.address.city %></p>
+            <p><%= @truck.address.zipcode %></p>
+            <p><%= @truck.address.more_info %></p></h4>
+
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
@@ -62,16 +69,19 @@
       <div class="content">
         <div class="title">
           <br> <h4>
-            <%= address.street_address %>
-            <%= address.street_address_2 %>
-            <%= address.city %>
-            <%= address.zipcode %>
-            <%= address.more_info %>
+            <p><%= address.street_address %></p>
+            <p><%= address.street_address_2 %></p>
+            <p><%= address.city %></p>
+            <p><%= address.zipcode %></p>
+            <p><%= address.more_info %></p>
             </h4>
         </div>
         <div class="footer">
           <%= link_to "Edit", edit_truck_address_path(@truck, address), class: "btn ftft-btn btn-primary" %>
+
           <%= link_to "Delete", address_path(address), method: :delete,data: { confirm: "Are you sure?" }, class: "btn ftft-btn btn-danger" %>
+          <%= link_to "Set to Active", set_active_address_truck_address_path(@truck, address),class: "btn ftft-btn btn-warning" %>
+         
         </div>
         <% end %>
       </div>

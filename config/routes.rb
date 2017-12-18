@@ -22,6 +22,8 @@ Rails.application.routes.draw do
     resources :baskets, only: [:show, :update] do
       member do
           get '/PaymentStatus', to: "baskets#payment_status", as: "payment_status"
+          get '/AcceptedByFoodTruck', to: "baskets#accepted_by_food_truck", as: "accepted_by_food_truck"
+          get '/DeclinedByFoodTruck', to: "baskets#declined_by_food_truck", as: "declined_by_food_truck"
         end
       end
 
@@ -35,7 +37,7 @@ Rails.application.routes.draw do
 
   # routes needed for customer
   resources :choices, only: [:destroy]
-  # resources :baskets, only: [:destroy]
+  resources :baskets, only: [:destroy]
   # resources :truck_order_lists, only: [:destroy]
 
 

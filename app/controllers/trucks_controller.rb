@@ -84,7 +84,7 @@ class TrucksController < ApplicationController
 
   def truck_order
     @truck = Truck.find_by(user: current_user)
-    @baskets = Basket.where(status: ["pending", "confirmed"], truck: @truck)
+    @baskets = Basket.where(status: ["pending", "confirmed", "Payed by Customer", "Accepted by FoodTruck", "Declined by FoodTruck"], truck: @truck).order(:status)
   end
 
   private

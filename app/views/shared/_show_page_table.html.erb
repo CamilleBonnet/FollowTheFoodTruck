@@ -1,21 +1,25 @@
-<div class="meal-card-wrapper">
-
-  <div class="meal-img-container">
+<div class="media media-meal">
+  <div class="media-left">
     <% if meal.photo? %>
-      <%= cl_image_tag meal.photo.path, class:"avatar" %>
+      <%= cl_image_tag meal.photo.path, class:"avatar-square" %>
     <% else %>
-      <%= image_tag 'streetsurfer-foodtruck.jpg', class:"avatar" %>
+      <%= image_tag 'streetsurfer-foodtruck.jpg', class:"avatar-square" %>
     <% end %>
   </div>
-
-  <div class="meal-description">
-   <h4><%= meal.description %></h4>
+  <div class="media-body">
+    <h4 class="media-heading"><%= meal.description %></h4>
+    <h6 class=" price pull-right">€<%= meal.price %></h6>
+    <p><small>spicy</small></p>
   </div>
+  <div class="media-footer">
+    <a href="#" class="btn btn-round btn-primary">
+      <i class="fa fa-plus"></i> add to cart
+    </a>
+  </div>
+</div>
+<div>
 
   <div class="price-chooser-wrapper">
-    <div class="meal-price">
-      <small><%= meal.price %></small>€
-    </div>
     <div class="meals-form-wrapper">
       <%= render 'meals/form', truck: @truck, choice: choice %>
       <%= link_to "#", class:"ftft-plus ftft-choice" do %>

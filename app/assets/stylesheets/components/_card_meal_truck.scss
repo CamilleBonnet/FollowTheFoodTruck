@@ -1,7 +1,63 @@
-.meal-card-wrapper {
+.avatar-square {
+  width: 85px;
+  height: 85px;
+}
+
+.btn-round {
+  border-width: 1px;
+  border-radius: 30px !important;
+}
+.btn-fill {
+  color: #FFFFFF;
+  background-color: #2CA8FF;
+  opacity: 1;
+}
+
+.section-title {
+  font-size: 30px;
+  font-weight: 300;
+  display: inline-block;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #CCCCCC;
+  color: #999;
+}
+.meal-list {
+  background-color: #fff;
+  border-radius: 6px;
+  margin: 20px 0px 5px 0px;
+}
+.media-meal {
+  padding: 10px 5px;
+  border-bottom: 1px solid #DDDDDD;
+  .price {
+    font-size: 18px;
+    font-weight: 300;
+    margin-right: 5px;
+  }
+  .btn {
+    font-weight: 400;
+    color: #fff;
+    font-size: 10px;
+  }
+  .media-heading {
+    margin-bottom: 10px;
+    margin-top: 5px;
+    display: inline-block;
+  }
+  .media-footer {
+    margin-top: 6px;
+    margin-bottom: 20px;
+  }
+}
+
+.meal-card {
   display: flex;
   flex-direction: row;
-  background: #fff;
+  background-color: #fff;
+  border-radius: 6px;
+  margin: 20px 0px 5px 0px;
+  border-bottom: 1px solid #DDDDDD;
+  padding-bottom: 30px;
   .meal-img-container {
     width: 150px;
     text-align: center;

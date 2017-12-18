@@ -1,0 +1,19 @@
+<%= cl_image_tag meal.photo.path, width: 250, height: 250, crop: :fill if meal.photo? %>
+<div class="title">
+  <h4><%= meal.description%> </h4>
+  Price => <%= meal.price %> €
+</div>
+<%="Vegan? " + (meal.is_vegan ? 'Yes' : 'No').to_s unless meal.is_vegan == false %>
+<br>
+<%= "Alergen? " + (meal.is_alergen ? 'Yes' : 'No').to_s unless meal.is_alergen == false %>
+<br>
+<%= "Gluten free? " + (meal.is_gluten_free ? 'Yes' : 'No').to_s unless meal.is_gluten_free == false %>
+<br>
+<%= "Fat free? " + (meal.is_fat_free ? 'Yes' : 'No').to_s unless meal.is_fat_free == false %>
+<br>
+<%= "How Spicy => " + (meal.spicy_scale).to_s unless meal.spicy_scale == nil %>
+<div class="footer">
+  <br>
+  <%= link_to "Edit", edit_truck_meal_path(@truck, meal), class: "btn ftft-btn btn-primary" %>
+  <%= link_to "Delete", meal_path(meal), method: :delete,data: { confirm: "Are you sure?" }, class: "btn ftft-btn btn-danger" %>
+</div>

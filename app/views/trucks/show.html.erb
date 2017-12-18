@@ -15,7 +15,7 @@
         <h2 class="section-title">Select your meals</h2>
         <div class="meal-list">
           <% @tables.each do |table| %>
-            <%= render 'shared/show_page_table', meal: table[:meal], choice: table[:choice] %>
+            <%= render 'shared/form_meals_list_with_choice', meal: table[:meal], choice: table[:choice] %>
           <% end %>
         </div>
       </div>

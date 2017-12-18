@@ -23,13 +23,14 @@
 
 .banner-truck {
   color: white;
-  text-align: center;
-  height: 30vh;
-  /* if you have a 70px navbar => height: calc(100vh - 70px); */
-  background-size: cover !important;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    text-align: center;
+    height: 50vw;
+    max-height: 350px;
+    background-position-y: center;
+    background-size: cover !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .banner-truck h1 {

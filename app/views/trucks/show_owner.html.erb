@@ -1,4 +1,115 @@
+
+<div class="truck-dashboard">
+  <div class="calendar-section">
+    <div class="col-xs-12 col-sm-6">
+      <div class="content text-center">
+        <% @truck.photos.each do |photo| %>
+        <%= cl_image_tag photo.path, width: 300, height: 300, crop: :fill if @truck.photos? %>
+        <% end %>
+        <h2><%= link_to @truck.name, truck_path(@truck) %></h2>
+        <div class="footer">
+          <br>
+          <%= link_to "Check orders", order_owner_truck_path, class: "btn ftft-btn btn-success" %>
+          <%= link_to 'Edit', edit_truck_path(@truck), class: "btn ftft-btn btn-warning" %>
+          <%= link_to "Delete", truck_path(@truck),
+          method: :delete, data: { confirm: "Are you sure?" },class: "btn ftft-btn btn-danger" %>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+      <%= render "calendar_display" %>
+    </div>
+  </div>
+
+  <div class="meals-section">
+    <div class="col-md-4 col-sm-6 col-xs-12">
+      <div class="content text-center">
+        <h2> Meals</h2>
+        <% @truck.meals.each do |meal| %>
+          <%= cl_image_tag meal.photo.path, width: 250, height: 250, crop: :fill if meal.photo? %>
+          <div class="title">
+            <h4><%= meal.description%> </h4>
+            Price : <%= meal.price %> €
+          </div>
+          <%="Vegan? " + (meal.is_vegan ? 'Yes' : 'No').to_s unless meal.is_vegan == false %>
+          <br>
+          <%= "Alergen? " + (meal.is_alergen ? 'Yes' : 'No').to_s unless meal.is_alergen == false %>
+          <br>
+          <%= "Gluten free? " + (meal.is_gluten_free ? 'Yes' : 'No').to_s unless meal.is_gluten_free == false %>
+          <br>
+          <%= "Fat free? " + (meal.is_fat_free ? 'Yes' : 'No').to_s unless meal.is_fat_free == false %>
+          <br>
+          <%= "How Spicy => " + (meal.spicy_scale).to_s unless meal.spicy_scale == nil %>
+          <div class="footer">
+            <br>
+              <%= link_to "Edit", edit_truck_meal_path(@truck, meal), class: "btn ftft-btn btn-primary" %>
+              <%= link_to "Delete", meal_path(meal), method: :delete,data: { confirm: "Are you sure?" }, class: "btn ftft-btn btn-danger" %>
+              <%= link_to "Add a meal", edit_truck_meal_path(@truck, meal), class: "btn ftft-btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="locations-section">
+     <h2> Location</h2>
+    <div class="col-xs-12 col-sm-6">
+      <div class="content text-center">
+        <%= link_to "Edit", class: "btn ftft-btn btn-primary" %>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+      <div class="content text-center">
+        <%= link_to "Set to Active", class: "btn ftft-btn btn-warning" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+<h2><%= link_to @truck.name, truck_path(@truck) %></h2>
+
 <h3 class="text-center"><%= @truck.name %></h3>
+
 <h4 class="text-center"><%= @truck.type_of_food %></h4>
 <%# unless @truck.address.nil? %>
 <h4 class="text-center">You are here at the moment :
@@ -39,6 +150,7 @@
       </div>
     </div>
   </div>
+
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
       <h3 class="text-center">Addresses</h3>
@@ -53,6 +165,7 @@
 
           <%= link_to "Delete", address_path(address), method: :delete,data: { confirm: "Are you sure?" }, class: "btn ftft-btn btn-danger" %>
           <%= link_to "Set to Active", set_active_address_truck_address_path(@truck, address),class: "btn ftft-btn btn-warning" %>
+
         </div>
         <% end %>
       </div>
@@ -100,6 +213,3 @@
     </div>
   </div>
 </div>
-
-
-

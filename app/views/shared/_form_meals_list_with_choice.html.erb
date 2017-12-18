@@ -22,7 +22,7 @@
 
   <div class="price-chooser-wrapper">
     <div class="meals-form-wrapper">
-      <%= render 'meals/form', truck: @truck, choice: choice %>
+      <%= render 'shared/form_choice_change_quantity', truck: @truck, choice: choice %>
       <%= link_to "#", class:"ftft-plus ftft-choice" do %>
         <span class="fa-stack">
           <i class="fa fa-square-o fa-stack-2x"></i>

@@ -5,7 +5,7 @@
 
       <div class="message-order">
         <% @user.baskets.each do |basket| %>
-        <%= render 'shared/message_user_orders', basket: basket %>
+        <%= render 'shared/list_user_orders', basket: basket %>
         <% end %>
       </div>
     </div>

@@ -22,6 +22,12 @@ gem 'country_select'
 gem 'uglifier'
 gem 'webpacker'
 gem 'omniauth-facebook'
+gem "geocoder"
+gem "gmaps4rails"
+
+source 'https://rails-assets.org' do
+  gem "rails-assets-underscore"
+end
 
 group :development do
   gem 'web-console', '>= 3.3.0'

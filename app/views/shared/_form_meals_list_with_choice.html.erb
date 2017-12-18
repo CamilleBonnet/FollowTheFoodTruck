@@ -1,3 +1,4 @@
+<!--  -->
 <div class="media media-meal">
   <div class="media-left">
     <% if meal.photo? %>
@@ -8,7 +9,7 @@
   </div>
   <div class="media-body">
     <h4 class="media-heading"><%= meal.description %></h4>
-    <h6 class=" price pull-right">€<%= meal.price %></h6>
+    <h6 class="price pull-right">€<%= meal.price %></h6>
     <p><small>spicy</small></p>
   </div>
   <div class="media-footer">
@@ -21,17 +22,17 @@
 
   <div class="price-chooser-wrapper">
     <div class="meals-form-wrapper">
-      <%= render 'meals/form', truck: @truck, choice: choice %>
+      <%= render 'shared/form_choice_change_quantity', truck: @truck, choice: choice %>
       <%= link_to "#", class:"ftft-plus ftft-choice" do %>
         <span class="fa-stack">
           <i class="fa fa-square-o fa-stack-2x"></i>
-          <i class="fa fa-plus" aria-hidden="true"></i>
+          <i class="fa fa-plus fa-stack-1x" aria-hidden="true"></i>
         </span>
       <% end %>
       <%= link_to "#", class:"ftft-minus ftft-choice" do %>
         <span class="fa-stack">
           <i class="fa fa-square-o fa-stack-2x"></i>
-          <i class="fa fa-minus" aria-hidden="true"></i>
+          <i class="fa fa-minus fa-stack-1x" aria-hidden="true"></i>
         </span>
       <% end %>
     </div>

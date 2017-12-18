@@ -2,6 +2,8 @@
   <%= render 'shared/banner_truck', truck: @truck %>
 </div>
 
+
+<div id="map-show" style="width: 100vw; height: 50vh;"></div>
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
@@ -15,7 +17,7 @@
         <h2 class="section-title">Select your meals</h2>
         <div class="meal-list">
           <% @tables.each do |table| %>
-            <%= render 'shared/show_page_table', meal: table[:meal], choice: table[:choice] %>
+            <%= render 'shared/form_meals_list_with_choice', meal: table[:meal], choice: table[:choice] %>
           <% end %>
         </div>
       </div>
@@ -29,7 +31,22 @@
         </div>
       </div>
     </div>
-
   </div>
 </div>
 
+
+<% content_for(:after_js) do %>
+<script>
+  var handler = Gmaps.build('Google');
+  handler.buildMap({ internal: { id: 'map-show' } }, function() {
+    markers = handler.addMarkers(<%= raw @marker.to_json %>);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+    if (markers.length == 0) {
+      handler.getMap().setZoom(2);
+    } else if (markers.length == 1) {
+      handler.getMap().setZoom(14);
+    }
+  });
+</script>
+<% end %>

@@ -7,6 +7,18 @@ class TrucksController < ApplicationController
   end
 
   def index
+    if params["city_user"].nil? || params["city_user"] == ""
+      @addresses = Address.where.not(latitude: nil, longitude: nil)
+    else
+      city = params.permit(:city_user)
+      @addresses = Address.near(city["city_user"], 10)
+    end
+
+    @markers = Gmaps4rails.build_markers(@addresses) do |address, marker|
+      marker.lat address.latitude
+      marker.lng address.longitude
+      marker.infowindow render_to_string(partial: "/trucks/map_box", locals: { address: address })
+    end
   end
 
   def new
@@ -22,6 +34,11 @@ class TrucksController < ApplicationController
     @truck.meals.each_with_index do |meal, index|
       @tables[index] = {meal: meal,
                         choice: Choice.where(user_id: current_user.id, basket: @basket, meal_id: meal.id).last || Choice.new(meal_id: meal.id, user: current_user, quantity: 0)}
+    end
+
+    @marker = Gmaps4rails.build_markers(@truck.addresses) do |address, marker|
+      marker.lat address.latitude
+      marker.lng address.longitude
     end
   end
 
@@ -67,7 +84,7 @@ class TrucksController < ApplicationController
 
   def truck_order
     @truck = Truck.find_by(user: current_user)
-    @baskets = Basket.where(status: ["pending", "confirmed"], truck: @truck)
+    @baskets = Basket.where(status: ["pending", "confirmed", "Payed by Customer", "Accepted by FoodTruck", "Declined by FoodTruck"], truck: @truck).order(:status)
   end
 
   private

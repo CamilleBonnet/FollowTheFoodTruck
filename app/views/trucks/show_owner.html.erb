@@ -110,20 +110,18 @@
 
 <h3 class="text-center"><%= @truck.name %></h3>
 
+<h4 class="text-center"><%= @truck.type_of_food %></h4>
 <% unless @truck.address.nil? %>
 <h4 class="text-center">You are here at the moment :
-            <p><%= @truck.address.street_address %></p>
-            <p><%= @truck.address.street_address_2 %></p>
-            <p><%= @truck.address.city %></p>
-            <p><%= @truck.address.zipcode %></p>
-            <p><%= @truck.address.more_info %></p></h4>
+    <%= render 'shared/description_address', address: @truck.address %>
+</h4>
 <% end %>
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
       <div class="content text-center">
         <% @truck.photos.each do |photo| %>
-        <%= cl_image_tag photo.path, width: 300, height: 300, crop: :fill if @truck.photos? %>
+          <%= cl_image_tag photo.path, width: 300, height: 300, crop: :fill if @truck.photos? %>
         <% end %>
         <div class="footer">
           <br>
@@ -140,35 +138,15 @@
       <h3 class="text-center">Meals</h3>
       <div class="content text-center">
         <% @truck.meals.each do |meal| %>
-        <%= cl_image_tag meal.photo.path, width: 250, height: 250, crop: :fill if meal.photo? %>
-        <div class="title">
-        <h4><%= meal.description%> </h4>
-        Price => <%= meal.price %> €
-        </div>
-        <%="Vegan? " + (meal.is_vegan ? 'Yes' : 'No').to_s unless meal.is_vegan == false %>
-        <br>
-        <%= "Alergen? " + (meal.is_alergen ? 'Yes' : 'No').to_s unless meal.is_alergen == false %>
-        <br>
-        <%= "Gluten free? " + (meal.is_gluten_free ? 'Yes' : 'No').to_s unless meal.is_gluten_free == false %>
-        <br>
-        <%= "Fat free? " + (meal.is_fat_free ? 'Yes' : 'No').to_s unless meal.is_fat_free == false %>
-        <br>
-        <%= "How Spicy => " + (meal.spicy_scale).to_s unless meal.spicy_scale == nil %>
-        <div class="footer">
-        <br>
-          <%= link_to "Edit", edit_truck_meal_path(@truck, meal), class: "btn ftft-btn btn-primary" %>
-          <%= link_to "Delete", meal_path(meal), method: :delete,data: { confirm: "Are you sure?" }, class: "btn ftft-btn btn-danger" %>
-        </div>
-      </li>
-      <% end %>
+          <%= render 'shared/description_meal', meal: meal %>
+        <% end %>
     </div>
   </div>
-
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
       <div class="truck-form">
         <h3 class="text-center">Add a meal</h3>
-        <%= render "meal_form" %>
+        <%= render "shared/form_new_meal" %>
       </div>
     </div>
   </div>
@@ -176,17 +154,11 @@
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
       <h3 class="text-center">Addresses</h3>
-
       <% @truck.addresses.each do |address| %>
       <div class="content">
         <div class="title">
-          <br> <h4>
-            <p><%= address.street_address %></p>
-            <p><%= address.street_address_2 %></p>
-            <p><%= address.city %></p>
-            <p><%= address.zipcode %></p>
-            <p><%= address.more_info %></p>
-            </h4>
+          <br>
+          <h4><%= render 'shared/description_address', address: address %></h4>
         </div>
         <div class="footer">
           <%= link_to "Edit", edit_truck_address_path(@truck, address), class: "btn ftft-btn btn-primary" %>
@@ -203,7 +175,7 @@
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
       <div class="truck-form">
         <h3 class="text-center">Add an address</h3>
-        <%= render "address_form" %>
+        <%= render "shared/form_new_address" %>
       </div>
     </div>
   </div>
@@ -213,32 +185,31 @@
 
       <% @truck.addresses.each do |address| %>
         <% address.calendars.each do |calendar| %>
-      <div class="content">
-        <div class="title">
-          <br>
-           <h4> <%= calendar.address.street_address unless calendar.address.nil? %></h4>
-          <div class="footer">
-            <%= link_to "Edit", edit_truck_calendar_path(@truck, calendar), class: "btn ftft-btn btn-primary" %>
-            <%= link_to "Delete", calendar_path(calendar), method: :delete,data: { confirm: "Are you sure?" }, class: "btn ftft-btn btn-danger" %>
+          <div class="content">
+            <div class="title">
+            <br>
+            <h4> <%= calendar.address.street_address unless calendar.address.nil? %></h4>
+              <div class="footer">
+                <%= link_to "Edit", edit_truck_calendar_path(@truck, calendar), class: "btn ftft-btn btn-primary" %>
+                <%= link_to "Delete", calendar_path(calendar), method: :delete,data: { confirm: "Are you sure?" }, class: "btn ftft-btn btn-danger" %>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        <% end %>
       <% end %>
-    <% end %>
     </div>
   </div>
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-      <%= render "calendar_display" %>
+      <%= render "shared/description_calendar" %>
     </div>
   </div>
   <div class="row">
     <div class="col-xs-12 col-sm-3 col-sm-offset-4">
       <div class="truck-form">
         <h3 class="text-center">Add a calendar</h3>
-        <%= render "calendar_form" %>
+        <%= render "shared/form_new_calendar" %>
       </div>
     </div>
   </div>
 </div>
- -->

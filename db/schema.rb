@@ -12,6 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20171218141238) do
 
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,8 +24,8 @@ ActiveRecord::Schema.define(version: 20171218141238) do
     t.integer  "zipcode"
     t.string   "country"
     t.text     "more_info"
-    t.decimal  "latitude"
-    t.decimal  "longitude"
+    t.float    "latitude"
+    t.float    "longitude"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.boolean  "active_address"
@@ -46,9 +47,9 @@ ActiveRecord::Schema.define(version: 20171218141238) do
     t.index ["attachinariable_type", "attachinariable_id", "scope"], name: "by_scoped_parent", using: :btree
   end
 
-  create_table "baskets", id: :bigserial, force: :cascade do |t|
-    t.bigint   "user_id"
-    t.bigint   "truck_order_list_id"
+  create_table "baskets", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "truck_order_list_id"
     t.integer  "total_price"
     t.date     "date"
     t.datetime "time"

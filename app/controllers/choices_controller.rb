@@ -10,8 +10,8 @@ class ChoicesController < ApplicationController
     @choice.basket = @basket
     @choice.user = current_user
     if @choice.save
-      @choice.price = @choice.quantity * @choice.meal.price
-      @choice.save
+      @choice.update(price: (@choice.quantity * @choice.meal.price))
+      @basket.update(total_price: @basket.choices.sum(&:price))
       redirect_to truck_path(@truck)
     else
       flash[:alert] = "test"
@@ -21,10 +21,8 @@ class ChoicesController < ApplicationController
 
   def update
     if @choice.update(choice_param)
-      @choice.basket = @basket
-      @choice.price = @choice.quantity * @choice.meal.price
+      @choice.update(price: (@choice.quantity * @choice.meal.price))
       @basket.update(total_price: @basket.choices.sum(&:price))
-      @choice.save
       redirect_to truck_path(@truck)
     else
       flash[:alert] = "test"

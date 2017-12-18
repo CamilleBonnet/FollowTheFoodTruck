@@ -7,4 +7,6 @@ class Choice < ApplicationRecord
   validates :meal_id, presence: true
   validates :user_id, presence: true
   validates :quantity, presence: true
+
+  monetize :price_cents
 end

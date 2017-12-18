@@ -22,8 +22,10 @@ gem 'country_select'
 gem 'uglifier'
 gem 'webpacker'
 gem 'omniauth-facebook'
-gem "geocoder"
-gem "gmaps4rails"
+gem 'geocoder'
+gem 'gmaps4rails'
+gem 'money-rails'
+gem 'stripe'
 
 source 'https://rails-assets.org' do
   gem "rails-assets-underscore"

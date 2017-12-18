@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     resources :baskets, only: [:show, :update] do
       member do
           get '/PaymentStatus', to: "baskets#payment_status", as: "payment_status"
+          post '/PaymentStatus', to: "baskets#payment_with_stripe", as: "payment_with_stripe"
           get '/AcceptedByFoodTruck', to: "baskets#accepted_by_food_truck", as: "accepted_by_food_truck"
           get '/DeclinedByFoodTruck', to: "baskets#declined_by_food_truck", as: "declined_by_food_truck"
         end

@@ -11,4 +11,8 @@ class Truck < ApplicationRecord
   validates :user_id, presence: true, uniqueness: true
 
   has_attachments :photos, maximum: 2
+
+  def address
+    addresses.where(active_address: true).last
+  end
 end

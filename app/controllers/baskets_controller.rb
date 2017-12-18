@@ -27,7 +27,30 @@ class BasketsController < ApplicationController
   end
 
   def payment_status
+    # here sripe
     @basket.update(status: "Payed by Customer")
+
+  end
+
+  def payment_with_stripe
+    customer = Stripe::Customer.create(
+      source: params[:stripeToken],
+      email:  params[:stripeEmail]
+      )
+
+    charge = Stripe::Charge.create(
+      customer:     customer.id,   # You should store this customer id and re-use it.
+      amount:       @basket.total_price_cents,
+      description:  "Payment for food at #{@basket.truck.name} for order #{@basket.id}",
+      currency:     @basket.total_price.currency
+      )
+
+    @basket.update(payment: charge.to_json, status: 'Payed by Customer')
+    redirect_to payment_status_truck_basket_path
+
+  rescue Stripe::CardError => e
+    flash[:alert] = e.message
+    redirect_to truck_basket(@basket.truck, @basket)
   end
 
   def destroy

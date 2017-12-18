@@ -111,11 +111,11 @@
 <h3 class="text-center"><%= @truck.name %></h3>
 
 <h4 class="text-center"><%= @truck.type_of_food %></h4>
-<% unless @truck.address.nil? %>
+<%# unless @truck.address.nil? %>
 <h4 class="text-center">You are here at the moment :
     <%= render 'shared/description_address', address: @truck.address %>
 </h4>
-<% end %>
+<%# end %>
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-sm-offset-3">

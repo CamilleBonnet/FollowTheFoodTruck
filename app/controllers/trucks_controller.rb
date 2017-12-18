@@ -11,7 +11,7 @@ class TrucksController < ApplicationController
       @addresses = Address.where.not(latitude: nil, longitude: nil)
     else
       city = params.permit(:city_user)
-      @addresses = Address.near(city["city_user"], 20)
+      @addresses = Address.near(city["city_user"], 10)
     end
 
     @markers = Gmaps4rails.build_markers(@addresses) do |address, marker|

@@ -19,6 +19,7 @@ class ChoicesController < ApplicationController
     end
   end
 
+
   def update
     if @choice.update(choice_param)
       @choice.update(price: (@choice.quantity * @choice.meal.price))

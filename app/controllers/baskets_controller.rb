@@ -12,6 +12,10 @@ class BasketsController < ApplicationController
     @basket.update(status: "confirmed")
   end
 
+
+
+
+
   private
 
   def set_basket

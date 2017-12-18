@@ -17,7 +17,7 @@ class TrucksController < ApplicationController
     @markers = Gmaps4rails.build_markers(@addresses) do |address, marker|
       marker.lat address.latitude
       marker.lng address.longitude
-      marker.infowindow render_to_string(partial: "/trucks/map_box", locals: { address: address })
+      marker.infowindow render_to_string(partial: "/shared/map_box", locals: { address: address })
     end
   end
 

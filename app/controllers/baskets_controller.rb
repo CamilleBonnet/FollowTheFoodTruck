@@ -45,7 +45,7 @@ class BasketsController < ApplicationController
       currency:     @basket.total_price.currency
       )
 
-    @basket.update(status: 'Payed by Customer')
+    @basket.update(payment: charge.to_json, status: 'Payed by Customer')
     redirect_to payment_status_truck_basket_path
 
   rescue Stripe::CardError => e

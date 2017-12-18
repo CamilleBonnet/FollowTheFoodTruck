@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171218173240) do
+ActiveRecord::Schema.define(version: 20171218180620) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 20171218173240) do
     t.datetime "updated_at",                      null: false
     t.integer  "truck_id"
     t.integer  "total_price_cents",   default: 0, null: false
+    t.jsonb    "payment"
     t.index ["truck_id"], name: "index_baskets_on_truck_id", using: :btree
     t.index ["truck_order_list_id"], name: "index_baskets_on_truck_order_list_id", using: :btree
     t.index ["user_id"], name: "index_baskets_on_user_id", using: :btree

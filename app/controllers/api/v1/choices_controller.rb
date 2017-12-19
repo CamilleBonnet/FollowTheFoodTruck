@@ -11,7 +11,6 @@ class Api::V1::ChoicesController < Api::V1::BaseController
     if @choice.update(choice_params)
       @choice.update(price: (@choice.quantity * @choice.meal.price))
       basket.update(total_price: basket.choices.sum(&:price))
-      flash[:notive] = "Choice updated"
     else
       flash[:alert] = "Choice could not be update"
       render_error

@@ -10,9 +10,7 @@
     </div>
   </div>
   <div class="message-body">
-    <%= link_to truck_basket_path(basket.truck, basket) do %>
     <p><strong>Order:</strong></p>
-    <% end %>
     <% basket.choices.each do |choice| %>
     <div><%= choice.quantity.to_s+": "+choice.meal.description %></div>
     <% end %>
@@ -20,18 +18,21 @@
 
     </p>
   </div>
-  <div class="message-status">
+  <div class="message-body">
     <% if basket.status == "pending" %>
-    <p class="status pending"><%= basket.status.capitalize %></p>
+    <p class="status pending"> <strong><%= basket.status.capitalize %></strong></p>
     <% elsif basket.status == "confirmed" || basket.status == "Payed by Customer" || basket.status == "Accepted by FoodTruck" %>
-    <p class="status accepted"><%= basket.status.capitalize %></p>
+    <p class="status accepted"><strong><%= basket.status.capitalize %></strong></p>
     <% elsif basket.status == "Declined by FoodTruck" %>
-    <p class="status declined"><%= basket.status.capitalize %></p>
+    <p class="status declined"><strong><%= basket.status.capitalize %></strong></p>
     <% end %>
     <p class="price"><%= basket.total_price %>€</p>
   </div>
   <div class="message-buttons">
     <% if basket.status == "pending" %>
+      <%= link_to accepted_by_food_truck_truck_basket_path(basket.truck, basket) do %>
+        <p class="accepted"><i class="fa fa-check" aria-hidden="true"></i></p>
+      <% end %>
       <%= link_to declined_by_food_truck_truck_basket_path(basket.truck, basket) do %>
         <p class="declined"><i class="fa fa-times " aria-hidden="true"></i></p>
       <% end %>

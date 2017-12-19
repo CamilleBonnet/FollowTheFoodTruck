@@ -1,6 +1,7 @@
 class BasketsController < ApplicationController
   before_action :set_basket
   before_action :set_truck, only: [:show, :payment_status]
+
   def show
   end
 
@@ -27,9 +28,7 @@ class BasketsController < ApplicationController
   end
 
   def payment_status
-    # here sripe
     @basket.update(status: "Payed by Customer")
-
   end
 
   def payment_with_stripe
@@ -39,18 +38,18 @@ class BasketsController < ApplicationController
       )
 
     charge = Stripe::Charge.create(
-      customer:     customer.id,   # You should store this customer id and re-use it.
+      customer:     current_user.id,   # You should store this customer id and re-use it.
       amount:       @basket.total_price_cents,
       description:  "Payment for food at #{@basket.truck.name} for order #{@basket.id}",
       currency:     @basket.total_price.currency
       )
 
     @basket.update(payment: charge.to_json, status: 'Payed by Customer')
-    redirect_to payment_status_truck_basket_path
+    redirect_to payment_status_truck_path(@basket.truck)
 
-  rescue Stripe::CardError => e
-    flash[:alert] = e.message
-    redirect_to truck_basket(@basket.truck, @basket)
+    rescue Stripe::CardError => e
+      flash[:alert] = e.message
+      redirect_to payorder_truck_path(@basket.truck)
   end
 
   def destroy
@@ -62,18 +61,14 @@ class BasketsController < ApplicationController
     redirect_to myorders_path
   end
 
-
-
-
-
   private
 
   def set_basket
-    @basket = Basket.find(params[:id])
+    @basket = Basket.where(truck_id: params[:id], user: current_user, status: "pending").last
   end
 
   def set_truck
-    @truck = Truck.find(params[:truck_id])
+    @truck = Truck.find(params[:id])
   end
 
 end

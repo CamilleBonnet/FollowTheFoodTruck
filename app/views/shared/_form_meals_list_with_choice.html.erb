@@ -1,5 +1,5 @@
 <!--  -->
-<div class="media media-meal">
+<div id="user-and-meal-info" class="media media-meal" data-user-token="<%= current_user.registration.authentication_token %>" data-user-mail="<%= current_user.registration.email %>">
   <div class="media-left">
     <% if meal.photo? %>
       <%= cl_image_tag meal.photo.path, class:"avatar-square" %>
@@ -13,7 +13,7 @@
     <p><small>spicy</small></p>
   </div>
   <div class="media-footer">
-    <span id="arrow-plus" class="fa-stack ftft-plus ftft-choice" data-meal-id="<%= choice.meal.id %>" data-user-token="<%= current_user.registration.authentication_token %>" data-user-mail="<%= current_user.registration.email %>">
+    <span id="arrow-plus" class="fa-stack ftft-plus ftft-choice" data-meal-id="<%= choice.meal.id %>">
       <i class="fa fa-square-o fa-stack-2x"></i>
       <i class="fa fa-plus fa-stack-1x" aria-hidden="true"></i>
     </span>

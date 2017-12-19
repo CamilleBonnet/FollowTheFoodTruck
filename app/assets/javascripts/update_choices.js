@@ -1,28 +1,25 @@
 // var plusQuantity = document.getElementById("arrow-plus");
 // var minusQuantity = document.getElementById("arrow-minus");
-var allPlusQuantity = document.querySelectorAll(".ftft-plus.ftft-choice.fa-stack")
-var allMinusQuantity = document.querySelectorAll(".ftft-minus.ftft-choice.fa-stack")
-
+var allPlusQuantity = document.querySelectorAll(".ftft-plus.ftft-choice.fa-stack");
+var allMinusQuantity = document.querySelectorAll(".ftft-minus.ftft-choice.fa-stack");
+var userAndMealInfo = document.getElementById("user-and-meal-info");
+var email = userAndMealInfo.getAttribute("data-user-mail");
+var token = userAndMealInfo.getAttribute("data-user-token");
 
 function onClickPlus () {
-
   var meal_id = this.getAttribute("data-meal-id");
-  var email = this.getAttribute("data-user-mail");
-  var token = this.getAttribute("data-user-token");
   var elementToChange = this.nextElementSibling
   var number = Number.parseInt(elementToChange.innerHTML, 10) + 1;
-
   sendPostRequest(meal_id, number, email, token, elementToChange);
 }
 
 function onClickMinus () {
-
   var meal_id = this.getAttribute("data-meal-id");
-  var number = Number.parseInt(this.previousElementSibling.innerHTML, 10) - 1;
-  if (number < 0) {
-    number = 0;
+  var elementToChange = this.previousElementSibling
+  var number = Number.parseInt(elementToChange.innerHTML, 10) - 1;
+  if (number >= 0) {
+    sendPostRequest(meal_id, number,email, token, elementToChange);
   }
-  sendPostRequest(meal_id, number);
 }
 
 function sendPostRequest (meal_id, value, email, token, elementToChange) {

@@ -7,9 +7,12 @@ var allMinusQuantity = document.querySelectorAll(".ftft-minus.ftft-choice.fa-sta
 function onClickPlus () {
 
   var meal_id = this.getAttribute("data-meal-id");
-  var number = Number.parseInt(this.nextElementSibling.innerHTML, 10) + 1;
-  sendPostRequest(meal_id, number);
+  var email = this.getAttribute("data-user-mail");
+  var token = this.getAttribute("data-user-token");
+  var elementToChange = this.nextElementSibling
+  var number = Number.parseInt(elementToChange.innerHTML, 10) + 1;
 
+  sendPostRequest(meal_id, number, email, token, elementToChange);
 }
 
 function onClickMinus () {
@@ -22,15 +25,25 @@ function onClickMinus () {
   sendPostRequest(meal_id, number);
 }
 
-function sendPostRequest (meal_id, value) {
-  $.post("/api/v1/update_choice", {
+function sendPostRequest (meal_id, value, email, token, elementToChange) {
+  var myBody = {
     meal_id: meal_id,
-    quantity: value },
-    function(data) {
-      quantity.innerHTML = data["quantity"]
+    quantity: value
+  };
+
+  var myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+  myHeaders.append("X-Registration-Email", email);
+  myHeaders.append("X-Registration-Token", token);
+
+  var myRequest = {method: 'POST',
+                 headers: myHeaders,
+                 body: JSON.stringify(myBody)};
+
+  fetch("/api/v1/update_choice", myRequest).then(
+    function(answer) {
+      elementToChange.innerHTML = value
     });
-  console.log(meal_id);
-  console.log(value);
 }
 
 function eventManager(){

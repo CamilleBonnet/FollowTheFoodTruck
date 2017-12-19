@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171218180620) do
+ActiveRecord::Schema.define(version: 20171218221950) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "addresses", id: :bigserial, force: :cascade do |t|
-    t.bigint   "truck_id"
+  create_table "addresses", force: :cascade do |t|
+    t.integer  "truck_id"
     t.text     "street_address"
     t.text     "street_address_2"
     t.string   "city"
@@ -31,9 +31,9 @@ ActiveRecord::Schema.define(version: 20171218180620) do
     t.index ["truck_id"], name: "index_addresses_on_truck_id", using: :btree
   end
 
-  create_table "attachinary_files", id: :bigserial, force: :cascade do |t|
+  create_table "attachinary_files", force: :cascade do |t|
     t.string   "attachinariable_type"
-    t.bigint   "attachinariable_id"
+    t.integer  "attachinariable_id"
     t.string   "scope"
     t.string   "public_id"
     t.string   "version"
@@ -73,10 +73,10 @@ ActiveRecord::Schema.define(version: 20171218180620) do
     t.index ["truck_id"], name: "index_calendars_on_truck_id", using: :btree
   end
 
-  create_table "choices", id: :bigserial, force: :cascade do |t|
-    t.bigint   "basket_id"
-    t.bigint   "meal_id"
-    t.bigint   "user_id"
+  create_table "choices", force: :cascade do |t|
+    t.integer  "basket_id"
+    t.integer  "meal_id"
+    t.integer  "user_id"
     t.integer  "quantity"
     t.date     "date"
     t.datetime "time"
@@ -88,8 +88,8 @@ ActiveRecord::Schema.define(version: 20171218180620) do
     t.index ["user_id"], name: "index_choices_on_user_id", using: :btree
   end
 
-  create_table "meals", id: :bigserial, force: :cascade do |t|
-    t.bigint   "truck_id"
+  create_table "meals", force: :cascade do |t|
+    t.integer  "truck_id"
     t.string   "description"
     t.boolean  "is_vegan"
     t.boolean  "is_fat_free"
@@ -102,25 +102,27 @@ ActiveRecord::Schema.define(version: 20171218180620) do
     t.index ["truck_id"], name: "index_meals_on_truck_id", using: :btree
   end
 
-  create_table "registrations", id: :bigserial, force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+  create_table "registrations", force: :cascade do |t|
+    t.string   "email",                             default: "", null: false
+    t.string   "encrypted_password",                default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",                     default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
+    t.string   "authentication_token",   limit: 30
+    t.index ["authentication_token"], name: "index_registrations_on_authentication_token", unique: true, using: :btree
     t.index ["email"], name: "index_registrations_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_registrations_on_reset_password_token", unique: true, using: :btree
   end
 
-  create_table "truck_order_lists", id: :bigserial, force: :cascade do |t|
-    t.bigint   "truck_id"
+  create_table "truck_order_lists", force: :cascade do |t|
+    t.integer  "truck_id"
     t.date     "date"
     t.datetime "time"
     t.integer  "total_day_income"
@@ -129,8 +131,8 @@ ActiveRecord::Schema.define(version: 20171218180620) do
     t.index ["truck_id"], name: "index_truck_order_lists_on_truck_id", using: :btree
   end
 
-  create_table "trucks", id: :bigserial, force: :cascade do |t|
-    t.bigint   "user_id"
+  create_table "trucks", force: :cascade do |t|
+    t.integer  "user_id"
     t.string   "name"
     t.string   "type_of_food"
     t.boolean  "pay_online"
@@ -140,12 +142,12 @@ ActiveRecord::Schema.define(version: 20171218180620) do
     t.index ["user_id"], name: "index_trucks_on_user_id", using: :btree
   end
 
-  create_table "users", id: :bigserial, force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
     t.integer  "age"
     t.string   "role"
-    t.bigint   "registration_id"
+    t.integer  "registration_id"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
     t.string   "provider"
@@ -167,5 +169,6 @@ ActiveRecord::Schema.define(version: 20171218180620) do
   add_foreign_key "choices", "users"
   add_foreign_key "meals", "trucks"
   add_foreign_key "truck_order_lists", "trucks"
+  add_foreign_key "trucks", "users"
   add_foreign_key "users", "registrations"
 end

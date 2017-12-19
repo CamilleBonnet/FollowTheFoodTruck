@@ -1,4 +1,5 @@
 class TrucksController < ApplicationController
+  skip_before_action :authenticate_registration!, only: [:home, :index, :show]
   before_action :set_truck, only: [:show, :edit, :update, :destroy, :address]
   before_action :set_all_trucks, only: [:home, :index]
 
@@ -17,7 +18,7 @@ class TrucksController < ApplicationController
     @markers = Gmaps4rails.build_markers(@addresses) do |address, marker|
       marker.lat address.latitude
       marker.lng address.longitude
-      marker.infowindow render_to_string(partial: "/trucks/map_box", locals: { address: address })
+      marker.infowindow render_to_string(partial: "/shared/map_box", locals: { address: address })
     end
   end
 

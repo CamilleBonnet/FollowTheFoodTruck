@@ -1,8 +1,3 @@
-<div>
-  <%= render 'shared/banner_truck', truck: @truck %>
-</div>
-
-
 <div id="map-show" style="width: 100vw; height: 50vh;"></div>
 <div class="container">
   <div class="row">
@@ -12,6 +7,10 @@
         <h2><%= @truck.name %></h2>
         <p><%= @truck.type_of_food %></p>
         <p>We specialise in authentic american burgers cooked and served from a Classic VW Kombi!</p>
+        <% @truck.photos.each do |photo| %>
+        <%= cl_image_tag photo.path, class: "photo-full-width" if @truck.photos? %>
+        <% end %>
+      </div>
       </div>
       <div class="col-xs-12 col-md-8 col-md-offset-2">
         <h2 class="section-title">Select your meals</h2>
@@ -22,16 +21,16 @@
         </div>
       </div>
     </div>
-    <div class="row">
+  </div>
+  <div class="row">
       <div class="col-xs-12">
         <div class="btn-show text-center">
           <% unless @basket.nil? %>
-          <%= link_to "Order", truck_basket_path(@truck, @basket), class:"btn btn-primary" %>
+            <%= link_to "Order (" + @basket.choices.sum(&:quantity).to_s + ")", truck_basket_path(@truck, @basket), id:"order-btn", class:"btn btn-primary" %>
           <% end %>
         </div>
       </div>
     </div>
-  </div>
 </div>
 
 

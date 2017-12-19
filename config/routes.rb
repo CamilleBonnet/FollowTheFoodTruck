@@ -9,6 +9,14 @@ Rails.application.routes.draw do
 
   root to: 'trucks#home'
 
+  # routes for API
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+        # get '/update_choice', to: "choices#show", as: "updated_choice"
+        post  '/update_choice', to: "choices#update", as: "update_choice"
+    end
+  end
+
   resources :trucks, except: [:edit] do
     resources :meals, only: [:create, :edit, :update]
     resources :addresses, only: [:create, :edit, :update] do
@@ -41,7 +49,6 @@ Rails.application.routes.draw do
   resources :baskets, only: [:destroy]
   # resources :truck_order_lists, only: [:destroy]
 
-
   # owner can view/edit his trucks
   # get '/mytrucks', to: "trucks#index_owner", as: "all_owner_trucks"
   #not mandatory if hyp is that 1 user = 1 truck
@@ -57,21 +64,4 @@ Rails.application.routes.draw do
   get 'users/profile/edit', to: "users#edit", as: "edit_user_profile"
   patch 'users/:id', to: "users#update", as: "user_profile"
   delete 'users', to: "users#destroy"
-
-
-
-  # future orders routes ?
-  # get '/mytrucks/accept/:id', to: "orders#accept", as: "accept_order"
-  # get '/mytrucks/decline/:id', to: "orders#decline", as: "decline_order"
-  # get '/mytrucks/cancel/:id', to: "orders#cancel", as: "cancel_order"
-
-  # routes for the user model ?
-  # get 'users/:id', to: "users#show", as: "user"
-  # get 'users/myprofile', to: "users#show", as: "myprofile"
-  # get 'users/profile/edit', to: "users#edit", as: "edit_user_profile"
-  # patch 'users/:id', to: "users#update", as: "user_profile"
-  # delete 'users', to: "users#destroy"
-
-
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

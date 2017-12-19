@@ -1,6 +1,7 @@
 class BasketsController < ApplicationController
-  before_action :set_basket
-  before_action :set_truck, only: [:show, :payment_status]
+  before_action :set_basket, except: [:accepted_by_food_truck, :declined_by_food_truck, :destroy]
+  before_action :set_basket_status, only: [:accepted_by_food_truck, :declined_by_food_truck, :destroy]
+  before_action :set_truck, only: [:show]
 
   def show
   end
@@ -28,7 +29,7 @@ class BasketsController < ApplicationController
   end
 
   def payment_status
-    @basket.update(status: "Payed by Customer")
+    # @basket.update(status: "Payed by Customer")
   end
 
   def payment_with_stripe
@@ -38,7 +39,7 @@ class BasketsController < ApplicationController
       )
 
     charge = Stripe::Charge.create(
-      customer:     current_user.id,   # You should store this customer id and re-use it.
+      customer:     customer.id,   # You should store this customer id and re-use it.
       amount:       @basket.total_price_cents,
       description:  "Payment for food at #{@basket.truck.name} for order #{@basket.id}",
       currency:     @basket.total_price.currency
@@ -65,6 +66,9 @@ class BasketsController < ApplicationController
 
   def set_basket
     @basket = Basket.where(truck_id: params[:id], user: current_user, status: "pending").last
+  end
+  def set_basket_status
+    @basket = Basket.find(params[:id])
   end
 
   def set_truck

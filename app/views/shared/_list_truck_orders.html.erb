@@ -10,9 +10,7 @@
     </div>
   </div>
   <div class="message-body">
-    <%= link_to truck_basket_path(basket.truck, basket) do %>
     <p><strong>Order:</strong></p>
-    <% end %>
     <% basket.choices.each do |choice| %>
     <div><%= choice.quantity.to_s+": "+choice.meal.description %></div>
     <% end %>
@@ -32,9 +30,9 @@
   </div>
   <div class="message-buttons">
     <% if basket.status == "pending" %>
-      <%= link_to declined_by_food_truck_truck_basket_path(basket.truck, basket) do %>
-        <p class="declined"><i class="fa fa-times " aria-hidden="true"></i></p>
-      <% end %>
+      <%#= link_to declined_by_food_truck_truck_basket_path(basket.truck, basket) do %>
+        <!-- <p class="declined"><i class="fa fa-times " aria-hidden="true"></i></p> -->
+      <%# end %>
     <% end %>
     <% if basket.status == "confirmed" || basket.status == "Payed by Customer" || basket.status == "Accepted by FoodTruck" || basket.status == "Declined by FoodTruck" %>
       <%= link_to accepted_by_food_truck_truck_basket_path(basket.truck, basket) do %>

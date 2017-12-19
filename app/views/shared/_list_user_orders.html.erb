@@ -26,10 +26,10 @@
   </div>
   <div class="message-buttons">
     <% if basket.status == "pending" %>
-      <%= link_to truck_basket_path(basket.truck, basket) do %>
+      <%= link_to truck_path(basket.truck) do %>
         <p class="info"><i class="fa fa-info" aria-hidden="true"></i></p>
       <% end %>
-      <%= link_to truck_path(basket.truck) do %>
+      <%= link_to payorder_truck_path(basket.truck) do %>
         <p class="accepted"><i class="fa fa-shopping-cart" aria-hidden="true"></i></p>
       <% end %>
       <%= link_to basket_path(basket), method: :delete do %>

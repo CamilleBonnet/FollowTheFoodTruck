@@ -1,6 +1,6 @@
   <div class="truck-card">
     <%= link_to truck_path(truck), class: "card-link" do %>
-    <div class="image card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%=cl_image_path truck.photos.first.path, height: 300, width: 400, crop: :fill unless truck.photos.first.nil? %>')">
+    <div class="image card" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url('<%=cl_image_path truck.photos.first.path, height: 300, width: 400, crop: :fill unless truck.photos.first.nil? %>')">
     </div>
     <div class="content">
       <%= link_to truck.name, truck_path(truck), class: "title" %>
@@ -8,9 +8,6 @@
         <!-- TODO: what should we add here? -->
         <div class="info pull-left">
           <%= truck.type_of_food %>
-        </div>
-        <div class="info pull-left">
-          <p>- € </p>
         </div>
         <div class="pull-right">
           <!-- TODO: implement dynamic likes -->

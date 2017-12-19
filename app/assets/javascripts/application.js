@@ -4,6 +4,7 @@
 //= require bootstrap-sprockets
 //= require bootstrap-datepicker
 //= require jquery-fileupload/basic
+//= require cloudinary
 //= require cloudinary/jquery.cloudinary
 //= require attachinary
 //= require underscore

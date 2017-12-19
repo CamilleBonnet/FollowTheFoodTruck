@@ -1,4 +1,5 @@
 class TrucksController < ApplicationController
+  skip_before_action :authenticate_registration!, only: [:home, :index, :show]
   before_action :set_truck, only: [:show, :edit, :update, :destroy, :address]
   before_action :set_all_trucks, only: [:home, :index]
 

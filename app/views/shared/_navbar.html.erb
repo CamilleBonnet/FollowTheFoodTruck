@@ -7,7 +7,7 @@
   <div class="search-form-wrapper hidden-xs">
     <form action="<%= trucks_path %>" method="get" class="form-inline" for="flat_address">
       <%= text_field_tag :city_user, params[:city_user], id:"flat_address", :autofocus => true, required: false, class:"text-left search-navbar" %>
-      <%= submit_tag "Search", :name => nil, class: "btn ftft-btn btn-primary", style:"margin-bottom : 5px;" %>
+      <%= submit_tag "Search", :name => nil, class: "btn ftft-btn btn-primary", style:"margin-bottom : 0px;" %>
     </form>
   </div>
 
@@ -55,6 +55,7 @@
     </div>
     <% else %>
     <!-- Login link (when logged out) -->
+    <%= link_to "Become a Truck Owner", new_truck_path, class: "navbar-wagon-item navbar-wagon-link" %>
     <%= link_to t(".sign_up", default: "Sign up"), new_registration_registration_path, class: "navbar-wagon-item navbar-wagon-link" %>
     <%= link_to t(".sign_in", default: "Login"), new_registration_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
     <% end %>

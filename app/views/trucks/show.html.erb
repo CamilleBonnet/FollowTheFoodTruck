@@ -25,7 +25,9 @@
   <div class="row">
       <div class="col-xs-12">
         <div class="btn-show text-center">
-          <% unless @basket.nil? %>
+          <% if @basket.nil?%>
+            <%= link_to "Order (0)", "#", id:"order-btn", class:"btn btn-primary disabled" %>
+          <% else  %>
             <%= link_to "Order (" + @basket.choices.sum(&:quantity).to_s + ")", truck_basket_path(@truck, @basket), id:"order-btn", class:"btn btn-primary" %>
           <% end %>
         </div>

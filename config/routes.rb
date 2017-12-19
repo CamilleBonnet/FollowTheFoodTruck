@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
     resources :trucks, except: [:edit] do
       member do
+        get '/PaymentStatus', to: "baskets#payment_status", as: "payment_status"
         post '/PaymentStatus', to: "baskets#payment_with_stripe", as: "payment_with_stripe"
         get '/payOrder', to: "baskets#show", as: "payorder"
       end

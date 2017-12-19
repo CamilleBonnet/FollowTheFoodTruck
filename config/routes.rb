@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   # routes for API
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
+        # get '/update_choice', to: "choices#show", as: "updated_choice"
         post  '/update_choice', to: "choices#update", as: "update_choice"
     end
   end

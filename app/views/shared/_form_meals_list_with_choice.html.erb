@@ -1,5 +1,5 @@
 <!--  -->
-<div class="media media-meal">
+<div id="user-and-meal-info" class="media media-meal" data-user-token="<%= current_user.registration.authentication_token %>" data-user-mail="<%= current_user.registration.email %>">
   <div class="media-left">
     <% if meal.photo? %>
       <%= cl_image_tag meal.photo.path, class:"avatar-square" %>
@@ -23,14 +23,6 @@
       <i class="fa fa-minus fa-stack-1x" aria-hidden="true"></i>
     </span>
   </div>
-<!--   <div class="price-chooser-wrapper">
-    <div class="meals-form-wrapper">
-      <%#= render 'shared/form_choice_change_quantity', truck: @truck, choice: choice %>
-
-
-    </div>
-  </div>
- -->
 </div>
 
 

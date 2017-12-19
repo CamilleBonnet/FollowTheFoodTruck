@@ -23,9 +23,12 @@ function onClickMinus () {
 }
 
 function sendPostRequest (meal_id, value) {
-  // $post("/api/v1/update_meal", { meal_id: meal, quantity: value }, function(data) {
-  //   quantity.innerHTML = data["quantity"]
-  // })
+  $.post("/api/v1/update_choice", {
+    meal_id: meal_id,
+    quantity: value },
+    function(data) {
+      quantity.innerHTML = data["quantity"]
+    });
   console.log(meal_id);
   console.log(value);
 }

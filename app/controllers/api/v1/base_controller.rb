@@ -3,7 +3,7 @@ class Api::V1::BaseController < ActionController::Base
   after_action :verify_policy_scoped, only: :index
 
   rescue_from StandardError,                with: :internal_server_error
-  rescue_from Pundit::NotAuthorizedError,   with: :user_not_authorized
+  # rescue_from Pundit::NotAuthorizedError,   with: :user_not_authorized
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
   private

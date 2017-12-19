@@ -1,11 +1,14 @@
-class Api::V1::RestaurantsController < Api::V1::BaseController
-  acts_as_token_authentication_handler_for User
-  before_action :set_choice, only: [ :update ]
+class Api::V1::ChoicesController < Api::V1::BaseController
+  acts_as_token_authentication_handler_for Registration
+  before_action :set_choice, only: [ :show, :update ]
+
+  def show
+  end
 
   def update
     @choice = Choice.where(user_id: current_user.id, basket: @basket, meal_id: meal.id).last || Choice.new(meal_id: meal.id, user: current_user, quantity: 0)
     if @choice.update(choice_params)
-
+      flash[:notive] = "Choice updated"
     else
       flash[:alert] = "Choice could not be update"
       render_error

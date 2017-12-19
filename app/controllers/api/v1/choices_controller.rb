@@ -3,9 +3,11 @@ class Api::V1::ChoicesController < Api::V1::BaseController
 
   def update
     meal = Meal.find(params["meal_id"].to_i)
-    basket = Basket.where(user: current_registration.user.id, status: "pending", truck: meal.truck).last
+
+    basket = Basket.where(user: current_registration.user.id, status: "pending", truck: meal.truck).last || Basket.create(user: current_registration.user.id, status: "pending", truck: meal.truck)
 
     @choice = Choice.where(user_id: current_registration.user.id, basket: basket, meal_id: meal.id).last || Choice.new(meal_id: meal.id, user: current_registration.user.id, quantity: 0)
+
     if @choice.update(choice_params)
       flash[:notive] = "Choice updated"
     else

@@ -70,7 +70,16 @@
       <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
         <li>
           <%= link_to trucks_path, class: "navbar-wagon-item navbar-wagon-link" do %>
-          <i class="fa fa-truck"></i> All the trucks
+            <i class="fa fa-truck"></i> All the trucks
+          <% end %>
+          <%= link_to new_truck_path, class: "navbar-wagon-item navbar-wagon-link" do %>
+            <i class="fa fa-briefcase"></i> Become a truck owner
+          <% end %>
+          <%= link_to new_registration_registration_path do %>
+            <i class="fa fa-sign-in" aria-hidden="true"></i> <%= t(".sign_up", default: "Sign up") %>
+          <% end %>
+          <%= link_to new_registration_session_path do %>
+            <i class="fa fa-sign-in" aria-hidden="true"></i><%= t(".sign_in", default: " Login") %>
           <% end %>
         </li>
         <% if user_signed_in? %>

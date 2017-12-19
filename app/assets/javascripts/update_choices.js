@@ -1,11 +1,10 @@
-var allPlusQuantity = document.querySelectorAll(".ftft-plus.ftft-choice.fa-stack");
-var allMinusQuantity = document.querySelectorAll(".ftft-minus.ftft-choice.fa-stack");
-var userAndMealInfo = document.getElementById("user-and-meal-info");
-var email = userAndMealInfo.getAttribute("data-user-mail");
-var token = userAndMealInfo.getAttribute("data-user-token");
-var btnValue = document.getElementById("order-btn")
 
 function onClickPlus () {
+  var userAndMealInfo = document.getElementById("user-and-meal-info");
+  var email = userAndMealInfo.getAttribute("data-user-mail");
+  var token = userAndMealInfo.getAttribute("data-user-token");
+
+
   var meal_id = this.getAttribute("data-meal-id");
   var elementToChange = this.nextElementSibling
   var change = 1
@@ -14,6 +13,11 @@ function onClickPlus () {
 }
 
 function onClickMinus () {
+    var userAndMealInfo = document.getElementById("user-and-meal-info");
+  var email = userAndMealInfo.getAttribute("data-user-mail");
+  var token = userAndMealInfo.getAttribute("data-user-token");
+
+
   var meal_id = this.getAttribute("data-meal-id");
   var elementToChange = this.previousElementSibling
   var change = -1
@@ -41,12 +45,16 @@ function sendPostRequest (meal_id, value, email, token, elementToChange, change)
   fetch("/api/v1/update_choice", myRequest).then(
     function(answer) {
       elementToChange.innerHTML = value
+      var btnValue = document.getElementById("order-btn")
       var newBtn = Number.parseInt((/\d+/.exec(btnValue.innerHTML))[0], 10) + change
       btnValue.innerHTML = "Order (".concat(newBtn,")")
     });
 }
 
 function eventManager(){
+  var allPlusQuantity = document.querySelectorAll(".ftft-plus.ftft-choice.fa-stack");
+  var allMinusQuantity = document.querySelectorAll(".ftft-minus.ftft-choice.fa-stack");
+
   allPlusQuantity.forEach((btn) => {
     btn.addEventListener("click", onClickPlus);
   })

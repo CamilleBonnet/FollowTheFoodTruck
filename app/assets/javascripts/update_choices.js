@@ -48,6 +48,11 @@ function sendPostRequest (meal_id, value, email, token, elementToChange, change)
       var btnValue = document.getElementById("order-btn")
       var newBtn = Number.parseInt((/\d+/.exec(btnValue.innerHTML))[0], 10) + change
       btnValue.innerHTML = "Order (".concat(newBtn,")")
+      if (newBtn == 0){
+        btnValue.classList.add('disabled');
+      } else{
+        btnValue.classList.remove('disabled');
+      }
     });
 }
 

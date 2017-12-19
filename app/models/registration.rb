@@ -7,6 +7,8 @@ class Registration < ApplicationRecord
 
   has_one :user
 
+  acts_as_token_authenticatable
+
   def self.find_for_facebook_oauth(auth)
     user_params = auth.slice(:provider, :uid)
     user_params.merge! auth.info.slice(:email, :first_name, :last_name)

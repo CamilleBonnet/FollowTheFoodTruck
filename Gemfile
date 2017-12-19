@@ -26,6 +26,8 @@ gem 'geocoder'
 gem 'gmaps4rails'
 gem 'money-rails'
 gem 'stripe'
+gem "simple_token_authentication"
+
 
 source 'https://rails-assets.org' do
   gem "rails-assets-underscore"

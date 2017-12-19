@@ -60,7 +60,6 @@ function getAddressComponents(place) {
 
 document.addEventListener("DOMContentLoaded", function() {
   var flatAddress = document.getElementById('flat_address');
-  console.log("working")
 
   if (flatAddress) {
     var autocomplete = new google.maps.places.Autocomplete(flatAddress, { types: ['geocode'] });
@@ -72,8 +71,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   }
 
-    var flatAddress2 = document.getElementById('flat_address_2');
-  console.log(flatAddress2)
+  var flatAddress2 = document.getElementById('flat_address_2');
 
   if (flatAddress2) {
     var autocomplete = new google.maps.places.Autocomplete(flatAddress2, { types: ['geocode'] });

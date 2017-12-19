@@ -13,28 +13,24 @@
     <p><small>spicy</small></p>
   </div>
   <div class="media-footer">
-    <a href="#" class="btn btn-round btn-primary">
-      <i class="fa fa-plus"></i> add to cart
-    </a>
+    <span id="arrow-plus" class="fa-stack ftft-plus ftft-choice" data-meal-id="<%= choice.meal.id %>">
+      <i class="fa fa-square-o fa-stack-2x"></i>
+      <i class="fa fa-plus fa-stack-1x" aria-hidden="true"></i>
+    </span>
+    <p><%= choice.quantity %></p>
+    <span id="arrow-minus" class="fa-stack ftft-minus ftft-choice" data-meal-id="<%= choice.meal.id %>">
+      <i class="fa fa-square-o fa-stack-2x"></i>
+      <i class="fa fa-minus fa-stack-1x" aria-hidden="true"></i>
+    </span>
   </div>
-</div>
-<div>
-
-  <div class="price-chooser-wrapper">
+<!--   <div class="price-chooser-wrapper">
     <div class="meals-form-wrapper">
-      <%= render 'shared/form_choice_change_quantity', truck: @truck, choice: choice %>
+      <%#= render 'shared/form_choice_change_quantity', truck: @truck, choice: choice %>
 
-        <span id="arrow-plus" class="fa-stack ftft-plus ftft-choice">
-          <i class="fa fa-square-o fa-stack-2x"></i>
-          <i class="fa fa-plus fa-stack-1x" aria-hidden="true"></i>
-        </span>
-        <span id="arrow-minus" class="fa-stack ftft-minus ftft-choice">
-          <i class="fa fa-square-o fa-stack-2x"></i>
-          <i class="fa fa-minus fa-stack-1x" aria-hidden="true"></i>
-        </span>
+
     </div>
   </div>
-
+ -->
 </div>
 
 

@@ -1,19 +1,23 @@
 function onPlaceChanged() {
   var place = this.getPlace();
-  // var components = getAddressComponents(place);
+  var components = getAddressComponents(place);
 
-  var flatAddress = document.getElementById('flat_address');
-  var flatAddress_2 = document.getElementById('flat_address_2');
-  // flatAddress.blur();
-  // flatAddress.value = components.address;
+  var searchAddress = document.getElementById('food_truck_address');
+  // searchAddress.blur();
 
-  // document.getElementById('flat_zip_code').value = components.zip_code;
-  // document.getElementById('flat_city').value = components.city;
+  var newFoodTruckAddress = document.getElementById('address_street_address');
+  newFoodTruckAddress.value = components.address;
 
-  // if (components.country_code) {
-  //   var selector = '#flat_country option[value="' + components.country_code + '"]';
-  //   document.querySelector(selector).selected = true;
-  // }
+  var newFoodTruckAddressZipCode = document.getElementById('address_zipcode');
+  newFoodTruckAddressZipCode.value = components.zip_code;
+
+  var newFoodTruckAddressCity =  document.getElementById('address_city');
+  newFoodTruckAddressCity.value = components.city;
+
+  if (components.country_code) {
+    var selector = '#address_country option[value="' + components.country_code + '"]';
+    document.querySelector(selector).selected = true;
+  }
 }
 
 function getAddressComponents(place) {
@@ -22,7 +26,7 @@ function getAddressComponents(place) {
   // - place.geometry.location.lng()
 
   if (window.console && typeof console.log === "function") {
-    console.log(place);
+    // console.log(place);
   }
 
   var street_number = null;
@@ -59,24 +63,24 @@ function getAddressComponents(place) {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-  var flatAddress = document.getElementById('flat_address');
+  var foodTruckAddress = document.getElementById('food_truck_address');
 
-  if (flatAddress) {
-    var autocomplete = new google.maps.places.Autocomplete(flatAddress, { types: ['geocode'] });
+  if (foodTruckAddress) {
+    var autocomplete = new google.maps.places.Autocomplete(foodTruckAddress, { types: ['geocode'] });
     google.maps.event.addListener(autocomplete, 'place_changed', onPlaceChanged);
-    google.maps.event.addDomListener(flatAddress, 'keydown', function(e) {
+    google.maps.event.addDomListener(foodTruckAddress, 'keydown', function(e) {
       if (e.key === "Enter") {
         e.preventDefault(); // Do not submit the form on Enter.
       }
     });
   }
 
-  var flatAddress2 = document.getElementById('flat_address_2');
+  var foodTruckNewAddress = document.getElementById('address_street_address');
 
-  if (flatAddress2) {
-    var autocomplete = new google.maps.places.Autocomplete(flatAddress2, { types: ['geocode'] });
+  if (foodTruckNewAddress) {
+    var autocomplete = new google.maps.places.Autocomplete(foodTruckNewAddress, { types: ['geocode'] });
     google.maps.event.addListener(autocomplete, 'place_changed', onPlaceChanged);
-    google.maps.event.addDomListener(flatAddress2, 'keydown', function(e) {
+    google.maps.event.addDomListener(foodTruckNewAddress, 'keydown', function(e) {
       if (e.key === "Enter") {
         e.preventDefault(); // Do not submit the form on Enter.
       }

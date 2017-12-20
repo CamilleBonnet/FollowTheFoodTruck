@@ -16,11 +16,11 @@ function sendPostRequest (basketId, email, token, status, elementToChange) {
 
   fetch("/api/v1/update_status", myRequest).then(
     function(answer) {
-      if (status == "Accepted by FoodTruck" ){
+      if (status == "Confirmed" ){
         elementToChange.innerHTML = status
         elementToChange.classList.add("accepted");
         elementToChange.classList.remove("declined");
-      } else if (status == "Declined by FoodTruck") {
+      } else if (status == "Declined") {
         elementToChange.innerHTML = status
         elementToChange.classList.remove("accepted");
         elementToChange.classList.add("declined");
@@ -35,7 +35,7 @@ function onClickAccept () {
   var token = userAndBasketInfo.getAttribute("data-user-token");
   var basketId = this.getAttribute("data-basket-id");
   var elementToChange = document.getElementById("basket-status");
-  var status = "Accepted by FoodTruck"
+  var status = "Confirmed"
 
   sendPostRequest(basketId, email, token, status, elementToChange)
 }
@@ -46,7 +46,7 @@ function onClickDecline () {
   var token = userAndBasketInfo.getAttribute("data-user-token");
   var basketId = this.getAttribute("data-basket-id");
   var elementToChange = document.getElementById("basket-status");
-  var status = "Declined by FoodTruck"
+  var status = "Declined"
   sendPostRequest(basketId, email, token, status, elementToChange)
 }
 

@@ -8,9 +8,11 @@
   .image {
     width: 100%;
     overflow: hidden;
-    height: 154px;
+    height: 150px;
     border-radius: 6px;
     position: relative;
+    background-size: cover !important;
+    background-position-y: center;
   }
   .content {
     padding: 10px 0px 5px 0px;

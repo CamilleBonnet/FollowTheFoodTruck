@@ -9,7 +9,8 @@ class Api::V1::ChoicesController < Api::V1::BaseController
     @choice = Choice.where(user: current_registration.user, basket: basket, meal: meal).last || Choice.new(meal: meal, user: current_registration.user, basket: basket, quantity: 0)
 
     if @choice.update(choice_params)
-      flash[:notive] = "Choice updated"
+      @choice.update(price: (@choice.quantity * @choice.meal.price))
+      basket.update(total_price: basket.choices.sum(&:price))
     else
       flash[:alert] = "Choice could not be update"
       render_error

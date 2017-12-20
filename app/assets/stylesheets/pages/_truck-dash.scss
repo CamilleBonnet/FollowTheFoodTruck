@@ -33,9 +33,25 @@
   margin-top: 100px;
 }
 
+.responsive-meal-picture {
+      width: 90px;
+    height: 90px;
+    background-size: cover;
+    background-position: center;
+}
+
+
+@media(max-width: 768px) {
+.truck-information {
+  margin-top: 20px;
+}
+}
+@media(min-width: 768px) {
 .truck-information {
   margin-top: 100px;
 }
+}
+
 
 .image-meal {
   position: relative;

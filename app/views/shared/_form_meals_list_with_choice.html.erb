@@ -2,9 +2,10 @@
 <div id="user-and-meal-info" class="media media-meal" data-user-token="<%= current_user.registration.authentication_token %>" data-user-mail="<%= current_user.registration.email %>">
   <div class="media-left">
     <% if meal.photo? %>
-      <%= cl_image_tag meal.photo.path, class:"avatar-square" %>
+    <div class="responsive-meal-picture" style="background-image:url(' <%= cl_image_path meal.photo.path %>');"></div>
+
     <% else %>
-      <%= image_tag 'streetsurfer-foodtruck.jpg', class:"avatar-square" %>
+        <div class="responsive-meal-picture" style="background-image:url('<%= image_path 'streetsurfer-foodtruck.jpg' %>');"></div>
     <% end %>
   </div>
   <div class="media-body">

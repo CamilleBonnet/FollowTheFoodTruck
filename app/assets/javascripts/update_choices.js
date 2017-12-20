@@ -10,7 +10,7 @@ function onClickPlus () {
   var elementToChange = this.nextElementSibling
   var change = 1
   var number = Number.parseInt(elementToChange.innerHTML, 10) + change;
-  sendPostRequest(meal_id, number, email, token, elementToChange, change);
+  sendPostRequestChoice(meal_id, number, email, token, elementToChange, change);
 }
 
 function onClickMinus () {
@@ -24,11 +24,11 @@ function onClickMinus () {
   var change = -1
   var number = Number.parseInt(elementToChange.innerHTML, 10) + change;
   if (number >= 0) {
-    sendPostRequest(meal_id, number,email, token, elementToChange, change);
+    sendPostRequestChoice(meal_id, number,email, token, elementToChange, change);
   }
 }
 
-function sendPostRequest (meal_id, value, email, token, elementToChange, change) {
+function sendPostRequestChoice (meal_id, value, email, token, elementToChange, change) {
   var myBody = {
     meal_id: meal_id,
     quantity: value
@@ -57,7 +57,7 @@ function sendPostRequest (meal_id, value, email, token, elementToChange, change)
     });
 }
 
-function eventManager(){
+function eventManagerChoice(){
   var allPlusQuantity = document.querySelectorAll(".ftft-plus.ftft-choice.fa-stack");
   var allMinusQuantity = document.querySelectorAll(".ftft-minus.ftft-choice.fa-stack");
 
@@ -70,5 +70,5 @@ function eventManager(){
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-  eventManager();
+  eventManagerChoice();
 });

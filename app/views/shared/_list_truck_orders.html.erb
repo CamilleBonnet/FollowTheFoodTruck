@@ -31,7 +31,7 @@
           <i class="fa fa-times " aria-hidden="true" data-basket-id="<%= basket.id %>"></i>
         </p>
     <% end %>
-    <% if basket.status == "confirmed" || basket.status == "Payed by Customer" || basket.status == "Accepted by FoodTruck" || basket.status == "Declined by FoodTruck" %>
+    <% if basket.status == "confirmed" || basket.status == "Payed by Customer" || basket.status == "Accepted by FoodTruck" %>
         <p class="accepted">
           <i class="fa fa-check " aria-hidden="true" data-basket-id="<%= basket.id %>"></i>
         </p>

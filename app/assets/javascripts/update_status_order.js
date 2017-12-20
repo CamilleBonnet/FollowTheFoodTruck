@@ -55,10 +55,10 @@ function eventManagerStatus(){
   var allAcceptButtons = document.querySelectorAll(".fa.fa-check");
   var allDeclineButtons = document.querySelectorAll(".fa.fa-times");
 
-  allAcceptButtons.forEach((btn) => {
+  allAcceptButtons.forEach(function(btn) {
     btn.addEventListener("click", onClickAccept);
   });
-  allDeclineButtons.forEach((btn) => {
+  allDeclineButtons.forEach(function(btn) {
     btn.addEventListener("click", onClickDecline);
   });
 

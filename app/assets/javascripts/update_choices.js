@@ -60,10 +60,10 @@ function eventManagerChoice(){
   var allPlusQuantity = document.querySelectorAll(".ftft-plus.ftft-choice.fa-stack");
   var allMinusQuantity = document.querySelectorAll(".ftft-minus.ftft-choice.fa-stack");
 
-  allPlusQuantity.forEach((btn) => {
+  allPlusQuantity.forEach(function(btn) {
     btn.addEventListener("click", onClickPlus);
   });
-  allMinusQuantity.forEach((btn) => {
+  allMinusQuantity.forEach(function(btn) {
     btn.addEventListener("click", onClickMinus);
   });
 }

@@ -34,7 +34,7 @@ function onClickAccept () {
   var email = userAndBasketInfo.getAttribute("data-user-mail");
   var token = userAndBasketInfo.getAttribute("data-user-token");
   var basketId = this.getAttribute("data-basket-id");
-  var elementToChange = document.getElementById(`basket-status-${basketId}`)
+  var elementToChange = document.getElementById("basket-status-".concat(basketId))
   var status = "Accepted by FoodTruck";
 
   sendPostRequestStatus(basketId, email, token, status, elementToChange);
@@ -45,7 +45,7 @@ function onClickDecline () {
   var email = userAndBasketInfo.getAttribute("data-user-mail");
   var token = userAndBasketInfo.getAttribute("data-user-token");
   var basketId = this.getAttribute("data-basket-id");
-  var elementToChange = document.getElementById(`basket-status-${basketId}`)
+  var elementToChange = document.getElementById("basket-status-".concat(basketId))
   var status = "Declined by FoodTruck";
 
   sendPostRequestStatus(basketId, email, token, status, elementToChange);
@@ -55,10 +55,10 @@ function eventManagerStatus(){
   var allAcceptButtons = document.querySelectorAll(".fa.fa-check");
   var allDeclineButtons = document.querySelectorAll(".fa.fa-times");
 
-  allAcceptButtons.forEach((btn) => {
+  allAcceptButtons.forEach(function(btn) {
     btn.addEventListener("click", onClickAccept);
   });
-  allDeclineButtons.forEach((btn) => {
+  allDeclineButtons.forEach(function(btn) {
     btn.addEventListener("click", onClickDecline);
   });
 

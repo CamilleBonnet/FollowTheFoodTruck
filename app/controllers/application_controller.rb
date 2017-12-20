@@ -11,5 +11,9 @@ class ApplicationController < ActionController::Base
 
   def user_signed_in?
    registration_signed_in?
- end
+  end
+
+  def default_url_options
+    { host: ENV["HOST"] || "localhost:3000" }
+  end
 end

@@ -5,7 +5,7 @@ class Registration < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:facebook]
 
-  has_one :user
+  has_one :user, dependent: :destroy
 
   acts_as_token_authenticatable
 

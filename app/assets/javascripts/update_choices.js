@@ -1,6 +1,5 @@
 
 function onClickPlus () {
-  console.log("HELLOOOOO")
   var userAndMealInfo = document.getElementById("user-and-meal-info");
   var email = userAndMealInfo.getAttribute("data-user-mail");
   var token = userAndMealInfo.getAttribute("data-user-token");

@@ -1,4 +1,4 @@
-function sendPostRequestStatus (basketId, email, token, status, elementToChange) {
+function sendPostRequest (basketId, email, token, status, elementToChange) {
   var myBody = {
     basket_id: basketId,
     status: status
@@ -23,11 +23,11 @@ function sendPostRequestStatus (basketId, email, token, status, elementToChange)
       } else if (status == "Declined by FoodTruck") {
         elementToChange.innerHTML = status
         elementToChange.classList.remove("accepted");
-        elementToChange.classList.remove("pending");
         elementToChange.classList.add("declined");
       }
     });
 }
+
 
 function onClickAccept () {
   var userAndBasketInfo = document.getElementById("user-and-basket-info");
@@ -37,7 +37,7 @@ function onClickAccept () {
   var elementToChange = document.getElementById("basket-status-".concat(basketId))
   var status = "Accepted by FoodTruck";
 
-  sendPostRequestStatus(basketId, email, token, status, elementToChange);
+  sendPostRequest(basketId, email, token, status, elementToChange)
 }
 
 function onClickDecline () {
@@ -51,7 +51,7 @@ function onClickDecline () {
   sendPostRequestStatus(basketId, email, token, status, elementToChange);
 }
 
-function eventManagerStatus(){
+function eventManager(){
   var allAcceptButtons = document.querySelectorAll(".fa.fa-check");
   var allDeclineButtons = document.querySelectorAll(".fa.fa-times");
 
@@ -60,10 +60,10 @@ function eventManagerStatus(){
   });
   allDeclineButtons.forEach(function(btn) {
     btn.addEventListener("click", onClickDecline);
-  });
+  })
 
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-  eventManagerStatus();
+  eventManager();
 });

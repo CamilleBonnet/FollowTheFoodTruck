@@ -1,6 +1,5 @@
 .ftft-btn {
   margin-bottom: 15px;
-
 }
 
 .ftft-color{
@@ -10,9 +9,10 @@
 }
 
 .ftft-color:hover {
-  background-color: $btn-color-main-darker;
+  background-color: $btn-color-main;
   text-decoration: none;
   color: white;
+  opacity:0.7;
 }
 
 .ftft-plus{
@@ -32,13 +32,35 @@
 }
 
 .ftft-choice{
-
 }
 
 .ftft-choice:hover{
   text-decoration: none;
   opacity: 0.7;
 }
+
+.ftft-color-reverse {
+  color: $btn-color-main;
+  background-color: white;
+  text-decoration: none;
+  border: 1px solid $btn-color-main;
+}
+
+.ftft-color-reverse:hover {
+  opacity:0.7;
+  color: $btn-color-main;
+}
+
+.facebook {
+  background-color: #4868ad;
+  text-decoration: none;
+  color: white;
+}
+
+.facebook:hover {
+  background-color: #4868ad;
+  text-decoration: none;
+  color: white;
 
 .add-button {
       font-size: 15px;
@@ -53,4 +75,5 @@
     align-items: center;
     top: 6px;
     margin-left: 10px;
+
 }

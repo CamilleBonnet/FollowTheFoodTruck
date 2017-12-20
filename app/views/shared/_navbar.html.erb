@@ -1,15 +1,9 @@
 <div class="navbar-wagon">
   <!-- Logo -->
   <%= link_to root_path, class: "navbar-wagon-brand" do %>
-  <%= image_tag "ftt.png", height: 50 %>
+  <%= image_tag "logo food.png", height: 50 %>
   <% end %>
 
-  <div class="search-form-wrapper hidden-xs">
-    <form action="<%= trucks_path %>" method="get" class="form-inline" for="flat_address">
-      <%= text_field_tag :city_user, params[:city_user], id:"food_truck_address", :autofocus => true, required: false, class:"text-left search-navbar" %>
-      <%= submit_tag "Search", :name => nil, class: "btn ftft-btn btn-danger", style:"margin-bottom : 0px;" %>
-    </form>
-  </div>
 
   <!-- Right Navigation -->
 
@@ -17,14 +11,14 @@
     <% if user_signed_in? %>
 
     <!-- Links when logged in -->
-    <%= link_to "All the trucks", trucks_path, class: "navbar-wagon-item navbar-wagon-link" %>
     <% if Truck.find_by(user: current_user) %>
       <%= link_to "My truck", owner_truck_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to "Meals to prepare", order_owner_truck_path, class: "navbar-wagon-item navbar-wagon-link" %>
     <% else %>
+      <%= link_to "All the trucks", trucks_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to "Become a Truck Owner", new_truck_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "My orders", myorders_path, class: "navbar-wagon-item navbar-wagon-link" %>
     <% end %>
-    <%= link_to "My orders", myorders_path, class: "navbar-wagon-item navbar-wagon-link" %>
 
     <!-- Avatar with dropdown menu -->
     <div class="navbar-wagon-item">
@@ -32,7 +26,7 @@
         <% if current_user.photo? %>
         <%= cl_image_tag current_user.photo.path, class: "avatar dropdown-toggle", class: "avatar dropdown-toggle" , id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
         <% else %>
-        <%= image_tag current_user.facebook_picture_url ||  "http://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", class: "avatar dropdown-toggle" , id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
+        <%= image_tag current_user.facebook_picture_url ||  "user.png", class: "avatar dropdown-toggle", class: "avatar dropdown-toggle" , id: "navbar-wagon-menu", "data-toggle" => "dropdown" %>
         <% end %>
         <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
           <li>
@@ -80,13 +74,11 @@
           <%= link_to new_truck_path, class: "navbar-wagon-item navbar-wagon-link" do %>
           <i class="fa fa-briefcase"></i> Become a truck owner
           <% end %>
-        </li>
-        <% end %>
-        <li>
           <%= link_to myorders_path, class: "navbar-wagon-item navbar-wagon-link" do %>
           <i class="fa fa-shopping-cart"></i> My orders
           <% end %>
         </li>
+        <% end %>
         <li>
           <%= link_to myprofile_path do %>
           <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>

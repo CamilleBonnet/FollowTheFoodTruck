@@ -55,8 +55,17 @@
     </div>
 
   </div>
-</div>
-
+  <div class="row">
+      <div class="col-xs-12">
+        <div class="btn-show text-center">
+          <% if @basket.nil?%>
+            <%= link_to "Order (0)", payorder_truck_path(@truck), id:"order-btn", class:"btn ftft-btn btn-danger disabled" %>
+          <% else  %>
+            <%= link_to "Order (" + @basket.choices.sum(&:quantity).to_s + ")", payorder_truck_path(@truck), id:"order-btn", class:"btn ftft-btn btn-danger" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
 </div>
 
 

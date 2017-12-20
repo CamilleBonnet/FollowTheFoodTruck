@@ -3,7 +3,7 @@
     <% if basket.user.photo? %>
     <%= cl_image_tag basket.user.photo.path, class: "avatar" %>
     <% else %>
-    <%= image_tag basket.user.facebook_picture_url || "http://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar " %>
+    <%= image_tag basket.user.facebook_picture_url || "user.png", class: "avatar " %>
     <% end %>
     <div class="message-name">
       <h3><%= basket.user.first_name %></h3>
@@ -17,11 +17,11 @@
   </div>
   <div class="message-body">
     <% if basket.status == "pending" %>
-      <p id="basket-status-<%= basket.id %>" class="status pending"><%= basket.status.capitalize %></p>
-    <% elsif basket.status == "confirmed" || basket.status == "Payed by Customer" || basket.status == "Accepted by FoodTruck" %>
-      <p id="basket-status-<%= basket.id %>" class="status accepted"><%= basket.status %></p>
-    <% elsif basket.status == "Declined by FoodTruck" %>
-      <p id="basket-status-<%= basket.id %>" class="status declined"><%= basket.status %></p>
+      <p id="basket-status" class="status pending"><%= basket.status.capitalize %></p>
+    <% elsif basket.status == "accepted" || basket.status == "Payed by Customer" || basket.status == "Accepted by FoodTruck" %>
+      <p id="basket-status" class="status accepted"><%= basket.status %></p>
+    <% elsif basket.status == "Declined" %>
+      <p id="basket-status" class="status declined"><%= basket.status %></p>
     <% end %>
     <p class="price"><%= basket.total_price %>€</p>
   </div>
@@ -31,13 +31,14 @@
           <i class="fa fa-times " aria-hidden="true" data-basket-id="<%= basket.id %>"></i>
         </p>
     <% end %>
-    <% if basket.status == "confirmed" || basket.status == "Payed by Customer" || basket.status == "Accepted by FoodTruck" %>
-        <p class="accepted">
-          <i class="fa fa-check " aria-hidden="true" data-basket-id="<%= basket.id %>"></i>
-        </p>
-        <p class="declined">
-          <i class="fa fa-times " aria-hidden="true" data-basket-id="<%= basket.id %>"></i>
-        </p>
+
+    <% if basket.status == "accepted" || basket.status == "Payed by Customer" || basket.status == "Accepted by FoodTruck" || basket.status == "Declined" %>
+      <%#= link_to accepted_by_food_truck_truck_basket_path(basket.truck, basket) do %>
+        <p class="accepted"><i class="fa fa-check " aria-hidden="true" data-basket-id="<%= basket.id %>"></i></p>
+      <%# end %>
+      <%#= link_to declined_by_food_truck_truck_basket_path(basket.truck, basket) do %>
+        <p class="declined"><i class="fa fa-times " aria-hidden="true" data-basket-id="<%= basket.id %>"></i></p>
+      <%# end %>
     <% end %>
   </div>
 </div>

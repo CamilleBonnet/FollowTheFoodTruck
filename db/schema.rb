@@ -46,9 +46,9 @@ ActiveRecord::Schema.define(version: 20171220141643) do
     t.index ["attachinariable_type", "attachinariable_id", "scope"], name: "by_scoped_parent", using: :btree
   end
 
-  create_table "baskets", id: :bigserial, force: :cascade do |t|
-    t.bigint   "user_id"
-    t.bigint   "truck_order_list_id"
+  create_table "baskets", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "truck_order_list_id"
     t.date     "date"
     t.datetime "time"
     t.string   "status"

@@ -58,7 +58,11 @@ class TrucksController < ApplicationController
   end
 
   def update
-    @truck.update(truck_params)
+    if @truck.update(truck_params)
+      flash[:notice] = "Truck was edited"
+    else
+      flash[:alert] = "Truck was not edited"
+    end
     redirect_to owner_truck_path
   end
 

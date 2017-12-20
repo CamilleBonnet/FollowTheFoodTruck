@@ -34,8 +34,45 @@
 .ftft-choice{
 
 }
-
 .ftft-choice:hover{
   text-decoration: none;
   opacity: 0.7;
 }
+
+
+
+.btn-followtruck {
+  color: white;
+  padding: 10px 15px;
+  border-radius: 4px;
+  font-weight: bold;
+  background: $btn-color-main;
+  transition: background 0.3s ease;
+  border: 1px solid btn-color-main-darker;
+}
+.btn-followtruck:hover {
+  opacity: 1;
+  background: $btn-color-main-darker;
+  text-decoration: none;
+  color: white;
+  border: 1px solid btn-color-main-darker;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

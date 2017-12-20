@@ -1,6 +1,19 @@
+<% addresses.each do |address| %>
+  <div class="col-xs-12 col-sm-12 address-card">
+    <p><%= address.street_address %></p>
+    <p><%= address.street_address_2 %></p>
+    <p><%= address.city %></p>
+    <p><%= address.zipcode %></p>
+    <p><%= address.more_info %></p>
+      <div class="footer">
+        <%= link_to "Edit", edit_truck_address_path(@truck, address), class: "btn ftft-btn btn-primary" %>
 
-  <p><%= address.street_address %></p>
-  <p><%= address.street_address_2 %></p>
-  <p><%= address.city %></p>
-  <p><%= address.zipcode %></p>
-  <p><%= address.more_info %></p>
+        <%= link_to "Delete", address_path(address), method: :delete,data: { confirm: "Are you sure?" }, class: "btn ftft-btn btn-danger" %>
+        <%= link_to "Set to Active", set_active_address_truck_address_path(@truck, address),class: "btn ftft-btn btn-warning" %>
+      </div>
+  </div>
+
+  <br>
+  <br>
+
+<% end %>

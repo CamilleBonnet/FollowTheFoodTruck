@@ -4,6 +4,10 @@ class BasketsController < ApplicationController
   before_action :set_truck, only: [:show]
 
   def show
+    @marker = Gmaps4rails.build_markers(@basket.truck.address) do |address, marker|
+      marker.lat address.latitude
+      marker.lng address.longitude
+    end
   end
 
   def update
@@ -29,7 +33,13 @@ class BasketsController < ApplicationController
   end
 
   def payment_status
+    @basket = Basket.where(truck_id: params[:id], user: current_user).last
     # @basket.update(status: "Payed by Customer")
+
+    @marker = Gmaps4rails.build_markers(@basket.truck.address) do |address, marker|
+      marker.lat address.latitude
+      marker.lng address.longitude
+    end
   end
 
   def payment_with_stripe

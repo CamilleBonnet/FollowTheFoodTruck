@@ -8,14 +8,14 @@
         </ul>
       <% end %>
       <span>Amount: <%= humanized_money_with_symbol(@basket.total_price) %></span>
-      <%= form_tag payment_with_stripe_truck_basket_path(@truck, @basket) do %>
+      <%= form_tag payment_with_stripe_truck_path(@truck) do %>
         <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-        data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-        data-name="My Teddy"
-        data-email="<%= current_user.registration.email %>"
-        data-amount="<%= @basket.total_price_cents %>"
-        data-currency="<%= @basket.total_price.currency %>"></script>
-
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          data-name="My Order"
+          data-email="<%= current_user.registration.email %>"
+          data-amount="<%= @basket.total_price_cents %>"
+          data-currency="<%= @basket.total_price.currency %>">
+        </script>
       <% end %>
     </div>
   </div>

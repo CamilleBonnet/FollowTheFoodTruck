@@ -4,7 +4,7 @@
       <h3 class="text-center"><%= @user.first_name %>, here is a list of all your current orders</h3>
 
       <div class="message-order">
-        <% @user.baskets.each do |basket| %>
+        <% @user.baskets.order(:status).each do |basket| %>
         <%= render 'shared/list_user_orders', basket: basket %>
         <% end %>
       </div>

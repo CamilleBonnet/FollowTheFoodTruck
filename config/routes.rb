@@ -12,29 +12,37 @@ Rails.application.routes.draw do
   # routes for API
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-        # get '/update_choice', to: "choices#show", as: "updated_choice"
         post  '/update_choice', to: "choices#update", as: "update_choice"
-    end
-  end
-
-  resources :trucks, except: [:edit] do
-    resources :meals, only: [:create, :edit, :update]
-    resources :addresses, only: [:create, :edit, :update] do
-      member do
-        get '/SetAddressActive', to: "addresses#set_active_address", as: "set_active_address"
+        post  '/update_status', to: "status#update", as: "update_status"
       end
     end
-    resources :calendars, only: [:create, :edit]
-    # resources :truck_order_lists, only: [:create, :update]
-    resources :choices, only: [:create, :update]
-    resources :baskets, only: [:show, :update] do
+
+    resources :trucks, except: [:edit] do
       member do
+        get '/PaymentStatus', to: "baskets#payment_status", as: "payment_status"
+        post '/PaymentStatus', to: "baskets#payment_with_stripe", as: "payment_with_stripe"
+        get '/payOrder', to: "baskets#show", as: "payorder"
+      end
+      resources :basket, only: [] do
+        member do
           get '/PaymentStatus', to: "baskets#payment_status", as: "payment_status"
-          post '/PaymentStatus', to: "baskets#payment_with_stripe", as: "payment_with_stripe"
           get '/AcceptedByFoodTruck', to: "baskets#accepted_by_food_truck", as: "accepted_by_food_truck"
           get '/DeclinedByFoodTruck', to: "baskets#declined_by_food_truck", as: "declined_by_food_truck"
         end
       end
+
+      resources :meals, only: [:create, :edit, :update]
+      resources :addresses, only: [:create, :edit, :update] do
+        member do
+          get '/SetAddressActive', to: "addresses#set_active_address", as: "set_active_address"
+        end
+      end
+      resources :calendars, only: [:create, :edit]
+    # resources :truck_order_lists, only: [:create, :update]
+    resources :choices, only: [:create, :update]
+    # resources :baskets, only: [:show :update] do
+
+      # end
 
     # resources :truck_order_lists, only: [:create, :update]
   end

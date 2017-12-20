@@ -1,6 +1,8 @@
 class BasketsController < ApplicationController
-  before_action :set_basket
-  before_action :set_truck, only: [:show, :payment_status]
+  before_action :set_basket, except: [:accepted_by_food_truck, :declined_by_food_truck, :destroy]
+  before_action :set_basket_status, only: [:accepted_by_food_truck, :declined_by_food_truck, :destroy]
+  before_action :set_truck, only: [:show]
+
   def show
   end
 
@@ -27,9 +29,7 @@ class BasketsController < ApplicationController
   end
 
   def payment_status
-    # here sripe
-    @basket.update(status: "Payed by Customer")
-
+    # @basket.update(status: "Payed by Customer")
   end
 
   def payment_with_stripe
@@ -46,11 +46,11 @@ class BasketsController < ApplicationController
       )
 
     @basket.update(payment: charge.to_json, status: 'Payed by Customer')
-    redirect_to payment_status_truck_basket_path
+    redirect_to payment_status_truck_path(@basket.truck)
 
-  rescue Stripe::CardError => e
-    flash[:alert] = e.message
-    redirect_to truck_basket(@basket.truck, @basket)
+    rescue Stripe::CardError => e
+      flash[:alert] = e.message
+      redirect_to payorder_truck_path(@basket.truck)
   end
 
   def destroy
@@ -62,18 +62,17 @@ class BasketsController < ApplicationController
     redirect_to myorders_path
   end
 
-
-
-
-
   private
 
   def set_basket
+    @basket = Basket.where(truck_id: params[:id], user: current_user, status: "pending").last
+  end
+  def set_basket_status
     @basket = Basket.find(params[:id])
   end
 
   def set_truck
-    @truck = Truck.find(params[:truck_id])
+    @truck = Truck.find(params[:id])
   end
 
 end

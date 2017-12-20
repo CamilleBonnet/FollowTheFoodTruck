@@ -1,9 +1,31 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-12">
-      <h1>Payement was <em>"need to add the status of the payment"</em></h1>
-      <h2>You can pick up you food at <em>Need to do an address set_active function !</em></h2>
-      <div class="map">Need to add a map here</div>
+    <div class="col-xs-12 col-md-6 col-md-offset-3">
+      <div class="text-center">
+      <h1>Payment</h1>
+      </div>
+      <div class="form-login">
+        <em>"was need to add the status of the payment"</em>
+        <h2>You can pick up you food at <em>Need to do an address set_active function !</em></h2>
+      </div>
     </div>
   </div>
 </div>
+<br>
+<div id="map-show" style="width: 100vw; height: 50vh;"></div>
+
+<% content_for(:after_js) do %>
+<script>
+  var handler = Gmaps.build('Google');
+  handler.buildMap({ internal: { id: 'map-show' } }, function() {
+    markers = handler.addMarkers(<%= raw @marker.to_json %>);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+    if (markers.length == 0) {
+      handler.getMap().setZoom(2);
+    } else if (markers.length == 1) {
+      handler.getMap().setZoom(14);
+    }
+  });
+</script>
+<% end %>

@@ -21,58 +21,47 @@
     </div>
   </div>
 </div>
-<div class="meals-section row">
-  <div class="meal-title text-center">
-    <h2> Meals</h2>
-    <%= render "shared/meal_popin" %>
-  </div>
-  <% @truck.meals.each do |meal| %>
-  <div class="col-md-4 col-sm-6 col-xs-12">
-    <div class="image-meal">
-      <div class="meal-image-actions">
-        <%= link_to edit_truck_meal_path(@truck, meal) do %>
-        <p class="pencil"><i class="fa fa-pencil" aria-hidden="true"></i></p>
-        <% end %>
 
-        <%= link_to meal_path(meal), method: :delete, data: { confirm: "Are you sure?" } do %>
-        <p class="delete"><i class="fa fa-times" aria-hidden="true"></i></p>
-        <% end %>
-      </div>
-
-      <%= cl_image_tag meal.photo.path, class:"photo-full-width" if meal.photo? %>
+<div class="container meals-section">
+  <div class="row">
+    <div class="meal-title text-center">
+      <h2 class="relative"> Meals
+        <button type="button" data-toggle="modal" data-target="#meal" class="meal-class add-button">
+          <i class="fa fa-plus" aria-hidden="true"></i>
+        </button>
+      </h2>
+      <%= render "shared/meal_popin" %>
     </div>
-    <div class="title">
-      <h4><%= meal.description%> </h4>
-      Price : <%= meal.price %> €
+    <% @truck.meals.each do |meal| %>
+    <div class="col-md-4 col-sm-6 col-xs-12">
+      <%= render partial: "shared/meal_card", locals: { meal: meal, big: true } %>
     </div>
-    <%="Vegan? " + (meal.is_vegan ? 'Yes' : 'No').to_s unless meal.is_vegan == false %>
-    <br>
-    <%= "Alergen? " + (meal.is_alergen ? 'Yes' : 'No').to_s unless meal.is_alergen == false %>
-    <%= "Gluten free? " + (meal.is_gluten_free ? 'Yes' : 'No').to_s unless meal.is_gluten_free == false %>
-    <%= "Fat free? " + (meal.is_fat_free ? 'Yes' : 'No').to_s unless meal.is_fat_free == false %>
-    <%= "How Spicy : " + (meal.spicy_scale).to_s unless meal.spicy_scale == nil %>
-    <br>
-
+    <% end %>
   </div>
-  <% end %>
 </div>
-
 
 <div class="locations-section">
- <h2 class="text-center"> Location</h2>
+  <div class="address-title text-center">
+ <h2 class="text-center relative">
+ Location
+<button type="button"  data-toggle="modal" data-target="#address" class="meal-class add-button">
+  <i class="fa fa-plus" aria-hidden="true"></i>
+</button>
+</h2>
+  <%= render "shared/address_popin" %>
+ </div>
 
- <div class="row">
-    <div class="col-xs-12 col-sm-5 col-sm-offset-1">
-      <h3>Your locations: (<%= @truck.addresses.length %>)</h3>
-      <% unless @truck.addresses.length < 1 %>
-        <%= render 'shared/description_address', addresses: @truck.addresses, truck: @truck %>
-      <% end %>
-    </div>
-  <div class="col-xs-12 col-sm-5">
-    <div class="truck-form">
-      <h3 class="text-center">Add an address</h3>
-      <%= render "shared/form_new_address" %>
+  <div class="container">
+     <div class="row addresses">
+        <h3>
+          Your locations: (<%= @truck.addresses.length %>)
+        </h3>
+        <% unless @truck.addresses.length < 1 %>
+          <%= render 'shared/description_address', addresses: @truck.addresses, truck: @truck %>
+        <% end %>
     </div>
   </div>
 </div>
-</div>
+
+
+

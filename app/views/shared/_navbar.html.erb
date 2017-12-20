@@ -11,11 +11,11 @@
     <% if user_signed_in? %>
 
     <!-- Links when logged in -->
+    <%= link_to "All the trucks", trucks_path, class: "navbar-wagon-item navbar-wagon-link" %>
     <% if Truck.find_by(user: current_user) %>
       <%= link_to "My truck", owner_truck_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to "Meals to prepare", order_owner_truck_path, class: "navbar-wagon-item navbar-wagon-link" %>
     <% else %>
-      <%= link_to "All the trucks", trucks_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to "Become a Truck Owner", new_truck_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to "My orders", myorders_path, class: "navbar-wagon-item navbar-wagon-link" %>
     <% end %>
@@ -63,51 +63,53 @@
       <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
       <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
         <% if user_signed_in? %>
-        <li><% if Truck.find_by(user: current_user) %>
-          <%= link_to owner_truck_path, class: "navbar-wagon-item navbar-wagon-link" do %>
-          <i class="fa fa-briefcase"></i> My truck
-          <% end %>
-          <%= link_to order_owner_truck_path, class: "navbar-wagon-item navbar-wagon-link" do %>
-          <i class="fa fa-cutlery"></i> Meals to prepare
-          <% end %>
+          <li>
+            <% if Truck.find_by(user: current_user) %>
+              <%= link_to owner_truck_path, class: "navbar-wagon-item navbar-wagon-link" do %>
+                <i class="fa fa-briefcase"></i> My truck
+              <% end %>
+              <%= link_to order_owner_truck_path, class: "navbar-wagon-item navbar-wagon-link" do %>
+                <i class="fa fa-cutlery"></i> Meals to prepare
+              <% end %>
+            <% else %>
+              <%= link_to new_truck_path, class: "navbar-wagon-item navbar-wagon-link" do %>
+                <i class="fa fa-briefcase"></i> Become a truck owner
+              <% end %>
+              <%= link_to myorders_path, class: "navbar-wagon-item navbar-wagon-link" do %>
+                <i class="fa fa-shopping-cart"></i> My orders
+              <% end %>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to myprofile_path do %>
+              <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to edit_user_profile_path(current_user) do %>
+              <i class="fa fa-cog"></i>  <%= t(".settings", default: "Edit profile") %>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to destroy_registration_session_path, method: :delete do %>
+              <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
+            <% end %>
+          </li>
           <% else %>
-          <%= link_to new_truck_path, class: "navbar-wagon-item navbar-wagon-link" do %>
-          <i class="fa fa-briefcase"></i> Become a truck owner
-          <% end %>
-          <%= link_to myorders_path, class: "navbar-wagon-item navbar-wagon-link" do %>
-          <i class="fa fa-shopping-cart"></i> My orders
-          <% end %>
-        </li>
-        <% end %>
-        <li>
-          <%= link_to myprofile_path do %>
-          <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
-          <% end %>
-        </li>
-        <li>
-          <%= link_to edit_user_profile_path(current_user) do %>
-          <i class="fa fa-cog"></i>  <%= t(".settings", default: "Edit profile") %>
-          <% end %>
-        </li>
-        <li>
-          <%= link_to destroy_registration_session_path, method: :delete do %>
-          <i class="fa fa-sign-out"></i>  <%= t(".sign_out", default: "Log out") %>
-          <% end %>
-          <% else %>
-        <li>
-          <%= link_to trucks_path, class: "navbar-wagon-item navbar-wagon-link" do %>
-            <i class="fa fa-truck"></i> All the trucks
-          <% end %>
-          <%= link_to new_truck_path, class: "navbar-wagon-item navbar-wagon-link" do %>
-            <i class="fa fa-briefcase"></i> Become a truck owner
-          <% end %>
-          <%= link_to new_registration_registration_path do %>
-            <i class="fa fa-sign-in" aria-hidden="true"></i> <%= t(".sign_up", default: "Sign up") %>
-          <% end %>
-          <%= link_to new_registration_session_path do %>
-            <i class="fa fa-sign-in" aria-hidden="true"></i><%= t(".sign_in", default: " Login") %>
-          <% end %>
-        </li>
+          <li>
+            <%= link_to trucks_path, class: "navbar-wagon-item navbar-wagon-link" do %>
+              <i class="fa fa-truck"></i> All the trucks
+            <% end %>
+            <%= link_to new_truck_path, class: "navbar-wagon-item navbar-wagon-link" do %>
+              <i class="fa fa-briefcase"></i> Become a truck owner
+            <% end %>
+            <%= link_to new_registration_registration_path do %>
+              <i class="fa fa-sign-in" aria-hidden="true"></i> <%= t(".sign_up", default: "Sign up") %>
+            <% end %>
+            <%= link_to new_registration_session_path do %>
+              <i class="fa fa-sign-in" aria-hidden="true"></i><%= t(".sign_in", default: " Login") %>
+            <% end %>
+          </li>
         <% end %>
         </ul>
       </div>

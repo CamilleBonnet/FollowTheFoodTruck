@@ -1,7 +1,7 @@
 .message {
   display: flex;
-  // align-items: center;
-  // padding: 20px;
+  align-items: center;
+  padding: 20px;
   border-bottom: 1px solid rgba(220,224,244,0.4);
 }
 .message:last-child {
@@ -52,7 +52,7 @@
   color: red;
 }
 .pending {
-  color: $light-gray;
+  color: $gray;
 }
 .info{
   color:$blue;

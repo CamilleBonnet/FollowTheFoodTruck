@@ -1,0 +1,18 @@
+.grey-box {
+  background: $light-gray;
+  padding:20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.yellow-box {
+  text-align: center;
+  height: 10vh;
+  /* if you have a 70px navbar => height: calc(100vh - 70px); */
+  background-color: $yellow;
+  background-size: cover !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $yellow;
+}

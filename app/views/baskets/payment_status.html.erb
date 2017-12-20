@@ -1,12 +1,16 @@
+<div class="yellow-box">
+  <h6> Payment </h6>
+</div>
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-md-6 col-md-offset-3">
-      <div class="text-center">
-      <h1>Payment</h1>
-      </div>
       <div class="form-login">
-        <em>"was need to add the status of the payment"</em>
-        <h2>You can pick up you food at <em>Need to do an address set_active function !</em></h2>
+        <% @basket.choices.each do |choice| %>
+        <ul>
+          <li><%= choice.quantity %> x <%= choice.meal.description %> = <%= choice.price %>€</li>
+        </ul>
+        <% end %>
+        <h4 class="text-center">Your food is waiting for you here: <br><br><em><%= @basket.truck.address.street_address %></em></h4>
       </div>
     </div>
   </div>

@@ -1,0 +1,5 @@
+meta_product_name: "Product Name"
+meta_title: "Follow the Food Truck - Eat Outside !"
+meta_description: "FollowTheFoodTruck allows you to check where you're favorite food trucks are around, and directly order food from them before picking it up and eating outsite... Try it! Eat Ouside !"
+meta_image: "cover.png"                       # should exist in `app/assets/images/`
+# twitter_account: "@product_twitter_account"   # required for Twitter Cards

@@ -14,10 +14,10 @@
     <div><%= choice.quantity.to_s+": "+choice.meal.description %></div>
     <% end %>
   </div>
-  <div class="message-status">
+  <div class="message-body">
     <% if basket.status == "pending" %>
       <p class="status pending"><%= basket.status.capitalize %></p>
-    <% elsif basket.status == "confirmed" || basket.status == "Payed by Customer" || basket.status == "Confirmed"%>
+    <% elsif basket.status == "accepted" || basket.status == "Payed by Customer" || basket.status == "Accepted by FoodTruck"%>
       <p class="status accepted"><%= basket.status.capitalize %></p>
     <% elsif basket.status == "Declined" %>
       <p class="status declined"><%= basket.status.capitalize %></p>
@@ -36,7 +36,7 @@
         <p class="delete"><i class="fa fa-trash" aria-hidden="true"></i></p>
       <% end %>
     <% end %>
-    <% if basket.status == "confirmed" || basket.status == "Payed by Customer" || basket.status == "Confirmed"%>
+    <% if basket.status == "accepted" || basket.status == "Payed by Customer" || basket.status == "Accepted by FoodTruck"%>
       <%= link_to payment_status_truck_basket_path(basket.truck, basket) do %>
         <p class="info"><i class="fa fa-info" aria-hidden="true"></i></p>
       <% end %>

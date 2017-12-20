@@ -9,9 +9,10 @@
 }
 
 .ftft-color:hover {
-  background-color: $btn-color-main-darker;
+  background-color: $btn-color-main;
   text-decoration: none;
   color: white;
+  opacity:0.7;
 }
 
 .ftft-plus{

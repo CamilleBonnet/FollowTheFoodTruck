@@ -9,6 +9,32 @@
   align-items: center;
   justify-content: center;
 }
+
+.banner-small {
+  width: 100vw;
+    height: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+}
+
+.information-hidden-banner {
+  h2 {
+        color: white;
+    text-shadow: 2px 2px 4px rgba(1,1,1,0.3);
+  }
+  .label-type {
+        color: white;
+    background-color: $green;
+    display: inline-block;
+    padding: 2px 5px;
+    border-radius: 2px;
+  }
+}
 .banner h1 {
   font-size: 50px;
   font-weight: bold;

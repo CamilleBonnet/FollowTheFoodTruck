@@ -58,12 +58,20 @@ class TrucksController < ApplicationController
   end
 
   def update
-    @truck.update(truck_params)
+    if @truck.update(truck_params)
+      flash[:notice] = "The truck was successfully edited"
+    else
+      flash[:alert] = "The truck could not be updated"
+    end
     redirect_to owner_truck_path
   end
 
   def destroy
-    @truck.destroy
+    if @truck.destroy
+      flash[:notice] = "The truck was deleted"
+    else
+      flash[:alert] = "The truck could not be deleted"
+    end
     redirect_to trucks_path
   end
 

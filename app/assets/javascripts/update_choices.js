@@ -1,5 +1,6 @@
 
 function onClickPlus () {
+  console.log("HELLOOOOO")
   var userAndMealInfo = document.getElementById("user-and-meal-info");
   var email = userAndMealInfo.getAttribute("data-user-mail");
   var token = userAndMealInfo.getAttribute("data-user-token");
@@ -13,7 +14,7 @@ function onClickPlus () {
 }
 
 function onClickMinus () {
-    var userAndMealInfo = document.getElementById("user-and-meal-info");
+  var userAndMealInfo = document.getElementById("user-and-meal-info");
   var email = userAndMealInfo.getAttribute("data-user-mail");
   var token = userAndMealInfo.getAttribute("data-user-token");
 
@@ -62,12 +63,11 @@ function eventManager(){
 
   allPlusQuantity.forEach((btn) => {
     btn.addEventListener("click", onClickPlus);
-  })
+  });
   allMinusQuantity.forEach((btn) => {
     btn.addEventListener("click", onClickMinus);
-  })
+  });
 }
-
 
 document.addEventListener("DOMContentLoaded", function() {
   eventManager();

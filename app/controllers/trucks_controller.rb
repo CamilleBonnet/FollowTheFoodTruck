@@ -30,11 +30,18 @@ class TrucksController < ApplicationController
     # @basket = Basket.new
     # @tol = TruckOrderList.where(date: Date.today) || TruckOrderList.create(truck: @truck, date: Date.today)
     # @choice = Choice.new(truck: @truck, basket: @basket, user: current_user)
-    @basket = Basket.where(user: current_user, truck: @truck, status: "pending").last
-    @tables = []
-    @truck.meals.each_with_index do |meal, index|
-      @tables[index] = {meal: meal,
-                        choice: Choice.where(user_id: current_user.id, basket: @basket, meal_id: meal.id).last || Choice.new(meal_id: meal.id, user: current_user, quantity: 0)}
+    if user_signed_in?
+      @basket = Basket.where(user: current_user, truck: @truck, status: "pending").last
+      @tables = []
+      @truck.meals.each_with_index do |meal, index|
+        @tables[index] = {
+          meal: meal,
+          choice: Choice.where(
+            user_id: current_user.id,
+            basket: @basket,
+            meal_id: meal.id).last || Choice.new(meal_id: meal.id, user: current_user, quantity: 0)
+        }
+      end
     end
 
     @marker = Gmaps4rails.build_markers(@truck.addresses) do |address, marker|
@@ -107,6 +114,6 @@ class TrucksController < ApplicationController
   end
 
   def truck_params
-    params.require(:truck).permit(:name, :type_of_food, :pay_online, :payment_info, photos: [])
+    params.require(:truck).permit(:name, :type_of_food, :pay_online, :description, :payment_info, photos: [])
   end
 end

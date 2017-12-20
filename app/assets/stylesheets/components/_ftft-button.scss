@@ -61,4 +61,19 @@
   background-color: #4868ad;
   text-decoration: none;
   color: white;
+
+.add-button {
+      font-size: 15px;
+    position: absolute;
+    border: none;
+    background-color: #1ddb8b;
+    color: white;
+    width: 30px;
+    height: 30px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    top: 6px;
+    margin-left: 10px;
+
 }

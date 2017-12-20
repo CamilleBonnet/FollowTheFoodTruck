@@ -26,6 +26,20 @@
   border-radius: 6px;
   margin: 20px 0px 5px 0px;
 }
+
+.media-body {
+  display: flex;
+  justify-content: space-between;
+  .media-footer-container {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.media.media-meal {
+      display: flex;
+}
+
 .media-meal {
   padding: 10px 5px;
   border-bottom: 1px solid #DDDDDD;
@@ -47,6 +61,12 @@
   .media-footer {
     margin-top: 6px;
     margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    p {
+      margin: 0;
+      font-weight: 600;
+    }
   }
 }
 

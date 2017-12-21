@@ -33,7 +33,7 @@
         <p class="accepted"><i class="fa fa-shopping-cart" aria-hidden="true"></i></p>
       <% end %>
       <%= link_to basket_path(basket), method: :delete do %>
-        <p class="delete"><i class="fa fa-trash" aria-hidden="true"></i></p>
+        <p class="message-delete"><i class="fa fa-trash" aria-hidden="true"></i></p>
       <% end %>
     <% end %>
     <% if basket.status == "accepted" || basket.status == "Payed by Customer" || basket.status == "Accepted by FoodTruck"%>
@@ -43,7 +43,7 @@
     <% end %>
     <% if basket.status == "Declined"%>
       <%= link_to basket_path(basket), method: :delete do %>
-        <p class="delete"><i class="fa fa-trash" aria-hidden="true"></i></p>
+        <p class="message-delete"><i class="fa fa-trash" aria-hidden="true"></i></p>
       <% end %>
     <% end %>
   </div>

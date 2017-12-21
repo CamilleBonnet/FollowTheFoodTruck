@@ -17,11 +17,11 @@
   </div>
   <div class="message-body">
     <% if basket.status == "pending" %>
-      <p id="basket-status" class="status pending"><%= basket.status.capitalize %></p>
+      <p id="basket-status-<%= basket.id %>" class="status pending"><%= basket.status.capitalize %></p>
     <% elsif basket.status == "accepted" || basket.status == "Payed by Customer" || basket.status == "Accepted by FoodTruck" %>
-      <p id="basket-status" class="status accepted"><%= basket.status %></p>
+      <p id="basket-status-<%= basket.id %>" class="status accepted"><%= basket.status %></p>
     <% elsif basket.status == "Declined" %>
-      <p id="basket-status" class="status declined"><%= basket.status %></p>
+      <p id="basket-status-<%= basket.id %>" class="status declined"><%= basket.status %></p>
     <% end %>
     <p class="price"><%= basket.total_price %>€</p>
   </div>

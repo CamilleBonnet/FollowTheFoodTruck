@@ -13,12 +13,16 @@ class TrucksController < ApplicationController
       set_all_trucks
     else
       city = params.permit(:city_user)
-      all_addresses = Address.near(city["city_user"], 2)
+      all_addresses = Address.near(city["city_user"], 200)
       @trucks = []
       @addresses = []
       all_addresses.each do |address|
-        @trucks << address.truck unless address.active_address.nil?
-        @addresses << address unless address.active_address.nil?
+        unless address.active_address.nil?
+          unless @trucks.include?(address.truck)
+            @trucks << address.truck
+            @addresses << address
+          end
+        end
       end
     end
 

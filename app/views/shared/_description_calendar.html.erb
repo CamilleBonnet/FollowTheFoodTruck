@@ -1,8 +1,14 @@
 <%= month_calendar events: @calendars do |date, calendars| %>
   <div class="has-events">
-  <%= date.day %>
+  <h1> <%= date.day%></h1>
   <% calendars.each do |calendar| %>
-    <%= calendar.address.street_address unless calendar.address.nil? %>
+    <p>
+      <% unless calendar.address.nil? %>
+        <%= link_to "https://www.google.com/maps/search/" + calendar.address.street_address + " " + calendar.address.city + " " + calendar.address.country, target: :_blank do %>
+          <%= calendar.address.street_address %>
+        <% end %>
+      <% end %>
+    </p>
   </div>
   <% end %>
 <% end %>

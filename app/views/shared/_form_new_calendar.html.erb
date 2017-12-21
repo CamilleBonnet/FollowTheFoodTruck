@@ -2,6 +2,6 @@
   <%= f.input :starting_date, html5: true %>
   <%= f.input :ending_date, html5: true %>
   <%= f.input :truck_id, as: :hidden %>
-  <%= f.association :address, label_method: :street_address, value_method: :id %>
+  <%= f.association :address, collection: @truck.addresses,label_method: :street_address, value_method: :id %>
   <%= f.submit "Submit", class: "btn btn-primary" %>
 <% end %>

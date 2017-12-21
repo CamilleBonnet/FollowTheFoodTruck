@@ -20,7 +20,7 @@
     <div class="col-xs-12 col-md-6">
       <% if user_signed_in? %>
 
-        <h2 class="section-title">Select your meals</h2>
+        <h2 class="section-title no-margin-top">Select your meals</h2>
         <div class="meal-list">
           <% @tables.each do |table| %>
           <%= render 'shared/form_meals_list_with_choice', meal: table[:meal], choice: table[:choice] %>

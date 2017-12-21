@@ -4,29 +4,50 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-md-6 col-md-offset-3">
-      <div class="form-login">
-      <br>
-      <% @basket.choices.each do |choice| %>
-        <ul>
-          <li><%= choice.quantity %> x <%= choice.meal.description %> = <%= choice.price %>€</li>
-        </ul>
-      <% end %>
-      <span>Amount: <%= humanized_money_with_symbol(@basket.total_price) %></span>
-      <%= form_tag payment_with_stripe_truck_path(@truck) do %>
-        <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+      <div class="white-box">
+        <div class="message">
+          <div class="img-name">
+            <% if @basket.truck.photos.any? %>
+            <%= cl_image_tag  @basket.truck.photos.first.path, class: "avatar" %>
+            <% else %><%= image_tag "streetsurfer-foodtruck.jpg", class: "avatar " %>
+            <% end %>
+            <div class="message-name">
+              <h3><%= @basket.truck.name %></h3>
+            </div>
+          </div>
+          <div class="message-body">
+            <p><strong>Your orders:</strong></p>
+            <% @basket.choices.each do |choice| %>
+            <div><%= choice.quantity.to_s+": "+choice.meal.description %></div>
+            <% end %>
+          </div>
+          <div class="message-body">
+            <% if @basket.status == "pending" %>
+            <p class="status pending"><%= @basket.status.capitalize %></p>
+            <% elsif @basket.status == "accepted" || @basket.status == "Payed by Customer" || @basket.status == "Accepted by FoodTruck"%>
+            <p class="status accepted"><%= @basket.status.capitalize %></p>
+            <% elsif @basket.status == "Declined" %>
+            <p class="status declined"><%= @basket.status.capitalize %></p>
+            <% end %>
+            <p class="price"><%= @basket.total_price %>€</p>
+          </div>
+        </div>
+        <!-- <span>Total: <%= humanized_money_with_symbol(@basket.total_price) %></span> -->
+        <div class="container text-center", style="margin-top: 10px;">
+          <%= form_tag payment_with_stripe_truck_path(@truck) do %>
+          <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
           data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
           data-name="My Order"
           data-email="<%= current_user.registration.email %>"
           data-amount="<%= @basket.total_price_cents %>"
           data-currency="<%= @basket.total_price.currency %>">
         </script>
-      <% end %>
+        <% end %>
       </div>
     </div>
   </div>
 </div>
-<br>
-
+</div>
 <div id="map-show" style="width: 100vw; height: 50vh;"></div>
 
 <% content_for(:after_js) do %>

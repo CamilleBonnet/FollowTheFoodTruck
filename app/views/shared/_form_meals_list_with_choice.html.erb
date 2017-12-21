@@ -13,28 +13,62 @@
     <h4 class="media-heading">
       <%= meal.description %>
     </h4>
-    <p>
-    </p>
+    <div class="meal-information">
+
+      <div class="tags">
+        <% if meal.is_vegan %>
+        <span class="label-green">
+          Vegan
+        </span>
+        <% end %>
+
+        <% if meal.is_alergen %>
+        <span class="label-green">
+          Alergen friendly
+        </span>
+        <% end %>
+
+        <% if meal.is_gluten_free %>
+        <span class="label-green">
+          Gluten free
+        </span>
+        <% end %>
+
+        <% if meal.is_fat_free %>
+        <span class="label-green">
+          Fat free
+        </span>
+        <% end %>
+      </div>
+
+      <div class="spicy-scale">
+        <% if meal.spicy_scale %>
+        <% meal.spicy_scale.times do %>
+        <%= image_tag 'chilli.svg' %>
+        <% end %>
+        <% end %>
+      </div>
     </div>
+  </div>
 
   <div class="media-footer-container">
     <h6 class="price pull-right">
       €<%= meal.price %>
     </h6>
-      <div class="media-footer">
-        <span id="arrow-plus" class="fa-stack ftft-plus ftft-choice" data-meal-id="<%= choice.meal.id %>">
-          <i class="fa fa-square-o fa-stack-2x"></i>
-          <i class="fa fa-plus fa-stack-1x" aria-hidden="true"></i>
-        </span>
-        <p><%= choice.quantity %></p>
-        <span id="arrow-minus" class="fa-stack ftft-minus ftft-choice" data-meal-id="<%= choice.meal.id %>">
-          <i class="fa fa-square-o fa-stack-2x"></i>
-          <i class="fa fa-minus fa-stack-1x" aria-hidden="true"></i>
-        </span>
-      </div>
+    <div class="media-footer">
+      <span id="arrow-plus" class="fa-stack ftft-plus ftft-choice" data-meal-id="<%= choice.meal.id %>">
+        <i class="fa fa-square-o fa-stack-2x"></i>
+        <i class="fa fa-plus fa-stack-1x" aria-hidden="true"></i>
+      </span>
+      <p><%= choice.quantity %></p>
+      <span id="arrow-minus" class="fa-stack ftft-minus ftft-choice" data-meal-id="<%= choice.meal.id %>">
+        <i class="fa fa-square-o fa-stack-2x"></i>
+        <i class="fa fa-minus fa-stack-1x" aria-hidden="true"></i>
+      </span>
+    </div>
   </div>
 
-  </div>
+</div>
 
 </div>
 

@@ -24,7 +24,7 @@
 .meal-list {
   background-color: #fff;
   border-radius: 6px;
-  margin: 20px 0px 5px 0px;
+  margin: 10px 0px 5px 0px;
 }
 
 .media-body {
@@ -58,18 +58,38 @@
     margin-top: 5px;
     display: inline-block;
   }
+
   .media-footer {
-    margin-top: 6px;
-    margin-bottom: 20px;
     display: flex;
-        // display: flex;
     flex-flow: row-reverse;
     align-items: center;
+    justify-content: space-around;
+
     p {
       margin: 0;
       font-weight: 600;
     }
+    .price{
+      margin-left: 15px;
+    }
+    span{
+      padding:0;
+    }
   }
+}
+
+.meal-information {
+  position: relative;
+  // margin: 10px 0;
+  // .price {
+  //   position: absolute;
+  //   top: 0;
+  //   right: 0;
+  // }
+}
+
+.media-body{
+  flex-direction:column;
 }
 
 .meal-card {
@@ -80,6 +100,7 @@
   margin: 20px 0px 5px 0px;
   border-bottom: 1px solid #DDDDDD;
   padding-bottom: 30px;
+
   .meal-img-container {
     width: 150px;
     text-align: center;
@@ -111,3 +132,5 @@
     font-size: 20px;
   }
 }
+
+

@@ -34,8 +34,8 @@
 }
 
 .responsive-meal-picture {
-      width: 90px;
-    height: 90px;
+    width: 75px;
+    height: 75px;
     background-size: cover;
     background-position: center;
 }
@@ -72,24 +72,13 @@
   position: relative;
 }
 
-.meal-information {
-  position: relative;
-  min-height: 120px;
-  margin: 10px 0;
-  .price {
-    position: absolute;
-    top: 0;
-    right: 0;
-  }
-}
-
 span.label-green {
     background-color: #1dda8c;
     color: white;
     padding: 2px 5px;
     border-radius: 3px;
     font-size: 12px;
-    margin: 3px;
+    margin: 1px;
     &:first-child {
       margin-left: 0;
     }

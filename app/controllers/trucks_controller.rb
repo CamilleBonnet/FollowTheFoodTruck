@@ -18,8 +18,7 @@ class TrucksController < ApplicationController
       @addresses = []
       all_addresses.each do |address|
         @trucks << address.truck unless address.active_address.nil?
-        @addresses << address unless address.active_address.nil?
-        raise
+        @addresses << address.active_address unless address.active_address.nil?
       end
     end
 

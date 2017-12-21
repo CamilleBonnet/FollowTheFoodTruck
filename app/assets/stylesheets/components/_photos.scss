@@ -1,6 +1,6 @@
-.photo-full-width {
-  width: 100%;
-}
+// .photo-full-width {
+//   width: 100%;
+// }
 
 .photo-height {
   height: 380px;
@@ -17,4 +17,17 @@
 
 .small-image {
   height: 200px;
+}
+
+
+@media(max-width: 1024px) {
+  .photo-full-width {
+    width: 100%;
+  }
+
+}
+@media(min-width: 1024px) {
+  .photo-full-width {
+    max-height: 425px;
+  }
 }

@@ -1,8 +1,8 @@
 <%= month_calendar events: @calendars do |date, calendars| %>
   <div class="has-events">
-  <%= date.day %>
+  <h1> <%= date.day%></h1>
   <% calendars.each do |calendar| %>
-    <%= calendar.address.street_address unless calendar.address.nil? %>
+    <p><%= calendar.address.street_address unless calendar.address.nil? %></p>
   </div>
   <% end %>
 <% end %>

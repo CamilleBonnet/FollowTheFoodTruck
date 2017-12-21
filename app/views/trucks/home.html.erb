@@ -1,12 +1,10 @@
 <%= render 'shared/banner' %>
-<div class="container">
-  <div class="grey-box">
-  <div class="row">
-      <% @trucks.each do |truck| %>
-      <div class="col-xs-12 col-sm-6 col-md-4">
-        <%= render 'shared/truck_card', truck: truck %>
-      </div>
-      <% end %>
+<%  unless @trucks.empty?  %>
+  <div class="container row grey-box">
+    <% @trucks.each do |truck| %>
+    <div class="col-xs-12 col-sm-6 col-md-4">
+      <%= render 'shared/truck_card', truck: truck %>
+    </div>
+    <% end %>
   </div>
-  </div>
-</div>
+<% end %>

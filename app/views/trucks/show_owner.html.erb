@@ -43,22 +43,29 @@
 <div class="locations-section">
   <div class="address-title text-center">
  <h2 class="text-center relative">
- Location
-<button type="button"  data-toggle="modal" data-target="#address" class="meal-class add-button">
-  <i class="fa fa-plus" aria-hidden="true"></i>
-</button>
-</h2>
-  <%= render "shared/address_popin" %>
+  Locations
+    <!-- <button type="button"  data-toggle="modal" data-target="#address" class="meal-class add-button">
+    <i class="fa fa-plus" aria-hidden="true"></i>
+    </button> -->
+  </h2>
+  <% render "shared/address_popin" %>
  </div>
 
   <div class="container">
      <div class="row addresses">
-        <h3>
-          Your locations: (<%= @truck.addresses.length %>)
-        </h3>
-        <% unless @truck.addresses.length < 1 %>
-          <%= render 'shared/description_address', addresses: @truck.addresses, truck: @truck %>
-        <% end %>
+        <div class="col-xs-12 col-sm-6">
+          <h3>
+            Your locations: (<%= @truck.addresses.length %>)
+          </h3>
+          <div class="col-xs-12">
+          <% unless @truck.addresses.length < 1 %>
+            <%= render 'shared/description_address', addresses: @truck.addresses, truck: @truck %>
+          <% end %>
+          </div>
+      </div>
+      <div class="col-xs-12 col-sm-6">
+          <%= render "shared/form_new_address" %>
+      </div>
     </div>
   </div>
 </div>

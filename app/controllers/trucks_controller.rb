@@ -1,7 +1,7 @@
 class TrucksController < ApplicationController
   skip_before_action :authenticate_registration!, only: [:home, :index, :show]
   before_action :set_truck, only: [:show, :edit, :update, :destroy, :address]
-  before_action :set_all_trucks, only: [:home, :index]
+  before_action :set_all_trucks, only: [:home]
 
 
   def home
@@ -10,9 +10,16 @@ class TrucksController < ApplicationController
   def index
     if params["city_user"].nil? || params["city_user"] == ""
       @addresses = Address.where.not(latitude: nil, longitude: nil)
+      set_all_trucks
     else
       city = params.permit(:city_user)
-      @addresses = Address.near(city["city_user"], 10)
+      all_addresses = Address.near(city["city_user"], 10)
+      @trucks = []
+      @addresses = []
+      all_addresses.each do |address|
+        @trucks << address.truck unless address.active_address.nil?
+        @addresses << address unless address.active_address.nil?
+      end
     end
 
     @markers = Gmaps4rails.build_markers(@addresses) do |address, marker|
@@ -23,7 +30,12 @@ class TrucksController < ApplicationController
   end
 
   def new
-    @truck = Truck.new
+    if current_user.trucks.empty?
+      @truck = Truck.new
+    else
+      redirect_to root_path
+      flash[:notice] = "You already have a truck."
+    end
   end
 
   def show
@@ -43,8 +55,8 @@ class TrucksController < ApplicationController
         }
       end
     end
-
-    @marker = Gmaps4rails.build_markers(@truck.addresses) do |address, marker|
+    address = @truck.address || @truck.addresses.last
+    @marker = Gmaps4rails.build_markers(address) do |address, marker|
       marker.lat address.latitude
       marker.lng address.longitude
     end

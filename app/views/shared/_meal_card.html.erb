@@ -1,4 +1,4 @@
-<% unless  cl_image_path meal.photo.nil? %>
+<% if meal.photo? %>
   <div class="image-meal img-meal-wrapper <%= big ? 'big-image' : 'small-image' %>" style="background-image: url('<%= cl_image_path meal.photo.path %>');">
 <% else %>
   <div class="image-meal img-meal-wrapper <%= big ? 'big-image' : 'small-image' %>" style="background-image: url('<%= image_path "streetsurfer-foodtruck.jpg" %>');">

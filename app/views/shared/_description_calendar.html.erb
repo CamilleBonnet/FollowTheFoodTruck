@@ -2,7 +2,13 @@
   <div class="has-events">
   <h1> <%= date.day%></h1>
   <% calendars.each do |calendar| %>
-    <p><%= calendar.address.street_address unless calendar.address.nil? %></p>
+    <p>
+      <% unless calendar.address.nil? %>
+        <%= link_to "https://www.google.com/maps/search/" + calendar.address.street_address + " " + calendar.address.city + " " + calendar.address.country, target: :_blank do %>
+          <%= calendar.address.street_address %>
+        <% end %>
+      <% end %>
+    </p>
   </div>
   <% end %>
 <% end %>
